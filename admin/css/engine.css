@@ -1,0 +1,36 @@
+@font-face {
+  font-family: "thaisanslite";
+  src: url("../lib/fonts/thaisanslite/thaisanslite.eot");
+  src: local("☺"), url("../lib/fonts/thaisanslite/thaisanslite.woff") format("woff"),
+    url("../lib/fonts/thaisanslite/thaisanslite.ttf") format("truetype"),
+    url("../lib/fonts/thaisanslite/thaisanslite.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ********************** Design Rewrite ******************* */
+.validation-invalid-label { text-align: right; float: right; }
+.validation-valid-label { text-align: right; float: right; }
+.sidebar-user-material .sidebar-user-material-body { background: none; }
+
+/* ********************** Basic Style ********************** */
+.p-0 { padding: 0!important; }
+.m-0 { margin: 0!important; }
+.cursor { cursor: pointer; }
+.card-interactive { margin-top: 20px; transition: all ease-in-out .3s; }
+.card-interactive:hover { margin-top: 5px; transition: all ease-in-out .3s; }
+.text-thaisans-normal { font-size: 22px; }
+.text-thaisans { font-family: "thaisanslite"; }
+.text-datanotfound { font-family: "thaisanslite", Tahoma, sans-serif; font-size: 40px; margin: 0; padding: 8px; padding-left: 0px; color: #DDDDDD; }
+.text-datanotfound-area { color: #DDDDDD; text-align: center; padding: 40px; margin: auto; width: 300px;  }
+.text-datanotfound-icon { color: #DDDDDD; font-size: 60px; }
+.text-datasuccess-area { color: #33AA33; text-align: center; padding: 40px; }
+.text-datasuccess-icon { color: #33AA33; font-size: 60px; }
+.text-datasuccess { font-family: "thaisanslite", Tahoma, sans-serif; font-size: 40px; margin: 0; padding: 8px; padding-left: 0px; color: #33AA33; }
+.text-dataerror-area { color: #AA3333; text-align: center; padding: 40px; }
+.text-dataerror-icon { color: #AA3333; font-size: 60px; }
+.text-dataerror { font-family: "thaisanslite", Tahoma, sans-serif; font-size: 40px; margin: 0; padding: 8px; padding-left: 0px; color: #AA3333; }
+
+/* ********************* Animation effect ************************** */
+@keyframes placeHolderShimmer { 0% { background-position: -400px 0  } 100% { background-position: 400px 0  } }
+.animate-bg { animation-duration: 1s; animation-fill-mode: forwards; animation-iteration-count: infinite; animation-name: placeHolderShimmer; animation-timing-function: linear; background: #f6f7f8; background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%); background-size: 800px 104px; min-height: 12px; display: block; clear: both; }
