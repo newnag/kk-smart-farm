@@ -30,14 +30,15 @@ $Result=System_GetAPI(SYSTEM_DB_MODE_BACKEND,$SendRequest);
 # Show Result
 #-------------------------------------------------------------------
 $inputUser=$SendRequest["inputUser"];
-if($Result["Status"]=="Success") {
+
+	if($Result["Status"]=="Success") {
     include("../inc/inc_show_success.php");
 
 	#-------------------------------------------------------------------
 	# Save action to system logs
 	#-------------------------------------------------------------------
-	$SendRequest=array(); $SendRequest["inputAction"]="สร้าง ".MODULE_NAME." ในชื่อ ".$inputUser;
-	include("../inc/inc_save_logs.php");
+		$SendRequest=array(); $SendRequest["inputAction"]="สร้าง ".MODULE_NAME." ในชื่อ ".$inputUser;
+		include("../inc/inc_save_logs.php");
 	
 	#-------------------------------------------------------------------
 	# Clear cache folder
@@ -51,19 +52,19 @@ if($Result["Status"]=="Success") {
     function submitMe() { $('#myForm').submit(); }
     </script>
     <?php
-} else {
+	} else {
 
 	#-------------------------------------------------------------------
 	# Show Error Message
 	#-------------------------------------------------------------------
-	$ErrorMessage=$Result["Message"];
-    include("../inc/inc_show_error.php");
-	
-    ?>
-    <div style=" text-align: center; ">
-        <button type="button" class="btn btn-w-m btn-danger" style=" width: 160px; " onclick=" $('#myForm').submit(); "> <i class="fa fa-warning" aria-hidden="true"></i> &nbsp;  ตกลง </button>
-    </div>
-    <?php
-	
-}
+		$ErrorMessage=$Result["Message"];
+		include("../inc/inc_show_error.php");
+
+		?>
+		<div style=" text-align: center; ">
+				<button type="button" class="btn btn-w-m btn-danger" style=" width: 160px; " onclick=" $('#myForm').submit(); "> <i class="fa fa-warning" aria-hidden="true"></i> &nbsp;  ตกลง </button>
+		</div>
+		<?php
+		
+	}
 ?>

@@ -16,15 +16,7 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 			}
 			?>. <?php echo $Row["User"]; ?>
 		</span>
-		<span class="text-muted font-size-sm">
-			<span class="badge bg-success">
-			<?php
-			if($Row["Status"]=="Enable") { echo 'เปิดใช้งาน'; }
-			if($Row["Status"]=="Disable") { echo 'ปิดใช้งาน'; }
-			if($Row["Status"]=="Deleted") { echo 'ลบไปแล้ว'; }
-			?>
-			</span>
-		</span>
+		
 	</div>
 	<div class="card-img-actions" style=" min-height: 50px; text-align: center; ">
 		<img class="img-fluid" src="<?php echo $Row["Picture"]; ?>" >

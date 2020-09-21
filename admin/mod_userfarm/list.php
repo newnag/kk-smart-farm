@@ -27,7 +27,7 @@ $Config_PageKey=http_build_query($SendRequest);
 # Load Data from API
 #-------------------------------------------------------------------
 $Result=System_GetAPI(SYSTEM_DB_MODE_BACKEND,$SendRequest);
-$arStaffGroup=$Result["Category"]["StaffGroup"];
+//$arStaffGroup=$Result["Category"]["StaffGroup"];
 $_REQUEST["inputShowMaxPage"]=$Result["Header"]["MaxPage"];
 
 #-------------------------------------------------------------------
@@ -47,28 +47,59 @@ include_once("../inc/inc_page_header.php");
 	#-------------------------------------------------------------------
 	# Show Data List
 	#-------------------------------------------------------------------
-	print_r($Result["Header"]["TotalRecord"]);
-	if($Result["Header"]["TotalRecord"]>0) {
+	//print_r($Result["Result"]);
+
+	if($Result["Header"]["Total"]>0) {
 		?>
 		<div id="idListData">
 			<div class="row">
-				<div class="col-12 text-center font-weight-bold font-size-lg text-thaisans text-thaisans-normal"> ค้นพบ <?php echo number_format($Result["Header"]["TotalRecord"],0); ?> รายการ </div>
+				<div class="col-12 text-center font-weight-bold font-size-lg text-thaisans text-thaisans-normal"> ค้นพบ <?php echo number_format($Result["Header"]["Total"],0); ?> รายการ </div>
 			</div>
-			<div class="row" id="idListBody">
-				<?php
-				$arData=$Result["Result"];
-				for($i=0;$i<sizeof($arData);$i++) {
-					$Row=$arData[$i];
-					?><div class="col-sm-12 col-md-6 col-lg-3"><?php
-					#-------------------------------------------------------------------
-					# Show Object
-					#-------------------------------------------------------------------
-					$Config_ViewOnly=false;
-					include("list-object.php");
-					
-					?></div><?php
-				}
-				?>
+			<div class="row mt-5" id="idListBody">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header header-elements-inline">
+							<h5 class="card-title">ข้อมูลเกษตรกร</h5>
+							<div class="header-elements">
+								<div class="list-icons">
+									<a class="list-icons-item" data-action="collapse"></a>
+									<a class="list-icons-item" data-action="reload"></a>
+								</div>
+							</div>
+						</div>
+
+						<div class="table-responsive" style="">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>ชื่อผู้ใช้</th>
+										<th>ชื่อ นามสกุล</th>
+										<th>เบอร์โทร</th>
+										<th>อีเมล์</th>
+										<th>เพศ</th>
+										<th>วันเกิด</th>
+										<th>ที่อยู่</th>
+										<th>ตำบล</th>
+										<th>อำเภอ</th>
+										<th>จังหวัด</th>
+										<th>รหัสไปรษณีย์</th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php 
+									echo' <tr>
+										<td>1</td>
+										<td>Eugene</td>
+										<td>Kopyov</td>
+										<td>@Kopyov</td>
+									</tr>';
+								?>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<?php

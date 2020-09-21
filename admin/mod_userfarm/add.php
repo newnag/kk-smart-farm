@@ -58,54 +58,58 @@ include_once("../inc/inc_page_header.php");
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">รหัสผ่าน :</label>
-						<input id="inputPass" name="inputPass" type="password" class="form-control" required>
+						<input id="inputPass" name="inputPass" type="password" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">ยืนยันรหัสผ่าน :</label>
-						<input id="inputPassConfirm" name="inputPassConfirm" type="password" class="form-control" required>
+						<input id="inputPassConfirm" name="inputPassConfirm" type="password" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">E-mail : </label>
-						<input id="inputEmail" name="inputEmail" type="text" class="form-control" required>
+						<input id="inputEmail" name="inputEmail" type="text" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">เบอร์โทร : </label>
-						<input id="inputTel" name="inputTel" type="number" max="0999999999" class="form-control" required>
+						<input id="inputTel" name="inputTel" type="number" max="0999999999" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อ : </label>
-						<input id="inputFullname" name="inputFullname" type="text" class="form-control" required>
+						<input id="inputFullname" name="inputFullname" type="text" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">นามสกุล : </label>
-						<input id="inputLastname" name="inputLastname" type="text" class="form-control" required>
+						<input id="inputLastname" name="inputLastname" type="text" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
-					<div class="form-group">
-						<label class="d-block font-weight-semibold">Left inline styled</label>
+					<div class="form-group selectSex">
+						<label class="d-block text-grey-800 font-weight-bold mb-1">เพศ :</label> 
 						<div class="form-check form-check-inline">
-							<label class="form-check-label">
-								<div class="uniform-choice"><span class="checked"><input type="radio" class="form-check-input-styled" name="radio-inline-left" checked=""></span></div>
-								Selected styled
+							<label class="form-check-label" style=" line-height: 25px; ">
+								<div class="uniform-choice">
+									<input type="radio" class="form-input-styled inputSex" name="inputSex" checked="" data-fouc="" value="ชาย" onclick="selectSex(this)">	
+								</div>
+								ชาย
 							</label>
 						</div>
-
 						<div class="form-check form-check-inline">
 							<label class="form-check-label">
-								<div class="uniform-choice"><span class=""><input type="radio" class="form-check-input-styled" name="radio-inline-left" ></span></div>
-								Unselected styled
+								<div class="uniform-choice">
+									<input type="radio" class="form-input-styled inputSex" name="inputSex" data-fouc="" value="หญิง" onclick="selectSex(this)">
+								</div>
+								หญิง
 							</label>
 						</div>
+						<input type="text" id="inputSexSum" name="inputSexSum" value="ชาย" class="form-control" style="display:none;">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">เลขบัตรประชาชน : </label>
-						<input id="inputLastname" name="inputLastname" type="text" class="form-control" required>
+						<input id="inputIdNo" name="inputIdNo" type="text" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
 				</div>
@@ -119,7 +123,37 @@ include_once("../inc/inc_page_header.php");
 				</div>
 				<div class="card-body" id="idBoxBody<?php echo $box; ?>" style=" display: none; ">
 					<!-- ------------------------------------------------------- -->
-					<!-- <div class="form-group">
+					<div class="form-group mt-2">
+						<label class="mb-0 text-white font-weight-bold">วันเกิด : </label>
+						<input id="inputDOB" name="inputDOB" type="date" class="form-control text-white">
+					</div>
+					<!-- ------------------------------------------------------- -->
+					<div class="form-group mt-2">
+						<label class="mb-0 text-white font-weight-bold">ที่อยู่ : </label>
+						<input id="inputAddress" name="inputAddress" type="text" class="form-control text-white">
+					</div>
+					<!-- ------------------------------------------------------- -->
+					<div class="form-group mt-2">
+						<label class="mb-0 text-white font-weight-bold">ตำบล : </label>
+						<input id="inputSubdistrict" name="inputSubdistrict" type="text" class="form-control text-white">
+					</div>
+					<!-- ------------------------------------------------------- -->
+					<div class="form-group mt-2">
+						<label class="mb-0 text-white font-weight-bold">อำเภอ : </label>
+						<input id="inputDistrict" name="inputDistrict" type="text" class="form-control text-white">
+					</div>
+					<!-- ------------------------------------------------------- -->
+					<div class="form-group mt-2">
+						<label class="mb-0 text-white font-weight-bold">จังหวัด : </label>
+						<input id="inputProvince" name="inputProvince" type="text" class="form-control text-white">
+					</div>
+					<!-- ------------------------------------------------------- -->
+					<div class="form-group mt-2">
+						<label class="mb-0 text-white font-weight-bold">รหัสไปรษณีย์ : </label>
+						<input id="inputPost" name="inputPost" type="text" class="form-control text-white">
+					</div>
+					<!-- ------------------------------------------------------- -->
+					<div class="form-group">
 						<?php
 						####################################################################
 						$Config_Key="Picture"; // ใช้ input + ชื่อฟิลด์ เป็นมาตรฐาน
@@ -131,8 +165,10 @@ include_once("../inc/inc_page_header.php");
 						include("../tool_cropper/inc_input_fileupload_basic.php");
 						####################################################################
 						?>
-					</div> -->
+					</div>
 					<!-- ------------------------------------------------------- -->
+					
+
 				</div>
 			</div>
 			<!-- ---------------------------------------------------------- -->
@@ -146,3 +182,9 @@ include_once("../inc/inc_page_header.php");
 	</form>
 </div>
 <script src="add.js"></script>
+<script>
+	const selectSex = (that)=>{
+			let choice = that.value
+			document.querySelector('#inputSexSum').value = choice
+	}
+</script>

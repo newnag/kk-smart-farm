@@ -174,3 +174,4 @@ var FormValidation = function() {
 document.addEventListener('DOMContentLoaded', function() {
     FormValidation.init();
 });
+
