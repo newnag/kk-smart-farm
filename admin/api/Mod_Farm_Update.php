@@ -12,7 +12,7 @@ $inputNameOwner = trim(urldecode($SendRequest['inputNameOwner']));
 $inputQty = trim(urldecode($SendRequest['inputQty']));
 $inputPicture = trim(urldecode($SendRequest['inputPicture']));
 $inputTel = trim(urldecode($SendRequest['inputTel']));
-$inputaddress = trim(urldecode($SendRequest['inputaddress']));
+$inputAddress = trim(urldecode($SendRequest['inputAddress']));
 $inputSubdistrict = trim(urldecode($SendRequest['inputSubdistrict']));
 $inputDistrict = trim(urldecode($SendRequest['inputDistrict']));
 $inputProvince = trim(urldecode($SendRequest['inputProvince']));
@@ -27,19 +27,13 @@ try {
 	$arSQLData=array();
 	$sql =" UPDATE ".TABLE_MOD_FARM." SET "; 
     $sql.=" ".TABLE_MOD_FARM."_name=? ";           $arSQLData[]=$inputName;
-    if($inputNameOwner<>""){
-        $sql.=" ".TABLE_MOD_FARM."_owner=? ";           $arSQLData[]=$inputNameOwner;
-    }
-    if($inputTel<>""){
-        $sql.=",".TABLE_MOD_FARM."_tel=? ";           $arSQLData[]=$inputTel;
-    }
+    $sql.=",".TABLE_MOD_FARM."_owner=? ";           $arSQLData[]=$inputNameOwner;
+    $sql.=",".TABLE_MOD_FARM."_tel=? ";           $arSQLData[]=$inputTel;
     $sql.=",".TABLE_MOD_FARM."_qtyLivestock=? ";           $arSQLData[]=$inputQty;
-	if($inputPicture<>"") {
-		$sql.=",".TABLE_MOD_FARM."_thumbnail=? ";     $arSQLData[]=$inputPicture;
-    }
+	$sql.=",".TABLE_MOD_FARM."_thumbnail=? ";     $arSQLData[]=$inputPicture;
     $sql.=",".TABLE_MOD_FARM."_pinlat=? ";           $arSQLData[]=$inputPinlat;
     $sql.=",".TABLE_MOD_FARM."_pinlon=? ";           $arSQLData[]=$inputPinlon;
-    $sql.=",".TABLE_MOD_FARM."_address=? ";           $arSQLData[]=$inputaddress;
+    $sql.=",".TABLE_MOD_FARM."_address=? ";           $arSQLData[]=$inputAddress;
     $sql.=",".TABLE_MOD_FARM."_subdistrict=? ";           $arSQLData[]=$inputSubdistrict;
     $sql.=",".TABLE_MOD_FARM."_district=? ";           $arSQLData[]=$inputDistrict;
     $sql.=",".TABLE_MOD_FARM."_province=? ";           $arSQLData[]=$inputProvince;

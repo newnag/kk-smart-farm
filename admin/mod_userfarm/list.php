@@ -8,7 +8,7 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 # Predefine Variable
 #-------------------------------------------------------------------
 $_REQUEST["inputShowPage"]="1";
-if($_REQUEST["inputShowPageSize"]>0) { } else { $_REQUEST["inputShowPageSize"]=20; }
+if($_REQUEST["inputShowPageSize"]>0) { } else { $_REQUEST["inputShowPageSize"]=1000; }
 if($_REQUEST["inputShowStaffLevel"]=="") { $_REQUEST["inputShowStaffLevel"]="All"; }
 if($_REQUEST["inputShowStaffGroup"]=="") { $_REQUEST["inputShowStaffGroup"]="All"; }
 if($_REQUEST["inputShowStatus"]=="") { $_REQUEST["inputShowStatus"]="Enable"; }

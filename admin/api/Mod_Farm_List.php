@@ -28,7 +28,7 @@ if(!in_array($SendRequest["inputShowASCDESC"],$arCheck)) { $SendRequest["inputSh
 # PROCESS
 #-------------------------------------------------------------------
 try {
-	$sql =" SELECT * FROM ".TABLE_MOD_FARM." WHERE ".TABLE_MOD_FARM."_status<>'Deleted' ";
+  $sql =" SELECT * FROM ".TABLE_MOD_FARM." WHERE ".TABLE_MOD_FARM."_status<>'Deleted' ";
 	$Query=$System_Connection->prepare($sql);
 	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
 	while($Row=$Query->fetch(PDO::FETCH_ASSOC)) {

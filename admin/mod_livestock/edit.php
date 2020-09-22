@@ -57,73 +57,80 @@ $Row=$Result["Result"];
 				<div class="card-body" id="idBoxBody<?php echo $box; ?>">
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อฟาร์ม : </label>
-						<input id="inputName" name="inputName" type="text" class="form-control" value="<?php echo $Row["name"];?>">
+						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อปศุสัตว์ : </label>
+						<input id="inputName" name="inputName" type="text" class="form-control" value="<?php echo $Row["name"]; ?>">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อเจ้าของฟาร์ม : </label>
-						<select class="form-control select select2-hidden-accessible" id="inputNameOwner" name="inputNameOwner" data-fouc="" tabindex="-1" aria-hidden="true">
-							<option value="<?php echo $Row["owner"]; ?>"><?php echo $Row["owner"]; ?></option>
-							<?php 
+						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อฟาร์ม : </label>
+						<select class="form-control select select2-hidden-accessible" id="inputNameFarm" name="inputNameFarm" data-fouc="" tabindex="-1" aria-hidden="true">
+							<option value="<?php echo $Row["farmID"]; ?>"><?php echo $Row["farmName"]; ?></option>
+							<?php
 								$arrData = $ResultPre["Result"];
 								for($i=0;$i<sizeof($arrData);$i++){
-									$Row2 = $arrData[$i];
-									echo '<option value="'.$Row2["fullname"].'">'.$Row2["fullname"].'</option>';
+									$data = $arrData[$i];
+									echo '<option value="'.$data["id"].'">'.$data["name"].'</option>';
 								}
 							?>
 						</select>
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">เบอร์โทร : </label>
-						<input id="inputTel" name="inputTel" type="text" class="form-control" value="<?php echo $Row["tel"];?>">
+						<label class="mb-0 text-grey-800 font-weight-bold">ประเภท : </label>
+						<select class="form-control select select2-hidden-accessible" id="inputType" name="inputType" data-fouc="" tabindex="-1" aria-hidden="true">
+							<option value="<?php echo $Row["type"];?>"><?php echo $Row["type"]; ?></option>
+							<option value="buff">โค</option>
+							<option value="cow">วัว</option>
+						</select>
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">ที่อยู่ :</label>
-						<input id="inputAddress" name="inputAddress" type="text" class="form-control" value="<?php echo $Row["address"];?>">
+						<label class="mb-0 text-grey-800 font-weight-bold">รหัสไมโครชิพประจำตัวสัตว์ :</label>
+						<input id="inputMicrochip" name="inputMicrochip" type="text" class="form-control" value="<?php echo $Row["microchip"]; ?>">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">ตำบล : </label>
-						<input id="inputSubdistrict" name="inputSubdistrict" type="text" class="form-control" value="<?php echo $Row["subdistrict"];?>">
+						<label class="mb-0 text-grey-800 font-weight-bold">สายพันธุ์ : </label>
+						<select class="form-control select select2-hidden-accessible" id="inputGene" name="inputGene" data-fouc="" tabindex="-1" aria-hidden="true">
+							<option value="<?php echo $Row["gene"]; ?>"><?php echo $Row["gene"]; ?></option>
+							<option value="gene1">สายพันธุ์1</option>
+							<option value="gene2">สายพันธุ์1</option>
+						</select>
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">อำเภอ : </label>
-						<input id="inputDistrict" name="inputDistrict" type="text" class="form-control" value="<?php echo $Row["district"];?>">
+						<label class="mb-0 text-grey-800 font-weight-bold">วันเดือนปีเกิด : </label>
+						<input id="inputDOB" name="inputDOB" type="date" class="form-control" value="<?php echo $Row["DOB"]; ?>">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">จังหวัด : </label>
-						<input id="inputProvince" name="inputProvince" type="text" class="form-control" value="<?php echo $Row["province"];?>">
+						<label class="mb-0 text-grey-800 font-weight-bold">อายุ : </label>
+						<input id="inputAge" name="inputAge" type="text" class="form-control" placeholder="เช่น 1ปี 4เดือน 5วัน" value="<?php echo $Row["age"]; ?>">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">รหัสไปรษณีย์ : </label>
-						<input id="inputPost" name="inputPost" type="text" class="form-control" value="<?php echo $Row["postcode"];?>">
+						<label class="mb-0 text-grey-800 font-weight-bold">เพศ : </label>
+						<select class="form-control select select2-hidden-accessible" id="inputSex" name="inputSex" data-fouc="" tabindex="-1" aria-hidden="true">
+							<option value="<?php echo $Row["sex"]; ?>"><?php echo $Row["sex"]; ?></option>
+							<option value="เพศผู้">เพศผู้</option>
+							<option value="เพศเมีย">เพศเมีย</option>
+						</select>
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">จำนวนปศุสัตว์ : </label>
-						<input id="inputQty" name="inputQty" type="number" class="form-control" value="<?php echo $Row["qty"];?>">
+						<label class="mb-0 text-grey-800 font-weight-bold">น้ำหนัก : </label>
+						<input id="inputWeight" name="inputWeight" type="number" class="form-control" value="<?php echo $Row["weight"]; ?>">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">ปักหมุด : </label>
-						<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<input type="text" id="inputPinlat" name="inputPinlat" class="form-control" placeholder="ใส่ค่าละติจูด" value="<?php echo $Row["pinlat"];?>">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<input type="text" id="inputPinlon" name="inputPinlon" class="form-control" placeholder="ใส่ค่าลองติจูด" value="<?php echo $Row["pinlon"];?>">
-							</div>
-						</div>
-						</div>
+						<label class="mb-0 text-grey-800 font-weight-bold">สถานะสัตว์ : </label>
+						<select class="form-control select select2-hidden-accessible" id="inputHealthStatus" name="inputHealthStatus" data-fouc="" tabindex="-1" aria-hidden="true">
+							<option value="<?php echo $Row["healthStatus"]; ?>"><?php echo $Row["healthStatus"]; ?></option>
+							<option value="ปกติ">ปกติ</option>
+							<option value="ป่วย">ป่วย</option>
+							<option value="ตาย">ตาย</option>
+							<option value="หาย">หาย</option>
+						</select>
 					</div>
 					<!-- ------------------------------------------------------- -->
 				</div>
@@ -164,3 +171,8 @@ $Row=$Result["Result"];
 	</form>
 </div>
 <script src="edit.js"></script>
+<script>
+	$('#inputNameFarm').change(function(){
+		console.log($(this).val())
+	})
+</script>
