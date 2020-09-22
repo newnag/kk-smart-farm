@@ -50,6 +50,7 @@ define('TABLE_MOD_SETTING',SYSTEM_DB_PREFIX.'_mod_setting');
 define('TABLE_MOD_PAGE',SYSTEM_DB_PREFIX.'_mod_page');
 
 define('TABLE_MOD_USERFARM',SYSTEM_DB_PREFIX.'_mod_userfarm');
+define('TABLE_MOD_FARM',SYSTEM_DB_PREFIX.'_mod_farm');
 
 #-------------------------------------------------------------------
 # API Connection
@@ -108,10 +109,10 @@ $System_MenuMain_Name[3000]="การติดต่อ"; $System_MenuMain_Icon
 $System_MenuMain_Name[4000]="Banner"; $System_MenuMain_Icons[4000]="icon-stack-picture";
         $System_MenuSub_Name[4001] ="Hero Banner หน้าแรก"; $System_MenuSub_Link[4001]="../mod_bannerhero/";
         $System_MenuSub_Name[4002] ="Hero Banner โครงการ"; $System_MenuSub_Link[4002]="../mod_bannerhero1/";
-$System_MenuMain_Name[5000]="จัดการข้อมูลเกี่ยวกับฟาร์ม"; $System_MenuMain_Icons[5000]="icon-equalizer2";
+$System_MenuMain_Name[5000]="จัดการข้อมูลเกี่ยวกับฟาร์ม"; $System_MenuMain_Icons[5000]="icon-pencil7";
         $System_MenuSub_Name[5001] ="จัดการข้อมูลเกษตรกร"; $System_MenuSub_Link[5001]="../mod_userfarm/";
         $System_MenuSub_Name[5002] ="จัดการข้อมูลปศุสัตว์"; $System_MenuSub_Link[5002]="../mod_setting/";
-        $System_MenuSub_Name[5003] ="จัดการข้อมูลฟาร์ม"; $System_MenuSub_Link[5003]="../mod_setting/";
+        $System_MenuSub_Name[5003] ="จัดการข้อมูลฟาร์ม"; $System_MenuSub_Link[5003]="../mod_farm/";
 $System_MenuMain_Name[6000]="จัดการเว็บไซต์"; $System_MenuMain_Icons[6000]="icon-equalizer2";
         $System_MenuSub_Name[6001] ="Website Setting"; $System_MenuSub_Link[6001]="../mod_setting/";
         $System_MenuSub_Name[6002] ="Terms and Conditions"; $System_MenuSub_Link[6002]="../mod_page/";

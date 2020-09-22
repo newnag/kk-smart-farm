@@ -5,18 +5,25 @@
 if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 
 #-------------------------------------------------------------------
-# Show Page Header Panel
+# Create SendRequest Data and Create PageKey
 #-------------------------------------------------------------------
-$Config_ShowButton=array("back");
-include_once("../inc/inc_page_header.php");
+$SendRequest=array("act"=>"Mod_Userfarm"."_List");
+foreach ($_REQUEST as $key => $value) { $SendRequest[$key]=trim(urldecode($value)); }
+$Config_PageKey=http_build_query($SendRequest);
 
 #-------------------------------------------------------------------
 # Load Data from API
 #-------------------------------------------------------------------
-$SendRequest=array("act"=>MODULE_TABLE."_ListOne");
-foreach ($_REQUEST as $key => $value) { $SendRequest[$key]=trim(urldecode($value)); }
-$Result=System_GetAPI(SYSTEM_DB_MODE_BACKEND,$SendRequest);
-$Row=$Result["Result"];
+$ResultPre=System_GetAPI(SYSTEM_DB_MODE_BACKEND,$SendRequest);
+
+// print_r($Result["Result"]);
+// exit();
+
+#-------------------------------------------------------------------
+# Show Page Header Panel
+#-------------------------------------------------------------------
+$Config_ShowButton=array("back");
+include_once("../inc/inc_page_header.php");
 
 ?>
 <div class="content">
@@ -33,8 +40,7 @@ $Row=$Result["Result"];
 		<!-- ---------------------------------------------------------- -->
 	</form>
 	<form id="myForm" name="myForm" method="post" action="?" class="form-validate-jquery" enctype="multipart/form-data">
-		<input type="hidden" id="doaction" name="doaction" value="update" />
-		<input type="hidden" id="inputID"  name="inputID"  value="<?php echo $_REQUEST["inputID"]; ?>" />
+		<input type="hidden" id="doaction" name="doaction" value="insert" />
 		<!-- Remember Current List State ---------------------------- -->
 		<input type="hidden" id="inputShowFilter"     name="inputShowFilter"     value="<?php echo $_REQUEST["inputShowFilter"]; ?>" />
 		<input type="hidden" id="inputShowStaffLevel" name="inputShowStaffLevel" value="<?php echo $_REQUEST["inputShowStaffLevel"]; ?>" />
@@ -43,7 +49,7 @@ $Row=$Result["Result"];
 		<input type="hidden" id="inputShowOrderBy"    name="inputShowOrderBy"    value="<?php echo $_REQUEST["inputShowOrderBy"]; ?>" />
 		<input type="hidden" id="inputShowASCDESC"    name="inputShowASCDESC"    value="<?php echo $_REQUEST["inputShowASCDESC"]; ?>" />
 		<!-- ---------------------------------------------------------- -->
-		<h1>แก้ไข<?php echo MODULE_NAME; ?></h1>
+		<h1>เพิ่ม<?php echo MODULE_NAME; ?></h1>
 		<div class="content" style=" max-width: 550px; margin:auto; ">
 			<!-- ---------------------------------------------------------- -->
 			<?php $box=1; ?>
@@ -54,86 +60,74 @@ $Row=$Result["Result"];
 				</div>
 				<div class="card-body" id="idBoxBody<?php echo $box; ?>">
 					<!-- ------------------------------------------------------- -->
-					<div class="form-group" style=" margin-top: 20px; ">
-						<label class="mb-0 text-grey-800 font-weight-bold">
-							User :
-						</label>
-						<div style=" padding: 4px; padding-left: 10px; " class=" text-success font-weight-bold ">
-							<?php echo $Row["user"]; ?>
-							<input type="hidden" id="inputUser" name="inputUser" value="<?php echo $Row["user"]; ?>" />
-						</div>
+					<div class="form-group">
+						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อฟาร์ม : </label>
+						<input id="inputName" name="inputName" type="text" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">แก้ไขรหัสผ่าน :</label>
-						<input id="inputPass" name="inputPass" type="password" class="form-control" onblur=" doShowPassConfirm(this); ">
-						<div style=" padding: 4px; "><span class=" text-warning font-size-xs"> ให้เว้นว่างไว้ หากไม่ต้องการแก้ไขรหัสผ่านเดิม </span></div>
-					</div>
-					<!-- ------------------------------------------------------- -->
-					<div class="form-group" id="idPassConfirm" style=" display: none; ">
-						<label class="mb-0 text-grey-800 font-weight-bold">ยืนยันรหัสผ่าน :</label>
-						<input id="inputPassConfirm" name="inputPassConfirm" type="password" class="form-control">
-					</div>
-					<!-- ------------------------------------------------------- -->
-					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">E-mail : </label>
-						<input id="inputEmail" name="inputEmail" type="text" class="form-control" required value="<?php echo $Row["email"]; ?>">
-					</div>
-					<!-- ------------------------------------------------------- -->
-					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">เบอร์โทรศัพท์ : </label>
-						<input id="inputTel" name="inputTel" type="text" class="form-control" required value="<?php echo $Row["tel"]; ?>">
-					</div>
-					<!-- ------------------------------------------------------- -->
-					<div class="form-group selectSex">
-						<label class="d-block text-grey-800 font-weight-bold mb-1">เพศ : <?php echo $Row["sex"]; ?></label> 
-						<div class="form-check form-check-inline">
-							<label class="form-check-label" style=" line-height: 25px; ">
-								<div class="uniform-choice">
-									<input type="radio" class="form-input-styled inputSex" name="inputSex" checked="" data-fouc="" value="ชาย" onclick="selectSex(this)">	
-								</div>
-								ชาย
-							</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<label class="form-check-label">
-								<div class="uniform-choice">
-									<input type="radio" class="form-input-styled inputSex" name="inputSex" data-fouc="" value="หญิง" onclick="selectSex(this)">
-								</div>
-								หญิง
-							</label>
-						</div>
-						<input type="text" id="inputSexSum" name="inputSexSum" value="ชาย" class="form-control" style="display:none;">
+						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อเจ้าของฟาร์ม : </label>
+						<select class="form-control select select2-hidden-accessible" id="inputNameOwner" name="inputNameOwner" data-fouc="" tabindex="-1" aria-hidden="true">
+							<option value="">เลือกชื่อเจ้าของฟาร์ม</option>
+							<?php 
+								$arrData = $ResultPre["Result"];
+								for($i=0;$i<sizeof($arrData);$i++){
+									$Row = $arrData[$i];
+									echo '<option value="'.$Row["fullname"].'">'.$Row["fullname"].'</option>';
+								}
+							?>
+						</select>
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">วันเกิด : </label>
-						<input id="inputDOB" name="inputDOB" type="date" class="form-control" required value="<?php echo $Row["DOB"]; ?>">
+						<label class="mb-0 text-grey-800 font-weight-bold">เบอร์โทร : </label>
+						<input id="inputTel" name="inputTel" type="tel" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">ที่อยู่ : </label>
-						<input id="inputaddress" name="inputaddress" type="text" class="form-control" required value="<?php echo $Row["address"]; ?>">
+						<label class="mb-0 text-grey-800 font-weight-bold">ที่อยู่ :</label>
+						<input id="inputAddress" name="inputAddress" type="text" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">ตำบล : </label>
-						<input id="inputSubdistrict" name="inputSubdistrict" type="text" class="form-control" required value="<?php echo $Row["subdistrict"]; ?>">
+						<input id="inputSubdistrict" name="inputSubdistrict" type="text" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">อำเภอ : </label>
-						<input id="inputDistrict" name="inputDistrict" type="text" class="form-control" required value="<?php echo $Row["district"]; ?>">
+						<input id="inputDistrict" name="inputDistrict" type="text" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">จังหวัด : </label>
-						<input id="inputProvince" name="inputProvince" type="text" class="form-control" required value="<?php echo $Row["province"]; ?>">
+						<input id="inputProvince" name="inputProvince" type="text" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">รหัสไปรษณีย์ : </label>
-						<input id="inputPost" name="inputPost" type="text" class="form-control" required value="<?php echo $Row["postcode"]; ?>">
+						<input id="inputPost" name="inputPost" type="text" class="form-control">
+					</div>
+					<!-- ------------------------------------------------------- -->
+					<div class="form-group">
+						<label class="mb-0 text-grey-800 font-weight-bold">จำนวนปศุสัตว์ : </label>
+						<input id="inputQty" name="inputQty" type="number" class="form-control">
+					</div>
+					<!-- ------------------------------------------------------- -->
+					<div class="form-group">
+						<label class="mb-0 text-grey-800 font-weight-bold">ปักหมุด : </label>
+						<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" id="inputPinlat" name="inputPinlat" class="form-control" placeholder="ใส่ค่าละติจูด">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" id="inputPinlon" name="inputPinlon" class="form-control" placeholder="ใส่ค่าลองติจูด">
+							</div>
+						</div>
+						</div>
 					</div>
 					<!-- ------------------------------------------------------- -->
 				</div>
@@ -146,13 +140,12 @@ $Row=$Result["Result"];
 					<div class="header-elements"><div class="list-icons"><a class="list-icons-item rotate-180" id="idBoxIcon<?php echo $box; ?>" data-action="collapse"></a></div></div>
 				</div>
 				<div class="card-body" id="idBoxBody<?php echo $box; ?>" style=" display: none; ">
-					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
 						<?php
 						####################################################################
 						$Config_Key="Picture"; // ใช้ input + ชื่อฟิลด์ เป็นมาตรฐาน
 						$Config_Label="ภาพแทนตัว";
-						$Config_OldFile=$Row["thumbnail"];
+						$Config_OldFile=array();
 						$Config_Width=500;
 						$Config_Height=500;
 						####################################################################
@@ -165,18 +158,12 @@ $Row=$Result["Result"];
 			</div>
 			<!-- ---------------------------------------------------------- -->
 		</div>
-		<div class="card card-body text-center d-flex justify-content-between align-items-center  <?php echo CONFIG_DEFAULT_DESIGN_CLASS; ?>">
+		<div class="card card-body text-center d-flex justify-content-between align-items-center <?php echo CONFIG_DEFAULT_DESIGN_CLASS; ?>">
 			<table style=" width:100% "><tr>
 			<td class="text-left"><button type="button" class="btn bg-transparent text-white" onclick=" doBack(); "> <i class="icon-backward2 mr-2"></i> ย้อนกลับ </button></td>
-			<td class="text-right"><button type="submit" class="btn bg-success" style=" width:160px; "> บันทึก <i class="icon-checkmark4 ml-2"></i></button></td>
+			<td class="text-right"><button type="submit" class="btn bg-success" style=" width:160px; "> เพิ่ม<?php echo MODULE_NAME; ?> <i class="icon-plus-circle2 ml-2"></i></button></td>
 			</tr></table>
 		</div>
 	</form>
 </div>
-<script src="edit.js"></script>
-<script>
-	const selectSex = (that)=>{
-			let choice = that.value
-			document.querySelector('#inputSexSum').value = choice
-	}
-</script>
+<script src="add.js"></script>

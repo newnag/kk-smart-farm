@@ -28,26 +28,24 @@ if(!in_array($SendRequest["inputShowASCDESC"],$arCheck)) { $SendRequest["inputSh
 # PROCESS
 #-------------------------------------------------------------------
 try {
-	$sql =" SELECT * FROM ".TABLE_MOD_USERFARM." WHERE ".TABLE_MOD_USERFARM."_status<>'Deleted' ";
+	$sql =" SELECT * FROM ".TABLE_MOD_FARM." WHERE ".TABLE_MOD_FARM."_status<>'Deleted' ";
 	$Query=$System_Connection->prepare($sql);
 	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
 	while($Row=$Query->fetch(PDO::FETCH_ASSOC)) {
     $dataQ = array();
-    $dataQ["id"] = $Row[TABLE_MOD_USERFARM."_id"];
-    $dataQ["user"]=$Row[TABLE_MOD_USERFARM."_user"] ;
-    $dataQ["fullname"]=$Row[TABLE_MOD_USERFARM."_fullname"] ;
-    $dataQ["lastname"]=$Row[TABLE_MOD_USERFARM."_lastname"] ;
-    $dataQ["tel"]=$Row[TABLE_MOD_USERFARM."_tel"] ;
-    $dataQ["email"]=$Row[TABLE_MOD_USERFARM."_email"] ;
-    $dataQ["sex"]=$Row[TABLE_MOD_USERFARM."_sex"] ;
-    $dataQ["DOB"]=$Row[TABLE_MOD_USERFARM."_DOB"] ;
-    $dataQ["idNo"]=$Row[TABLE_MOD_USERFARM."_id_No"] ;
-    $dataQ["address"]=$Row[TABLE_MOD_USERFARM."_address"] ;
-    $dataQ["province"]=$Row[TABLE_MOD_USERFARM."_province"] ;
-    $dataQ["district"]=$Row[TABLE_MOD_USERFARM."_district"] ;
-    $dataQ["subdistrict"]=$Row[TABLE_MOD_USERFARM."_subdistrict"] ;
-    $dataQ["postcode"]=$Row[TABLE_MOD_USERFARM."_postcode"]  ;
-    $dataQ["thumbnail"]=$Row[TABLE_MOD_USERFARM."_thumbnail"]  ;
+    $dataQ["id"] = $Row[TABLE_MOD_FARM."_id"];
+    $dataQ["name"]=$Row[TABLE_MOD_FARM."_name"] ;
+    $dataQ["owner"]=$Row[TABLE_MOD_FARM."_owner"] ;
+    $dataQ["tel"]=$Row[TABLE_MOD_FARM."_tel"] ;
+    $dataQ["pinlat"]=$Row[TABLE_MOD_FARM."_pinlat"] ;
+    $dataQ["pinlon"]=$Row[TABLE_MOD_FARM."_pinlon"] ;
+    $dataQ["qty"]=$Row[TABLE_MOD_FARM."_qtyLivestock"] ;
+    $dataQ["address"]=$Row[TABLE_MOD_FARM."_address"] ;
+    $dataQ["province"]=$Row[TABLE_MOD_FARM."_province"] ;
+    $dataQ["district"]=$Row[TABLE_MOD_FARM."_district"] ;
+    $dataQ["subdistrict"]=$Row[TABLE_MOD_FARM."_subdistrict"] ;
+    $dataQ["postcode"]=$Row[TABLE_MOD_FARM."_postcode"]  ;
+    $dataQ["thumbnail"]=$Row[TABLE_MOD_FARM."_thumbnail"]  ;
 
     $arrdataQ[] = $dataQ;
   }

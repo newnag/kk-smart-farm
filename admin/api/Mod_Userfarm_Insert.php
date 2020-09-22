@@ -65,9 +65,9 @@ if($myID>0) { // error existed!
 		//$sqla.=",".TABLE_MOD_USERFARM."_StaffGroupID ";  $sqlb.=",? ";         $arSQLData[]=$inputStaffGroupID;
 		$sqla.=",".TABLE_MOD_USERFARM."_CreateDate ";    $sqlb.=",? ";         $arSQLData[]=SYSTEM_DATETIMENOW;
 		$sqla.=",".TABLE_MOD_USERFARM."_CreateByID ";    $sqlb.=",? ";         $arSQLData[]=$SystemSession_Staff_ID;
-		//$sqla.=",".TABLE_MOD_USERFARM."_LastUpdate ";    $sqlb.=",? ";         $arSQLData[]=SYSTEM_DATETIMENOW;
-		//$sqla.=",".TABLE_MOD_USERFARM."_LastUpdateByID"; $sqlb.=",? ";         $arSQLData[]=$SystemSession_Staff_ID;
-		//$sqla.=",".TABLE_MOD_USERFARM."_Status ";        $sqlb.=",? ";         $arSQLData[]="Enable";
+		$sqla.=",".TABLE_MOD_USERFARM."_LastUpdate ";    $sqlb.=",? ";         $arSQLData[]=SYSTEM_DATETIMENOW;
+		$sqla.=",".TABLE_MOD_USERFARM."_LastUpdateByID"; $sqlb.=",? ";         $arSQLData[]=$SystemSession_Staff_ID;
+		$sqla.=",".TABLE_MOD_USERFARM."_status ";        $sqlb.=",? ";         $arSQLData[]="Enable";
 		$sql=$sqla.$sqlb.$sqlc;
 		$Query=$System_Connection->prepare($sql);
 		if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }

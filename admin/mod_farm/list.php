@@ -27,7 +27,7 @@ $Config_PageKey=http_build_query($SendRequest);
 # Load Data from API
 #-------------------------------------------------------------------
 $Result=System_GetAPI(SYSTEM_DB_MODE_BACKEND,$SendRequest);
-$_REQUEST["inputShowMaxPage"]=$Result["Header"]["MaxPage"];
+$_REQUEST["inputShowMaxPage"]=$Result["Header"]["MaxPage"];    
 
 #-------------------------------------------------------------------
 # Show Page Header Panel
@@ -57,7 +57,7 @@ include_once("../inc/inc_page_header.php");
 				<div class="col-12">
 					<div class="card">
 						<div class="card-header header-elements-inline">
-							<h5 class="card-title">ข้อมูลเกษตรกร</h5>
+							<h5 class="card-title"><?php echo MODULE_NAME; ?></h5>
 							<div class="header-elements">
 								<div class="list-icons">
 									<a class="list-icons-item" data-action="collapse"></a>
@@ -70,11 +70,12 @@ include_once("../inc/inc_page_header.php");
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>ชื่อผู้ใช้</th>
-										<th>ชื่อ</th>
-										<th>นามสกุล</th>
+										<th>ชื่อฟาร์ม</th>
+										<th>ชื่อเจ้าของฟาร์ม</th>
+										<th>จำนวนปศุสัตว์</th>
 										<th>เบอร์โทร</th>
-										<th>อีเมล์</th>
+										<th>ที่อยู่</th>
+										<th>จังหวัด</th>
 										<th></th>
 									</tr>
 								</thead>
