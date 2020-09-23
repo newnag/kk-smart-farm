@@ -52,6 +52,10 @@ define('TABLE_MOD_PAGE',SYSTEM_DB_PREFIX.'_mod_page');
 define('TABLE_MOD_USERFARM',SYSTEM_DB_PREFIX.'_mod_userfarm');
 define('TABLE_MOD_FARM',SYSTEM_DB_PREFIX.'_mod_farm');
 define('TABLE_MOD_LIVESTOCK',SYSTEM_DB_PREFIX.'_mod_livestock');
+define('TABLE_MOD_CATEGORY',SYSTEM_DB_PREFIX.'_mod_category');
+define('TABLE_MOD_SUBCATEGORY',SYSTEM_DB_PREFIX.'_mod_subcate');
+define('TABLE_MOD_CHOICE',SYSTEM_DB_PREFIX.'_mod_choice');
+define('TABLE_MOD_THUMBNAIL',SYSTEM_DB_PREFIX.'_mod_thumbnailSub');
 
 #-------------------------------------------------------------------
 # API Connection
@@ -105,11 +109,13 @@ $System_MenuMain_Name[1000]="โครงการ"; $System_MenuMain_Icons[1000
 $System_MenuMain_Name[2000]="ข่าวและบทความ"; $System_MenuMain_Icons[2000]="icon-typewriter";
         $System_MenuSub_Name[2001] ="บทความ"; $System_MenuSub_Link[2001]="../mod_article/";
         $System_MenuSub_Name[2002] ="ข่าวสารและโปรโมชั่น"; $System_MenuSub_Link[2002]="../mod_promotion/";
-$System_MenuMain_Name[3000]="การติดต่อ"; $System_MenuMain_Icons[3000]="mi-mail-outline";
-        $System_MenuSub_Name[3001] ="Contact Us"; $System_MenuSub_Link[3001]="../mod_contact/";
-$System_MenuMain_Name[4000]="Banner"; $System_MenuMain_Icons[4000]="icon-stack-picture";
-        $System_MenuSub_Name[4001] ="Hero Banner หน้าแรก"; $System_MenuSub_Link[4001]="../mod_bannerhero/";
-        $System_MenuSub_Name[4002] ="Hero Banner โครงการ"; $System_MenuSub_Link[4002]="../mod_bannerhero1/";
+$System_MenuMain_Name[3000]="จัดการหมวดหมู่และคำตอบ"; $System_MenuMain_Icons[3000]="mi-mail-outline";
+        $System_MenuSub_Name[3001] ="หมวดหมู่"; $System_MenuSub_Link[3001]="../mod_category/";
+        $System_MenuSub_Name[3002] ="หมวดหมู่ย่อย"; $System_MenuSub_Link[3002]="../mod_subcate/";
+        $System_MenuSub_Name[3003] ="คำตอบ"; $System_MenuSub_Link[3003]="../mod_choice/";
+        $System_MenuSub_Name[3004] ="รูปภาพหมวดหมู่ย่อย"; $System_MenuSub_Link[3004]="../mod_thumbnail/";
+// $System_MenuMain_Name[4000]="การติดต่อ"; $System_MenuMain_Icons[3000]="mi-mail-outline";
+//         $System_MenuSub_Name[4001] ="Contact Us"; $System_MenuSub_Link[3001]="../mod_contact/";
 $System_MenuMain_Name[5000]="จัดการข้อมูลเกี่ยวกับฟาร์ม"; $System_MenuMain_Icons[5000]="icon-pencil7";
         $System_MenuSub_Name[5001] ="จัดการข้อมูลเกษตรกร"; $System_MenuSub_Link[5001]="../mod_userfarm/";
         $System_MenuSub_Name[5002] ="จัดการข้อมูลปศุสัตว์"; $System_MenuSub_Link[5002]="../mod_livestock/";

@@ -23,9 +23,7 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 			if(in_array("back",$Config_ShowButton)) {
 				?> &nbsp; <a href="#" class="btn btn-grey btn-labeled btn-labeled-right bg-grey-400" style=" width: 120px; " onclick=" doBack(); ">ย้อนกลับ <b><i class="icon-undo2"></i></b></a> <?php
 			}
-			if(in_array("filter",$Config_ShowButton)) {
-				?> &nbsp; <a href="#" class="btn btn-success <?php echo CONFIG_DEFAULT_DESIGN_CLASS; ?>" style=" width: 55px; " onclick=" doToggleFilter(); "> <i class="icon-filter3"></i> </a> <?php
-			}
+			
 			?>
 		</div>
 	</div>
