@@ -17,14 +17,10 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
                     <table class="table">
                         <thead>
                             <tr>
-                            <th>ชื่อหมวดหมู่ย่อย</th>
-                            <th>ชื่อหมวดหมู่</th>
                             <th>คำตอบ</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <td><?php echo $Row["cateName"]; ?></td>
-                            <td><?php echo $Row["subName"]; ?></td>
                             <td><?php echo $Row["name"]; ?></td>
                         </tbody>
                     </table>

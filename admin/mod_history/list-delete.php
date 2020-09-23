@@ -13,20 +13,28 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
         <div class="col-12">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h5 class="card-title"><?php echo MODULE_NAME ; ?></h5>
+                    <h5 class="card-title">ข้อมูลเกษตรกร</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="table-responsive" style="">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ชื่อหมวดหมู่ย่อย</th>
-                                <th>รูปภาพ</th>
+                                <th>ชื่อสัตว์</th>
+                                <th>วันที่ตรวจ</th>
+                                <th>สถานะการตรวจ</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <td><?php echo $Row["subName"]; ?></td>
-                            <td><?php echo '<img src="'.$Row["thumbnail"].'" style="max-width:200px; max-height:200px">'; ?></td>
+                            <td><?php echo $Row["livestock"]; ?></td>
+                            <td><?php echo $Row["date"]; ?></td>
+                            <td><?php echo $Row["status"]; ?></td>
                         </tbody>
                     </table>
                 </div>

@@ -1,20 +1,23 @@
 <?php
 #-------------------------------------------------------------------
-# Direct File Access Protection
+# Config
 #-------------------------------------------------------------------
-if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
-
-#-------------------------------------------------------------------
-# Create SendRequest Data and Create PageKey
-#-------------------------------------------------------------------
-$SendRequest=array("act"=>"Mod_Subcate"."_List");
-foreach ($_REQUEST as $key => $value) { $SendRequest[$key]=trim(urldecode($value)); }
-$Config_PageKey=http_build_query($SendRequest);
-
-//print_r($SendRequestPre);
-// exit();
+include_once("../config/config.php");
+include_once("../config/function.php");
+include_once("../config/connect.php");
+include_once("../config/loader.php");
+include_once("config.php");
 
 #-------------------------------------------------------------------
 # Load Data from API
 #-------------------------------------------------------------------
-$ResultPre=System_GetAPI(SYSTEM_DB_MODE_BACKEND,$SendRequest);
+$SendRequest=array("act"=>MODULE_TABLE."_CheckUser");
+foreach ($_REQUEST as $key => $value) { $SendRequest[$key]=trim(urldecode($value)); }
+$Result=System_GetAPI(SYSTEM_DB_MODE_BACKEND,$SendRequest);
+
+#-------------------------------------------------------------------
+# Show Result
+#-------------------------------------------------------------------
+echo $Result["Status"];
+
+?>

@@ -7,7 +7,7 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 #-------------------------------------------------------------------
 # Create SendRequest Data and Create PageKey
 #-------------------------------------------------------------------
-$SendRequest=array("act"=>"Mod_Subcate"."_List");
+$SendRequest=array("act"=>"Mod_Select"."_Choice");
 foreach ($_REQUEST as $key => $value) { $SendRequest[$key]=trim(urldecode($value)); }
 $Config_PageKey=http_build_query($SendRequest);
 
@@ -17,4 +17,4 @@ $Config_PageKey=http_build_query($SendRequest);
 #-------------------------------------------------------------------
 # Load Data from API
 #-------------------------------------------------------------------
-$ResultPre=System_GetAPI(SYSTEM_DB_MODE_BACKEND,$SendRequest);
+$ResultA=System_GetAPI(SYSTEM_DB_MODE_BACKEND,$SendRequest);

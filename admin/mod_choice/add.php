@@ -7,8 +7,6 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 #-------------------------------------------------------------------
 # Create SendRequest Data and Create PageKey
 #-------------------------------------------------------------------
-include("add-cate.php");
-include("add-sub.php");
 
 #-------------------------------------------------------------------
 # Load Data from API
@@ -58,38 +56,9 @@ include_once("../inc/inc_page_header.php");
 				<div class="card-body" id="idBoxBody<?php echo $box; ?>">
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อหมวดหมู่หลัก : </label>
-						<select class="form-control select select2-hidden-accessible" id="inputCateName" name="inputCateName" data-fouc="" tabindex="-1" aria-hidden="true">
-							<option value="">เลือกหมวดหมู่หลัก</option>
-							<?php
-								$arrData1 = $ResultA["Result"];
-								for($i=0;$i<sizeof($arrData1);$i++){
-									$listData1 = $arrData1[$i];
-									echo '<option value="'.$listData1["id"].'/'.$listData1["name"].'">'.$listData1["name"].'</option>';
-								}
-							?>
-						</select>
-					</div>
-					<!-- ------------------------------------------------------- -->
-					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อหมวดหมู่ย่อย : </label>
-						<select class="form-control select select2-hidden-accessible" id="inputSubName" name="inputSubName" data-fouc="" tabindex="-1" aria-hidden="true">
-							<option value="">เลือกหมวดหมู่ย่อย</option>
-							<?php
-								$arrData2 = $ResultB["Result"];
-								for($i=0;$i<sizeof($arrData2);$i++){
-									$listData2 = $arrData2[$i];
-									echo '<option value="'.$listData2["id"].'/'.$listData2["name"].'">'.$listData2["name"].'</option>';
-								}
-							?>
-						</select>
-					</div>
-					<!-- ------------------------------------------------------- -->
-					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">คำตอบ : </label>
 						<input id="inputChoice" name="inputChoice" type="text" class="form-control">
 					</div>
-					<!-- ------------------------------------------------------- -->
 				</div>
 			<!-- ---------------------------------------------------------- -->
 			</div>

@@ -28,13 +28,15 @@ if(!in_array($SendRequest["inputShowASCDESC"],$arCheck)) { $SendRequest["inputSh
 # PROCESS
 #-------------------------------------------------------------------
 try {
-  $sql =" SELECT * FROM ".TABLE_MOD_CHOICE." WHERE ".TABLE_MOD_CHOICE."_status<>'Deleted' ";
+  $sql =" SELECT * FROM ".TABLE_MOD_HISTORYHEALTH." JOIN ".TABLE_MOD_LIVESTOCK." ON ".TABLE_MOD_LIVESTOCK."_id = ".TABLE_MOD_HISTORYHEALTH."_livestockID  WHERE ".TABLE_MOD_HISTORYHEALTH."_status<>'Deleted' ";
 	$Query=$System_Connection->prepare($sql);
 	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
 	while($Row=$Query->fetch(PDO::FETCH_ASSOC)) {
     $dataQ = array();
-    $dataQ["id"] = $Row[TABLE_MOD_CHOICE."_id"];
-    $dataQ["name"]=$Row[TABLE_MOD_CHOICE."_name"] ;;
+    $dataQ["id"] = $Row[TABLE_MOD_HISTORYHEALTH."_id"];
+    $dataQ["livestock"]=$Row[TABLE_MOD_LIVESTOCK."_name"] ;
+    $dataQ["status"]=$Row[TABLE_MOD_HISTORYHEALTH."_historyStatus"] ;
+    $dataQ["date"]=$Row[TABLE_MOD_HISTORYHEALTH."_CreateDate"] ;
 
     $arrdataQ[] = $dataQ;
   }

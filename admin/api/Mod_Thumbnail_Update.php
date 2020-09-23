@@ -7,18 +7,28 @@ $ErrorMessage="";
 
 //INPUT:----------------------------------------
 $myID = trim(urldecode($SendRequest['inputID']));
-$inputChoice = trim(urldecode($SendRequest['inputChoice']));
+$inputSubName = trim(urldecode($SendRequest['inputSubName']));
+$inputPicture = trim(urldecode($SendRequest['inputPicture']));
 $SystemSession_Staff_ID = trim(urldecode($SendRequest['SystemSession_Staff_ID']));
+
+//PROCESS:----------------------------------------
+###################################################
+$arrLisr = explode("/",$inputCateName);
 
 //PROCESS:----------------------------------------
 ###################################################
 try {
 	$arSQLData=array();
-	$sql =" UPDATE ".TABLE_MOD_CHOICE." SET "; 
-	$sql.=" ".TABLE_MOD_CHOICE."_name=? ";           $arSQLData[]=$inputChoice;
-	$sql.=",".TABLE_MOD_CHOICE."_LastUpdate=? ";      $arSQLData[]=SYSTEM_DATETIMENOW;
-	$sql.=",".TABLE_MOD_CHOICE."_LastUpdateByID=? ";  $arSQLData[]=$SystemSession_Staff_ID;
-	$sql.=" WHERE ".TABLE_MOD_CHOICE."_id=? ";        $arSQLData[]=$myID;
+  $sql =" UPDATE ".TABLE_MOD_THUMBNAIL." SET "; 
+	$sql.=" ".TABLE_MOD_THUMBNAIL."_LastUpdate=? ";      $arSQLData[]=SYSTEM_DATETIMENOW;
+  $sql.=",".TABLE_MOD_THUMBNAIL."_LastUpdateByID=? ";  $arSQLData[]=$SystemSession_Staff_ID;
+  if($inputSubName<>""){
+    $sql.=",".TABLE_MOD_THUMBNAIL."_subID=? ";           $arSQLData[]=$inputSubName;
+  }
+	if($inputPicture<>""){
+		$sql.=",".TABLE_MOD_THUMBNAIL."_picture=? ";     $arSQLData[]=$inputPicture;
+  }
+	$sql.=" WHERE ".TABLE_MOD_THUMBNAIL."_id=? ";        $arSQLData[]=$myID;
 	$Query=$System_Connection->prepare($sql);
 	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
 } catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }

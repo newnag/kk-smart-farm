@@ -15,7 +15,7 @@ $myID = trim(urldecode($SendRequest['inputID']))*1;
 #-------------------------------------------------------------------
 try {
   $counter=0; $arSQLData=array();
-    $sql =" SELECT * FROM ".TABLE_MOD_THUMBNAIL." JOIN ".TABLE_MOD_SUBCATEGORY." ON ".TABLE_MOD_SUBCATEGORY."_id = ".TABLE_MOD_THUMBNAIL."_subID  WHERE ".TABLE_MOD_SUBCATEGORY."_ID=? "; $arSQLData[]=$myID ;
+    $sql =" SELECT * FROM ".TABLE_MOD_THUMBNAIL." JOIN ".TABLE_MOD_SUBCATEGORY." ON ".TABLE_MOD_SUBCATEGORY."_id = ".TABLE_MOD_THUMBNAIL."_subID  WHERE ".TABLE_MOD_THUMBNAIL."_ID=? "; $arSQLData[]=$myID ;
 	$Query=$System_Connection->prepare($sql);
 	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
 	$Rows=$Query->fetchAll();

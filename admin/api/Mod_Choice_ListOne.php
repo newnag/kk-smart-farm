@@ -23,10 +23,6 @@ try {
     $dataQ = array();
     $dataQ["id"] = $Row[TABLE_MOD_CHOICE."_id"];
     $dataQ["name"]=$Row[TABLE_MOD_CHOICE."_name"] ;
-    $dataQ["cateID"]=$Row[TABLE_MOD_CHOICE."_cateID"] ;
-    $dataQ["cateName"]=$Row[TABLE_MOD_CHOICE."_cateName"] ;
-    $dataQ["subID"]=$Row[TABLE_MOD_CHOICE."_subID"] ;
-    $dataQ["subName"]=$Row[TABLE_MOD_CHOICE."_subName"] ;
     $counter++;
   
 } catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }

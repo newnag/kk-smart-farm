@@ -34,13 +34,6 @@ define('TABLE_SYSTEM_STAFF_GROUP',SYSTEM_DB_PREFIX.'_system_staff_group');
 define('TABLE_SYSTEM_SETTING',SYSTEM_DB_PREFIX.'_system_setting');
 define('TABLE_SYSTEM_LOGS',SYSTEM_DB_PREFIX.'_system_logs');
 
-define('TABLE_MOD_BANNERHERO',SYSTEM_DB_PREFIX.'_mod_bannerhero');
-define('TABLE_MOD_BANNERHERO1',SYSTEM_DB_PREFIX.'_mod_bannerhero1');
-define('TABLE_MOD_BANNERHERO2',SYSTEM_DB_PREFIX.'_mod_bannerhero2');
-define('TABLE_MOD_BANNERHERO3',SYSTEM_DB_PREFIX.'_mod_bannerhero3');
-define('TABLE_MOD_BANNERHERO4',SYSTEM_DB_PREFIX.'_mod_bannerhero4');
-define('TABLE_MOD_BANNER1',SYSTEM_DB_PREFIX.'_mod_banner1');
-define('TABLE_MOD_BANNER2',SYSTEM_DB_PREFIX.'_mod_banner2');
 define('TABLE_MOD_PROMOTION',SYSTEM_DB_PREFIX.'_mod_promotion');
 define('TABLE_MOD_ARTICLE',SYSTEM_DB_PREFIX.'_mod_article');
 define('TABLE_MOD_PROJECT',SYSTEM_DB_PREFIX.'_mod_project');
@@ -56,6 +49,7 @@ define('TABLE_MOD_CATEGORY',SYSTEM_DB_PREFIX.'_mod_category');
 define('TABLE_MOD_SUBCATEGORY',SYSTEM_DB_PREFIX.'_mod_subcate');
 define('TABLE_MOD_CHOICE',SYSTEM_DB_PREFIX.'_mod_choice');
 define('TABLE_MOD_THUMBNAIL',SYSTEM_DB_PREFIX.'_mod_thumbnailSub');
+define('TABLE_MOD_HISTORYHEALTH',SYSTEM_DB_PREFIX.'_mod_historyHealth');
 
 #-------------------------------------------------------------------
 # API Connection
@@ -114,6 +108,8 @@ $System_MenuMain_Name[3000]="จัดการหมวดหมู่และ
         $System_MenuSub_Name[3002] ="หมวดหมู่ย่อย"; $System_MenuSub_Link[3002]="../mod_subcate/";
         $System_MenuSub_Name[3003] ="คำตอบ"; $System_MenuSub_Link[3003]="../mod_choice/";
         $System_MenuSub_Name[3004] ="รูปภาพหมวดหมู่ย่อย"; $System_MenuSub_Link[3004]="../mod_thumbnail/";
+$System_MenuMain_Name[4000]="จัดการประวัติ"; $System_MenuMain_Icons[4000]="icon-typewriter";
+        $System_MenuSub_Name[4001] ="ประวัติสุขภาพ"; $System_MenuSub_Link[4001]="../mod_history/";
 // $System_MenuMain_Name[4000]="การติดต่อ"; $System_MenuMain_Icons[3000]="mi-mail-outline";
 //         $System_MenuSub_Name[4001] ="Contact Us"; $System_MenuSub_Link[3001]="../mod_contact/";
 $System_MenuMain_Name[5000]="จัดการข้อมูลเกี่ยวกับฟาร์ม"; $System_MenuMain_Icons[5000]="icon-pencil7";
