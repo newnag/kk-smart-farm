@@ -19,7 +19,7 @@ $arDataList=array(); $DataRow=array(); $DataHeader=array();
 #-------------------------------------------------------------------
 $arCheck=array("Enable","Disable","Deleted");
 if(!in_array($SendRequest["inputShowStatus"],$arCheck)) { $SendRequest["inputShowStatus"]="Enable"; }
-$arCheck=array("ID","LastUpdate");
+$arCheck=array("ID","LastLoginDate","User");
 if(!in_array($SendRequest["inputShowOrderBy"],$arCheck)) { $SendRequest["inputShowOrderBy"]="ID"; }
 $arCheck=array("ASC","DESC");
 if(!in_array($SendRequest["inputShowASCDESC"],$arCheck)) { $SendRequest["inputShowASCDESC"]="DESC"; }
@@ -28,43 +28,26 @@ if(!in_array($SendRequest["inputShowASCDESC"],$arCheck)) { $SendRequest["inputSh
 # PROCESS
 #-------------------------------------------------------------------
 try {
-	$arSQLData=array();
-	$sql =" SELECT COUNT(*) AS Counter FROM ".TABLE_MOD_CONTACT." WHERE ".TABLE_MOD_CONTACT."_Status='Enable' ";
+  $sql =" SELECT * FROM ".TABLE_MOD_CONTACT." WHERE ".TABLE_MOD_CONTACT."_status<>'Deleted' ";
 	$Query=$System_Connection->prepare($sql);
-	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }
-	$Rows=$Query->fetchAll();
-	$totalrecord=$Rows[0]["Counter"];
-	if($totalrecord>0) { $maxpage=ceil($totalrecord/$SendRequest["inputShowPageSize"]); } else { $maxpage=1; }
-	$DataHeader["Page"]=$SendRequest["inputShowPage"];
-	$DataHeader["PageSize"]=$SendRequest["inputShowPageSize"];
-	$DataHeader["MaxPage"]=$maxpage;
-	$DataHeader["TotalRecord"]=$totalrecord;
+	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
+	while($Row=$Query->fetch(PDO::FETCH_ASSOC)) {
+    $dataQ = array();
+    $dataQ["id"] = $Row[TABLE_MOD_CONTACT."_id"];
+    $dataQ["name"]=$Row[TABLE_MOD_CONTACT."_name"] ;
+    $dataQ["tel"]=$Row[TABLE_MOD_CONTACT."_tel"] ;
+    if($Row[TABLE_MOD_CONTACT."_Picture"]<>"") {
+      $DataField["Picture"]=SYSTEM_FULLPATH_UPLOAD."mod_contact/".$Row[TABLE_MOD_CONTACT."_picture"];
+    } else {
+      $DataField["Picture"]=CONFIG_DEFAULT_THUMB_PICTURE;
+    }
+
+    $arrdataQ[] = $dataQ;
+  }
 } catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
 
-#-------------------------------------------------------------------
-# PROCESS
-#-------------------------------------------------------------------
-try {
-	$counter=0; $arSQLData=array();
-	$sql =" SELECT * FROM ".TABLE_MOD_CONTACT." WHERE ".TABLE_MOD_CONTACT."_Status='Enable' ";
-	$sql.=" ORDER BY ".TABLE_MOD_CONTACT."_".$SendRequest["inputShowOrderBy"]." ".$SendRequest["inputShowASCDESC"];
-	$Query=$System_Connection->prepare($sql);
-	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }
-	while($Row=$Query->fetch(PDO::FETCH_ASSOC)) {
-		$DataField=array();
-		$DataField["ID"]=$Row[TABLE_MOD_CONTACT."_ID"];
-		$DataField["Name"]=$Row[TABLE_MOD_CONTACT."_Name"];
-		$DataField["Subject"]=$Row[TABLE_MOD_CONTACT."_Subject"];
-		$DataField["Email"]=$Row[TABLE_MOD_CONTACT."_Email"];
-		$DataField["Phone"]=$Row[TABLE_MOD_CONTACT."_Phone"];
-		$DataField["Detail"]=$Row[TABLE_MOD_CONTACT."_Detail"];
-		$DataField["CreateDate"]=$Row[TABLE_MOD_CONTACT."_CreateDate"];
-		$DataField["Status"]=$Row[TABLE_MOD_CONTACT."_Status"];
-		$DataRow[]=$DataField;
-		$counter++;
-	}
-	$DataHeader["NoOfReturn"]=$counter;
-} catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
+
+$DataHeader["Total"] = count($arrdataQ) ;
 
 #-------------------------------------------------------------------
 # RESULT
@@ -73,7 +56,7 @@ if($ErrorMessage=="") {
 	$Result["Status"] = "Success";
 	$Result["Message"] = "อ่านข้อมูลสำเร็จ";
 	$Result["Header"]=$DataHeader;
-	$Result["Result"]=$DataRow;
+	$Result["Result"]=$arrdataQ;
 } else {
 	$Result["Status"] = "Error";
 	$Result["Message"] = $ErrorMessage;

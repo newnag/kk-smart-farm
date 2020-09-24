@@ -22,6 +22,8 @@ $inputSubdistrict = trim(urldecode($SendRequest['inputSubdistrict']));
 $inputPost = trim(urldecode($SendRequest['inputPost']));
 $SystemSession_Staff_ID = trim(urldecode($SendRequest['SystemSession_Staff_ID']));
 
+$ownerArr = explode("/",$inputNameOwner);
+
 #-------------------------------------------------------------------
 # PROCESS
 #-------------------------------------------------------------------
@@ -44,7 +46,8 @@ if($myID>0) { // error existed!
 		$DataField=array(); $arSQLData=array();
 		$sqla =" INSERT INTO ".TABLE_MOD_FARM."( ";  $sqlb =" ) VALUES(";  $sqlc =" ) ";
 		$sqla.=" ".TABLE_MOD_FARM."_name ";          $sqlb.=" ? ";         $arSQLData[]=$inputName;
-		$sqla.=",".TABLE_MOD_FARM."_owner ";         $sqlb.=",? ";         $arSQLData[]=$inputNameOwner;
+		$sqla.=",".TABLE_MOD_FARM."_ownerID ";         $sqlb.=",? ";         $arSQLData[]=$ownerArr[0];
+		$sqla.=",".TABLE_MOD_FARM."_owner ";         $sqlb.=",? ";         $arSQLData[]=$ownerArr[1];
 		$sqla.=",".TABLE_MOD_FARM."_tel ";         $sqlb.=",? ";         $arSQLData[]=$inputPhone;
 		$sqla.=",".TABLE_MOD_FARM."_qtyLivestock ";          $sqlb.=",? ";         $arSQLData[]=$inputQty;
 		$sqla.=",".TABLE_MOD_FARM."_thumbnail ";       $sqlb.=",? ";         $arSQLData[]=$inputPicture;
@@ -55,8 +58,6 @@ if($myID>0) { // error existed!
 		$sqla.=",".TABLE_MOD_FARM."_district ";       $sqlb.=",? ";         $arSQLData[]=$inputDistrict;
 		$sqla.=",".TABLE_MOD_FARM."_subdistrict ";       $sqlb.=",? ";         $arSQLData[]=$inputSubdistrict;
 		$sqla.=",".TABLE_MOD_FARM."_postcode ";       $sqlb.=",? ";         $arSQLData[]=$inputPost;
-		//$sqla.=",".TABLE_MOD_USERFARM."_Level ";         $sqlb.=",? ";         $arSQLData[]=$inputLevel;
-		//$sqla.=",".TABLE_MOD_USERFARM."_StaffGroupID ";  $sqlb.=",? ";         $arSQLData[]=$inputStaffGroupID;
 		$sqla.=",".TABLE_MOD_FARM."_CreateDate ";    $sqlb.=",? ";         $arSQLData[]=SYSTEM_DATETIMENOW;
 		$sqla.=",".TABLE_MOD_FARM."_CreateByID ";    $sqlb.=",? ";         $arSQLData[]=$SystemSession_Staff_ID;
 		$sqla.=",".TABLE_MOD_FARM."_LastUpdate ";    $sqlb.=",? ";         $arSQLData[]=SYSTEM_DATETIMENOW;

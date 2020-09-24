@@ -104,6 +104,14 @@ include_once("../inc/inc_page_header.php");
 								หญิง
 							</label>
 						</div>
+						<div class="form-check form-check-inline">
+							<label class="form-check-label">
+								<div class="uniform-choice">
+									<input type="radio" class="form-input-styled inputSex" name="inputSex" data-fouc="" value="เพศทางเลือก" onclick="selectSex(this)">
+								</div>
+								เพศทางเลือก
+							</label>
+						</div>
 						<input type="text" id="inputSexSum" name="inputSexSum" value="ชาย" class="form-control" style="display:none;">
 					</div>
 					<!-- ------------------------------------------------------- -->

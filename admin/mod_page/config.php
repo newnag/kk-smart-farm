@@ -10,9 +10,9 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 define('MODULE_ICON',"icon-stack-text");
 define('MODULE_COLOR',"deeporange-800");
 define('MODULE_TABLE',"Mod_Page");
-define('MODULE_NAME',"Term and Condition");
-define('MODULE_MAIN_KEY',5000);
-define('MODULE_SUB_KEY',5002);
+define('MODULE_NAME',"เกี่ยวกับเรา");
+define('MODULE_MAIN_KEY',6000);
+define('MODULE_SUB_KEY',6001);
 
 define('MODULE_FIX_ID',1);
 

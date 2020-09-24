@@ -35,6 +35,7 @@ try {
     $dataQ = array();
     $dataQ["id"] = $Row[TABLE_MOD_FARM."_id"];
     $dataQ["name"]=$Row[TABLE_MOD_FARM."_name"] ;
+    $dataQ["ownerID"]=$Row[TABLE_MOD_FARM."_ownerID"] ;
     $dataQ["owner"]=$Row[TABLE_MOD_FARM."_owner"] ;
     $dataQ["tel"]=$Row[TABLE_MOD_FARM."_tel"] ;
     $dataQ["pinlat"]=$Row[TABLE_MOD_FARM."_pinlat"] ;
@@ -45,7 +46,11 @@ try {
     $dataQ["district"]=$Row[TABLE_MOD_FARM."_district"] ;
     $dataQ["subdistrict"]=$Row[TABLE_MOD_FARM."_subdistrict"] ;
     $dataQ["postcode"]=$Row[TABLE_MOD_FARM."_postcode"]  ;
-    $dataQ["thumbnail"]=$Row[TABLE_MOD_FARM."_thumbnail"]  ;
+    if($Row[TABLE_MOD_FARM."_thumbnail"]<>"") {
+      $dataQ["thumbnail"]=SYSTEM_FULLPATH_UPLOAD."mod_farm/".$Row[TABLE_MOD_FARM."_thumbnail"];
+    } else {
+      $dataQ["thumbnail"]=CONFIG_DEFAULT_THUMB_USER;
+    }
 
     $arrdataQ[] = $dataQ;
   }

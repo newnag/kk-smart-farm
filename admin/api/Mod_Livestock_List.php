@@ -53,14 +53,39 @@ if(!in_array($SendRequest["inputShowASCDESC"],$arCheck)) { $SendRequest["inputSh
 # PROCESS
 #-------------------------------------------------------------------
 if($SendRequest["inputFamrSelect"]==""){
+  try {
+    $arSQLData=array();
+    $sql =" SELECT * FROM ".TABLE_MOD_LIVESTOCK." JOIN ".TABLE_MOD_FARM." ON ".TABLE_MOD_FARM."_id = ".TABLE_MOD_LIVESTOCK."_farmID   WHERE ".TABLE_MOD_LIVESTOCK."_Status<>'Deleted'" ;
+    $Query=$System_Connection->prepare($sql);
+    if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
+    while($Row=$Query->fetch(PDO::FETCH_ASSOC)) {
+      $dataQ = array();
+      $dataQ["id"] = $Row[TABLE_MOD_LIVESTOCK."_id"];
+      $dataQ["name"]=$Row[TABLE_MOD_LIVESTOCK."_name"] ;
+      $dataQ["type"]=$Row[TABLE_MOD_LIVESTOCK."_type"] ;
+      $dataQ["gene"]=$Row[TABLE_MOD_LIVESTOCK."_gene"] ;
+      $dataQ["microchip"]=$Row[TABLE_MOD_LIVESTOCK."_microchipNo"] ;
+      $dataQ["farmID"]=$Row[TABLE_MOD_LIVESTOCK."_farmID"] ;
+      $dataQ["farmName"]=$Row[TABLE_MOD_FARM."_name"] ;
+      $dataQ["DOB"]=$Row[TABLE_MOD_LIVESTOCK."_DOB"] ;
+      $dataQ["age"]=$Row[TABLE_MOD_LIVESTOCK."_age"] ;
+      $dataQ["sex"]=$Row[TABLE_MOD_LIVESTOCK."_sex"] ;
+      $dataQ["weight"]=$Row[TABLE_MOD_LIVESTOCK."_weight"] ;
+      $dataQ["healthStatus"]=$Row[TABLE_MOD_LIVESTOCK."_healthStatus"] ;
+      if($Row[TABLE_MOD_LIVESTOCK."_thumbnail"]<>"") {
+        $dataQ["thumbnail"]=SYSTEM_FULLPATH_UPLOAD."mod_livestock/".$Row[TABLE_MOD_LIVESTOCK."_thumbnail"];
+      } else {
+        $dataQ["thumbnail"]=CONFIG_DEFAULT_THUMB_USER;
+      }
   
+      $arrdataQ[] = $dataQ;
+    }
+  } catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
 }
 else{
   try {
     $arSQLData=array();
     $sql =" SELECT * FROM ".TABLE_MOD_LIVESTOCK." WHERE ".TABLE_MOD_LIVESTOCK."_farmID=? AND ".TABLE_MOD_LIVESTOCK."_Status<>'Deleted'" ; $arSQLData[]=$filterFarm;
-    // echo $sql;
-    // exit();
     $Query=$System_Connection->prepare($sql);
     if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
     while($Row=$Query->fetch(PDO::FETCH_ASSOC)) {

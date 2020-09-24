@@ -15,27 +15,16 @@ $SystemSession_Staff_ID = trim(urldecode($SendRequest['SystemSession_Staff_ID'])
 #-------------------------------------------------------------------
 # PROCESS
 #-------------------------------------------------------------------
-$arID=array();
-if($inputID>0) {
-	$arID[]=$inputID;
-} else {
-	$arID=explode(",",$inputIDList);
-}
-for($i=0;$i<=sizeof($arID);$i++) {
-	$myID=$arID[$i];
-	if($myID>0) {
-		try {
-			$arSQLData=array();
-			$sql =" UPDATE ".TABLE_MOD_PROJECT." SET "; 
-			$sql.=" ".TABLE_MOD_PROJECT."_LastUpdate=? ";      $arSQLData[]=SYSTEM_DATETIMENOW;
-			$sql.=",".TABLE_MOD_PROJECT."_LastUpdateByID=? ";  $arSQLData[]=$SystemSession_Staff_ID;
-			$sql.=",".TABLE_MOD_PROJECT."_Status=? ";          $arSQLData[]="Deleted";
-			$sql.=" WHERE ".TABLE_MOD_PROJECT."_ID=? ";        $arSQLData[]=$myID;
-			$Query=$System_Connection->prepare($sql);
-			if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }
-		} catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
-	}
-}
+try {
+    $arSQLData=array();
+    $sql =" UPDATE ".TABLE_MOD_DISEASE." SET "; 
+    $sql.=" ".TABLE_MOD_DISEASE."_LastUpdate=? ";      $arSQLData[]=SYSTEM_DATETIMENOW;
+    $sql.=",".TABLE_MOD_DISEASE."_LastUpdateByID=? ";  $arSQLData[]=$SystemSession_Staff_ID;
+    $sql.=",".TABLE_MOD_DISEASE."_Status=? ";          $arSQLData[]="Deleted";
+    $sql.=" WHERE ".TABLE_MOD_DISEASE."_id=? ";        $arSQLData[]=$inputID;
+    $Query=$System_Connection->prepare($sql);
+    if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }
+} catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
 
 #-------------------------------------------------------------------
 # RESULT

@@ -52,7 +52,7 @@ include_once("../inc/inc_page_header.php");
 						<label class="mb-0 text-grey-800 font-weight-bold">
 							ไฟล์ภาพ :
 						</label>
-						<input id="inputPicture" name="inputPicture" type="file" class="form-control" required accept="image/x-png,image/gif,image/jpeg">
+						<input id="inputPicture" name="inputPicture" type="file" class="form-control" accept="image/x-png,image/gif,image/jpeg">
 						<div style=" padding: 4px; text-align: right; ">
 							กรุณาใช้ไฟล์ภาพ นามสกุล .jpg, .png ขนาด  <?php echo MODULE_FIX_WIDTH; ?>x<?php echo MODULE_FIX_HEIGHT; ?> pixel เท่านั้น &nbsp;
 						</div>
@@ -63,6 +63,23 @@ include_once("../inc/inc_page_header.php");
 							รายละเอียด :
 						</label>
 						<textarea name="inputHTML" id="inputHTML" rows="4" cols="4" style=" width: 100%; height: 400px; "></textarea>
+					</div>
+					<!-- ------------------------------------------------------- -->
+					<div class="form-group" style=" margin-top: 20px; ">
+						<label class="mb-0 text-grey-800 font-weight-bold">
+							แหล่งข่าว :
+						</label>
+						<input id="inputSource" name="inputSource" type="text" class="form-control">
+					</div>
+					<!-- ------------------------------------------------------- -->
+					<div class="form-group">
+						<label>ประเภทบทความ</label>
+						<select class="form-control select select2-hidden-accessible" id="inputType" name="inputType" data-fouc="" tabindex="-1" aria-hidden="true">
+							<option value="">เลือกประเภทบทความ</option>
+							<option value="News">ข่าวประชาสัมพันธ์</option>
+							<option value="BodyCondition">เกณฑ์วัดความสมบูรณ์</option>
+							<option value="Nutrition">โปรแกรมโภชนาการ</option>
+						</select>
 					</div>
 					<!-- ------------------------------------------------------- -->
 				</div>

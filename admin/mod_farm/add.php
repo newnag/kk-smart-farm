@@ -73,7 +73,7 @@ include_once("../inc/inc_page_header.php");
 								$arrData = $ResultPre["Result"];
 								for($i=0;$i<sizeof($arrData);$i++){
 									$Row = $arrData[$i];
-									echo '<option value="'.$Row["fullname"].'">'.$Row["fullname"].'</option>';
+									echo '<option value="'.$Row["id"].'/'.$Row["fullname"].'">'.$Row["fullname"].'</option>';
 								}
 							?>
 						</select>

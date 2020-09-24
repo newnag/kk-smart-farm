@@ -11,7 +11,7 @@ define('MODULE_ICON',"icon-user");
 define('MODULE_COLOR',"deeppurple-A400");
 define('MODULE_TABLE',"Mod_Cate");
 define('MODULE_NAME',"หมวดหมู่");
-define('MODULE_MAIN_KEY',3001);
-define('MODULE_SUB_KEY',1);
+define('MODULE_MAIN_KEY',3000);
+define('MODULE_SUB_KEY',3001);
 
 ?>

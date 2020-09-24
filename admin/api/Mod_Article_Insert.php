@@ -11,6 +11,9 @@ $ErrorMessage="";
 $inputName = trim(urldecode($SendRequest['inputName']));
 $inputPicture = trim(urldecode($SendRequest['inputPicture']));
 $inputHTML = trim(urldecode($SendRequest['inputHTML']));
+$inputSource = trim(urldecode($SendRequest['inputSource']));
+$inputType = trim(urldecode($SendRequest['inputType']));
+$inputAgeRange = trim(urldecode($SendRequest['inputAgeRange']));
 $SystemSession_Staff_ID = trim(urldecode($SendRequest['SystemSession_Staff_ID']));
 
 #-------------------------------------------------------------------
@@ -22,6 +25,9 @@ try {
 	$sqla.=" ".TABLE_MOD_ARTICLE."_Name ";          $sqlb.=" ? ";         $arSQLData[]=$inputName;
 	$sqla.=",".TABLE_MOD_ARTICLE."_Picture ";       $sqlb.=",? ";         $arSQLData[]=$inputPicture;
 	$sqla.=",".TABLE_MOD_ARTICLE."_HTML ";          $sqlb.=",? ";         $arSQLData[]=$inputHTML;
+	$sqla.=",".TABLE_MOD_ARTICLE."_source ";          $sqlb.=",? ";         $arSQLData[]=$inputSource;
+	$sqla.=",".TABLE_MOD_ARTICLE."_Type ";          $sqlb.=",? ";         $arSQLData[]=$inputType;
+	$sqla.=",".TABLE_MOD_ARTICLE."_Title ";          $sqlb.=",? ";         $arSQLData[]=$inputAgeRange;
 	$sqla.=",".TABLE_MOD_ARTICLE."_CreateDate ";    $sqlb.=",? ";         $arSQLData[]=SYSTEM_DATETIMENOW;
 	$sqla.=",".TABLE_MOD_ARTICLE."_CreateByID ";    $sqlb.=",? ";         $arSQLData[]=$SystemSession_Staff_ID;
 	$sqla.=",".TABLE_MOD_ARTICLE."_LastUpdate ";    $sqlb.=",? ";         $arSQLData[]=SYSTEM_DATETIMENOW;

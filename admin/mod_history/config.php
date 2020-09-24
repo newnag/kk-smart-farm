@@ -11,7 +11,7 @@ define('MODULE_ICON',"icon-user");
 define('MODULE_COLOR',"deeppurple-A400");
 define('MODULE_TABLE',"Mod_History");
 define('MODULE_NAME',"ประวัติสุขภาพ");
-define('MODULE_MAIN_KEY',4001);
-define('MODULE_SUB_KEY',1);
+define('MODULE_MAIN_KEY',4000);
+define('MODULE_SUB_KEY',4001);
 
 ?>

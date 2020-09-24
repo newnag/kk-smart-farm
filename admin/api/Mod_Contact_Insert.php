@@ -9,35 +9,31 @@ $ErrorMessage="";
 # INPUT
 #-------------------------------------------------------------------
 $inputName = trim(urldecode($SendRequest['inputName']));
-$inputSubject = trim(urldecode($SendRequest['inputSubject']));
-$inputEmail = trim(urldecode($SendRequest['inputEmail']));
-$inputPhone = trim(urldecode($SendRequest['inputPhone']));
-$inputDetail = trim(urldecode($SendRequest['inputDetail']));
+$inputTel = trim(urldecode($SendRequest['inputTel']));
+$inputPicture = trim(urldecode($SendRequest['inputPicture']));
 $SystemSession_Staff_ID = trim(urldecode($SendRequest['SystemSession_Staff_ID']));
 
 #-------------------------------------------------------------------
 # PROCESS
 #-------------------------------------------------------------------
 try {
-	$DataField=array(); $arSQLData=array();
-	$sqla =" INSERT INTO ".TABLE_MOD_CONTACT."( ";  $sqlb =" ) VALUES(";  $sqlc =" ) ";
-	$sqla.=" ".TABLE_MOD_CONTACT."_Name ";          $sqlb.=" ? ";         $arSQLData[]=$inputName;
-	$sqla.=",".TABLE_MOD_CONTACT."_Subject ";       $sqlb.=",? ";         $arSQLData[]=$inputSubject;
-	$sqla.=",".TABLE_MOD_CONTACT."_Email ";         $sqlb.=",? ";         $arSQLData[]=$inputEmail;
-	$sqla.=",".TABLE_MOD_CONTACT."_Phone ";         $sqlb.=",? ";         $arSQLData[]=$inputPhone;
-	$sqla.=",".TABLE_MOD_CONTACT."_Detail ";        $sqlb.=",? ";         $arSQLData[]=$inputDetail;
-	$sqla.=",".TABLE_MOD_CONTACT."_CreateDate ";    $sqlb.=",? ";         $arSQLData[]=SYSTEM_DATETIMENOW;
-	$sqla.=",".TABLE_MOD_CONTACT."_CreateByID ";    $sqlb.=",? ";         $arSQLData[]=$SystemSession_Staff_ID;
-	$sqla.=",".TABLE_MOD_CONTACT."_LastUpdate ";    $sqlb.=",? ";         $arSQLData[]=SYSTEM_DATETIMENOW;
-	$sqla.=",".TABLE_MOD_CONTACT."_LastUpdateByID"; $sqlb.=",? ";         $arSQLData[]=$SystemSession_Staff_ID;
-	$sqla.=",".TABLE_MOD_CONTACT."_Status ";        $sqlb.=",? ";         $arSQLData[]="Enable";
-	$sql=$sqla.$sqlb.$sqlc;
-	$Query=$System_Connection->prepare($sql);
-	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }
-	$myInsertID = $System_Connection->lastInsertId();
-	$DataField["InsertID"]=$myInsertID;
-	//-------------------------------------------------
+    $DataField=array(); $arSQLData=array();
+    $sqla =" INSERT INTO ".TABLE_MOD_CONTACT."( ";  $sqlb =" ) VALUES(";  $sqlc =" ) ";
+    $sqla.=" ".TABLE_MOD_CONTACT."_name ";          $sqlb.=" ? ";         $arSQLData[]=$inputName;
+    $sqla.=",".TABLE_MOD_CONTACT."_tel ";          $sqlb.=" ,? ";         $arSQLData[]=$inputTel;
+    $sqla.=",".TABLE_MOD_CONTACT."_picture ";          $sqlb.=" ,? ";         $arSQLData[]=$inputPicture;
+    $sqla.=",".TABLE_MOD_CONTACT."_CreateDate ";    $sqlb.=",? ";         $arSQLData[]=SYSTEM_DATETIMENOW;
+    $sqla.=",".TABLE_MOD_CONTACT."_CreateByID ";    $sqlb.=",? ";         $arSQLData[]=$SystemSession_Staff_ID;
+    $sqla.=",".TABLE_MOD_CONTACT."_LastUpdate ";    $sqlb.=",? ";         $arSQLData[]=SYSTEM_DATETIMENOW;
+    $sqla.=",".TABLE_MOD_CONTACT."_LastUpdateByID"; $sqlb.=",? ";         $arSQLData[]=$SystemSession_Staff_ID;
+    $sqla.=",".TABLE_MOD_CONTACT."_status ";        $sqlb.=",? ";         $arSQLData[]="Enable";
+    $sql=$sqla.$sqlb.$sqlc;
+    $Query=$System_Connection->prepare($sql);
+    if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }
+    $myInsertID = $System_Connection->lastInsertId();
+    $DataField["InsertID"]=$myInsertID; 
 } catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
+
 
 #-------------------------------------------------------------------
 # RESULT

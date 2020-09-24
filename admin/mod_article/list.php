@@ -13,6 +13,7 @@ if($_REQUEST["inputShowStatus"]=="") { $_REQUEST["inputShowStatus"]="Enable"; }
 if($_REQUEST["inputShowOrderBy"]=="") { $_REQUEST["inputShowOrderBy"]="Order"; }
 if($_REQUEST["inputShowASCDESC"]=="") { $_REQUEST["inputShowASCDESC"]="DESC"; }
 if($_REQUEST["inputShowFilter"]=="") { $_REQUEST["inputShowFilter"]=0; }
+if($_REQUEST["inputType"]=="") { $_REQUEST["inputType"]="News"; }
 
 #-------------------------------------------------------------------
 # Create SendRequest Data and Create PageKey
@@ -47,9 +48,7 @@ include_once("../inc/inc_page_header.php");
 		if($Result["Header"]["TotalRecord"]>0) {
 			?>
 			<div id="idListData">
-				<div class="row">
-					<div class="col-12 text-center font-weight-bold font-size-lg text-thaisans text-thaisans-normal"> ค้นพบ <?php echo number_format($Result["Header"]["TotalRecord"],0); ?> รายการ </div>
-				</div>
+				
 				<div class="row" id="idListBody" style=" margin-top: 10px; ">
 					<?php
 					$arData=$Result["Result"];

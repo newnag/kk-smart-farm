@@ -21,13 +21,16 @@ $inputPinlat = trim(urldecode($SendRequest['inputPinlat']));
 $inputPinlon = trim(urldecode($SendRequest['inputPinlon']));
 $SystemSession_Staff_ID = trim(urldecode($SendRequest['SystemSession_Staff_ID']));
 
+$ownerArr = explode("/",$inputNameOwner);
+
 //PROCESS:----------------------------------------
 ###################################################
 try {
 	$arSQLData=array();
 	$sql =" UPDATE ".TABLE_MOD_FARM." SET "; 
-    $sql.=" ".TABLE_MOD_FARM."_name=? ";           $arSQLData[]=$inputName;
-    $sql.=",".TABLE_MOD_FARM."_owner=? ";           $arSQLData[]=$inputNameOwner;
+		$sql.=" ".TABLE_MOD_FARM."_name=? ";           $arSQLData[]=$inputName;
+		$sql.=",".TABLE_MOD_FARM."_ownerID=? ";           $arSQLData[]=$ownerArr[0];
+    $sql.=",".TABLE_MOD_FARM."_owner=? ";           $arSQLData[]=$ownerArr[1];
     $sql.=",".TABLE_MOD_FARM."_tel=? ";           $arSQLData[]=$inputTel;
     $sql.=",".TABLE_MOD_FARM."_qtyLivestock=? ";           $arSQLData[]=$inputQty;
 	$sql.=",".TABLE_MOD_FARM."_thumbnail=? ";     $arSQLData[]=$inputPicture;

@@ -20,11 +20,6 @@ $inputSex = trim(urldecode($SendRequest['inputSex']));
 $inputWeight = trim(urldecode($SendRequest['inputWeight']));
 $inputHealthStatus = trim(urldecode($SendRequest['inputHealthStatus']));
 $SystemSession_Staff_ID = trim(urldecode($SendRequest['SystemSession_Staff_ID']));
-
-// echo $inputDOB;
-
-// exit();
-
 #-------------------------------------------------------------------
 # PROCESS
 #-------------------------------------------------------------------

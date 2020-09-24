@@ -86,8 +86,8 @@ include_once("../inc/inc_page_header.php");
 						<label class="mb-0 text-grey-800 font-weight-bold">ประเภท : </label>
 						<select class="form-control select select2-hidden-accessible" id="inputType" name="inputType" data-fouc="" tabindex="-1" aria-hidden="true">
 							<option value="">เลือกประเภท</option>
-							<option value="buff">โค</option>
-							<option value="cow">วัว</option>
+							<option value="โค">โค</option>
+							<option value="วัว">วัว</option>
 						</select>
 					</div>
 					<!-- ------------------------------------------------------- -->
@@ -100,8 +100,7 @@ include_once("../inc/inc_page_header.php");
 						<label class="mb-0 text-grey-800 font-weight-bold">สายพันธุ์ : </label>
 						<select class="form-control select select2-hidden-accessible" id="inputGene" name="inputGene" data-fouc="" tabindex="-1" aria-hidden="true">
 							<option value="">เลือกสายพันธุ์</option>
-							<option value="gene1">สายพันธุ์1</option>
-							<option value="gene2">สายพันธุ์1</option>
+							
 						</select>
 					</div>
 					<!-- ------------------------------------------------------- -->

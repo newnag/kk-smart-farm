@@ -11,6 +11,11 @@ $Config_ShowButton=array("back");
 include_once("../inc/inc_page_header.php");
 
 #-------------------------------------------------------------------
+# PreLoadInput
+#-------------------------------------------------------------------
+if($_REQUEST["inputType"]=="") { $_REQUEST["inputType"]="News"; }
+
+#-------------------------------------------------------------------
 # Load Data from API
 #-------------------------------------------------------------------
 $SendRequest=array("act"=>MODULE_TABLE."_ListOne");
@@ -77,6 +82,23 @@ $Row=$Result["Result"];
 							รายละเอียด :
 						</label>
 						<textarea name="inputHTML" id="inputHTML" rows="4" cols="4" style=" width: 100%; height: 400px; "><?php echo $Row["HTML"]; ?></textarea>
+					</div>
+					<!-- ------------------------------------------------------- -->
+					<div class="form-group" style=" margin-top: 20px; ">
+						<label class="mb-0 text-grey-800 font-weight-bold">
+							แหล่งข่าว :
+						</label>
+						<input id="inputSource" name="inputSource" type="text" class="form-control" value="<?php echo $Row["source"]; ?>">
+					</div>
+					<!-- ------------------------------------------------------- -->
+					<div class="form-group">
+						<label>ประเภทบทความ</label>
+						<select class="form-control select select2-hidden-accessible" id="inputType" name="inputType" data-fouc="" tabindex="-1" aria-hidden="true">
+							<option value="<?php echo $Row["Type"]; ?>"><?php echo $Row["Type"]; ?></option>
+							<option value="News">ข่าวประชาสัมพันธ์</option>
+							<option value="BodyCondition">เกณฑ์วัดความสมบูรณ์</option>
+							<option value="Nutrition">โปรแกรมโภชนาการ</option>
+						</select>
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">

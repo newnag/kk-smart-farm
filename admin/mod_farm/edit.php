@@ -64,12 +64,12 @@ $Row=$Result["Result"];
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อเจ้าของฟาร์ม : </label>
 						<select class="form-control select select2-hidden-accessible" id="inputNameOwner" name="inputNameOwner" data-fouc="" tabindex="-1" aria-hidden="true">
-							<option value="<?php echo $Row["owner"]; ?>"><?php echo $Row["owner"]; ?></option>
+							<option value="<?php echo $Row["ownerID"].'/'.$Row["owner"]; ?>"><?php echo $Row["owner"]; ?></option>
 							<?php 
 								$arrData = $ResultPre["Result"];
 								for($i=0;$i<sizeof($arrData);$i++){
 									$Row2 = $arrData[$i];
-									echo '<option value="'.$Row2["fullname"].'">'.$Row2["fullname"].'</option>';
+									echo '<option value="'.$Row2["id"].'/'.$Row2["fullname"].'">'.$Row2["fullname"].'</option>';
 								}
 							?>
 						</select>
