@@ -8,6 +8,7 @@ $ErrorMessage="";
 #-------------------------------------------------------------------
 # INPUT
 #-------------------------------------------------------------------
+
 $inputUser = trim(urldecode($SendRequest['inputUser']));
 $inputEmail = trim(urldecode($SendRequest['inputEmail']));
 $inputPass = trim(urldecode($SendRequest['inputPass']));
@@ -24,6 +25,8 @@ $inputDistrict = trim(urldecode($SendRequest['inputDistrict']));
 $inputSubdistrict = trim(urldecode($SendRequest['inputSubdistrict']));
 $inputPost = trim(urldecode($SendRequest['inputPost']));
 $SystemSession_Staff_ID = trim(urldecode($SendRequest['SystemSession_Staff_ID']));
+
+$inputPass=hash('sha256',SYSTEM_AUTHEN_KEY.$inputPass.SYSTEM_AUTHEN_KEY);
 
 #-------------------------------------------------------------------
 # PROCESS

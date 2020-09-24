@@ -58,8 +58,8 @@ $Row=$Result["Result"];
 				<div class="card-body" id="idBoxBody<?php echo $box; ?>">
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">คำตอบ : </label>
-						<input id="inputChoice" name="inputChoice" type="text" class="form-control" value="<?php echo $Row["name"]; ?>">
+						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อการรักษา : </label>
+						<input id="inputName" name="inputName" type="text" class="form-control" value="<?php echo $Row["name"]; ?>">
 					</div>
 					<!-- ------------------------------------------------------- -->
 				</div>

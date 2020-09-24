@@ -51,6 +51,9 @@ define('TABLE_MOD_DISEASE',SYSTEM_DB_PREFIX.'_mod_disease');
 define('TABLE_MOD_GENE',SYSTEM_DB_PREFIX.'_mod_gene');
 define('TABLE_MOD_NOTI',SYSTEM_DB_PREFIX.'_mod_noti');
 define('TABLE_MOD_CHAT',SYSTEM_DB_PREFIX.'_mod_chat');
+define('TABLE_MOD_TREATMENT',SYSTEM_DB_PREFIX.'_mod_treatment');
+define('TABLE_MOD_RUTCHOICE',SYSTEM_DB_PREFIX.'_mod_rutChoice');
+define('TABLE_MOD_REPRODUCTHISTORY',SYSTEM_DB_PREFIX.'_mod_reproductiveHistory');
 
 #-------------------------------------------------------------------
 # API Connection
@@ -103,6 +106,9 @@ $System_MenuMain_Name[1000]="ข่าวสารและบทความ"; 
         $System_MenuSub_Name[1002] ="เกณฑ์วัดความสมบูรณ์"; $System_MenuSub_Link[1002]="../mod_bodycon/";
         $System_MenuSub_Name[1003] ="โภชนาการ"; $System_MenuSub_Link[1003]="../mod_nutrition/";
         $System_MenuSub_Name[1004] ="โรคติดต่อ"; $System_MenuSub_Link[1004]="../mod_disease/";
+$System_MenuMain_Name[2000]="จัดการระบบสืบพันธุ์"; $System_MenuMain_Icons[2000]="icon-typewriter";
+        $System_MenuSub_Name[2001] ="การรักษา"; $System_MenuSub_Link[2001]="../mod_treatment/";
+        $System_MenuSub_Name[2002] ="ลักษณะเมือก"; $System_MenuSub_Link[2002]="../mod_rut/";
 $System_MenuMain_Name[3000]="จัดการหมวดหมู่และคำตอบ"; $System_MenuMain_Icons[3000]="mi-mail-outline";
         $System_MenuSub_Name[3001] ="หมวดหมู่"; $System_MenuSub_Link[3001]="../mod_category/";
         $System_MenuSub_Name[3002] ="หมวดหมู่ย่อย"; $System_MenuSub_Link[3002]="../mod_subcate/";
@@ -110,6 +116,7 @@ $System_MenuMain_Name[3000]="จัดการหมวดหมู่และ
         $System_MenuSub_Name[3004] ="รูปภาพหมวดหมู่ย่อย"; $System_MenuSub_Link[3004]="../mod_thumbnail/";
 $System_MenuMain_Name[4000]="จัดการประวัติ"; $System_MenuMain_Icons[4000]="icon-typewriter";
         $System_MenuSub_Name[4001] ="ประวัติสุขภาพ"; $System_MenuSub_Link[4001]="../mod_history/";
+        $System_MenuSub_Name[4002] ="ประวัติระบบสืบพันธุ์"; $System_MenuSub_Link[4002]="../mod_reprohistory/";
 $System_MenuMain_Name[5000]="จัดการข้อมูลเกี่ยวกับฟาร์ม"; $System_MenuMain_Icons[5000]="icon-pencil7";
         $System_MenuSub_Name[5001] ="จัดการข้อมูลเกษตรกร"; $System_MenuSub_Link[5001]="../mod_userfarm/";
         $System_MenuSub_Name[5002] ="จัดการข้อมูลปศุสัตว์"; $System_MenuSub_Link[5002]="../mod_livestock/";
