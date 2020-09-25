@@ -9,7 +9,7 @@ $ErrorMessage="";
 # INPUT
 #-------------------------------------------------------------------
 
-$inputUser = trim(urldecode($SendRequest['inputUser']));
+//$inputUser = trim(urldecode($SendRequest['inputUser']));
 $inputEmail = trim(urldecode($SendRequest['inputEmail']));
 $inputPass = trim(urldecode($SendRequest['inputPass']));
 $inputPhone = trim(urldecode($SendRequest['inputTel']));
@@ -33,7 +33,7 @@ $inputPass=hash('sha256',SYSTEM_AUTHEN_KEY.$inputPass.SYSTEM_AUTHEN_KEY);
 #-------------------------------------------------------------------
 try {
 	$arSQLData=array();
-	$sql =" SELECT ".TABLE_MOD_USERFARM."_ID FROM ".TABLE_MOD_USERFARM." WHERE ".TABLE_MOD_USERFARM."_User LIKE ? LIMIT 0,1 "; $arSQLData[]=$inputUser;
+	$sql =" SELECT ".TABLE_MOD_USERFARM."_email FROM ".TABLE_MOD_USERFARM." WHERE ".TABLE_MOD_USERFARM."_email LIKE ? LIMIT 0,1 "; $arSQLData[]=$inputEmail;
 	$Query=$System_Connection->prepare($sql);
 	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }
 	$Rows=$Query->fetchAll();
@@ -49,8 +49,8 @@ if($myID>0) { // error existed!
 	try {
 		$DataField=array(); $arSQLData=array();
 		$sqla =" INSERT INTO ".TABLE_MOD_USERFARM."( ";  $sqlb =" ) VALUES(";  $sqlc =" ) ";
-		$sqla.=" ".TABLE_MOD_USERFARM."_user ";          $sqlb.=" ? ";         $arSQLData[]=$inputUser;
-		$sqla.=",".TABLE_MOD_USERFARM."_email ";         $sqlb.=",? ";         $arSQLData[]=$inputEmail;
+		//$sqla.=" ".TABLE_MOD_USERFARM."_user ";          $sqlb.=" ? ";         $arSQLData[]=$inputUser;
+		$sqla.=" ".TABLE_MOD_USERFARM."_email ";         $sqlb.=" ? ";         $arSQLData[]=$inputEmail;
 		$sqla.=",".TABLE_MOD_USERFARM."_tel ";         $sqlb.=",? ";         $arSQLData[]=$inputPhone;
 		$sqla.=",".TABLE_MOD_USERFARM."_password ";          $sqlb.=",? ";         $arSQLData[]=$inputPass;
 		$sqla.=",".TABLE_MOD_USERFARM."_thumbnail ";       $sqlb.=",? ";         $arSQLData[]=$inputPicture;

@@ -9,7 +9,6 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 
 <tr>
 	<td><?php echo $i+1; ?></td>
-	<td><?php echo $Row["user"]; ?></td>
 	<td><?php echo $Row["fullname"]; ?></td>
 	<td><?php echo $Row["lastname"]; ?></td>
 	<td><?php echo $Row["tel"]; ?></td>

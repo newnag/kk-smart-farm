@@ -45,15 +45,9 @@ include_once("../inc/inc_page_header.php");
 				</div>
 				<div class="card-body" id="idBoxBody<?php echo $box; ?>">
 					<!-- ------------------------------------------------------- -->
-					<div class="form-group" style=" margin-top: 20px; ">
-						<label class="mb-0 text-grey-800 font-weight-bold">
-							User :
-						</label>
-						<input id="inputUser" name="inputUser" type="text" class="form-control" required onblur=" doCheckUser(); ";>
-						<div style=" padding: 4px; ">
-							<span id="idUserOK" style=" display: none; " class=" text-success font-weight-bold"> ไม่ซ้ำ ใช้งานได้  </span>
-							<span id="idUserNO" style=" display: none; " class=" text-danger font-weight-bold"> ซ้ำ มีผู้ใช้ชื่อนี้แล้ว </span>
-						</div>
+					<div class="form-group">
+						<label class="mb-0 text-grey-800 font-weight-bold">E-mail : </label>
+						<input id="inputEmail" name="inputEmail" type="text" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
@@ -64,12 +58,7 @@ include_once("../inc/inc_page_header.php");
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">ยืนยันรหัสผ่าน :</label>
 						<input id="inputPassConfirm" name="inputPassConfirm" type="password" class="form-control">
-					</div>
-					<!-- ------------------------------------------------------- -->
-					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">E-mail : </label>
-						<input id="inputEmail" name="inputEmail" type="text" class="form-control">
-					</div>
+					</div>				
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">เบอร์โทร : </label>

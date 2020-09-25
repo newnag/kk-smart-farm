@@ -70,7 +70,6 @@ include_once("../inc/inc_page_header.php");
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>ชื่อผู้ใช้</th>
 										<th>ชื่อ</th>
 										<th>นามสกุล</th>
 										<th>เบอร์โทร</th>

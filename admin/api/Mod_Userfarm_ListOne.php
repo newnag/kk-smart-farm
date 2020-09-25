@@ -22,7 +22,6 @@ try {
 	$Row=$Rows[0];
   $dataQ = array();
   $dataQ["id"] = $Row[TABLE_MOD_USERFARM."_id"];
-  $dataQ["user"]=$Row[TABLE_MOD_USERFARM."_user"] ;
   $dataQ["fullname"]=$Row[TABLE_MOD_USERFARM."_fullname"] ;
   $dataQ["lastname"]=$Row[TABLE_MOD_USERFARM."_lastname"] ;
   $dataQ["tel"]=$Row[TABLE_MOD_USERFARM."_tel"] ;

@@ -8,7 +8,7 @@ $ErrorMessage="";
 #-------------------------------------------------------------------
 # Input
 #-------------------------------------------------------------------
-	$inputUser=$SendRequest["inputUser"];
+	$inputUser=$SendRequest["inputEmail"];
 	$inputPassword=$SendRequest["inputPassword"];
 
 #-------------------------------------------------------------------
@@ -31,7 +31,7 @@ try {
 			$myID=$Row[TABLE_MOD_USERFARM."_ID"];
 			$DataField=array();
 			$DataField["ID"]			=	$Row[TABLE_MOD_USERFARM."_id"];
-			$DataField["User"]			=	$Row[TABLE_MOD_USERFARM."_user"];
+			//$DataField["User"]			=	$Row[TABLE_MOD_USERFARM."_user"];
 			$DataField["Email"]			=	$Row[TABLE_MOD_USERFARM."_email"];
 			// $DataField["Phone"]			=	$Row[TABLE_MOD_USERFARM."_Phone"];
 			//-------------------------------------------------

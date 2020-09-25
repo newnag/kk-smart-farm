@@ -54,14 +54,9 @@ $Row=$Result["Result"];
 				</div>
 				<div class="card-body" id="idBoxBody<?php echo $box; ?>">
 					<!-- ------------------------------------------------------- -->
-					<div class="form-group" style=" margin-top: 20px; ">
-						<label class="mb-0 text-grey-800 font-weight-bold">
-							User :
-						</label>
-						<div style=" padding: 4px; padding-left: 10px; " class=" text-success font-weight-bold ">
-							<?php echo $Row["user"]; ?>
-							<input type="hidden" id="inputUser" name="inputUser" value="<?php echo $Row["user"]; ?>" />
-						</div>
+					<div class="form-group">
+						<label class="mb-0 text-grey-800 font-weight-bold">E-mail : </label>
+						<input id="inputEmail" name="inputEmail" type="text" class="form-control" required value="<?php echo $Row["email"]; ?>">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
@@ -73,11 +68,6 @@ $Row=$Result["Result"];
 					<div class="form-group" id="idPassConfirm" style=" display: none; ">
 						<label class="mb-0 text-grey-800 font-weight-bold">ยืนยันรหัสผ่าน :</label>
 						<input id="inputPassConfirm" name="inputPassConfirm" type="password" class="form-control">
-					</div>
-					<!-- ------------------------------------------------------- -->
-					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">E-mail : </label>
-						<input id="inputEmail" name="inputEmail" type="text" class="form-control" required value="<?php echo $Row["email"]; ?>">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">

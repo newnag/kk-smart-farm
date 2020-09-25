@@ -26,7 +26,6 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ชื่อผู้ใช้</th>
                                 <th>ชื่อ</th>
                                 <th>นามสกุล</th>
                                 <th>อีเมล์</th>
@@ -40,7 +39,6 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
                             </tr>
                         </thead>
                         <tbody>
-                            <td><?php echo $Row["user"]; ?></td>
                             <td><?php echo $Row["fullname"]; ?></td>
                             <td><?php echo $Row["lastname"]; ?></td>
                             <td><?php echo $Row["email"]; ?></td>
