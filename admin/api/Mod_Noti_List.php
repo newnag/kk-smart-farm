@@ -40,6 +40,7 @@ if(!in_array($SendRequest["inputShowASCDESC"],$arCheck)) { $SendRequest["inputSh
       $dataQ = array();
       $dataQ["id"] = $Row[TABLE_MOD_NOTI."_id"];
       $dataQ["userID"]=$Row[TABLE_MOD_NOTI."_userID"] ;
+      $dataQ["fullname"]=$Row[TABLE_MOD_USERFARM."_fullname"] ;
       $dataQ["text"]=$Row[TABLE_MOD_NOTI."_text"] ;
       $dataQ["date"]=$Row[TABLE_MOD_NOTI."_CreateDate"] ;
       $dataQ["adminID"]=$Row[TABLE_MOD_NOTI."_CreateByID"] ;
