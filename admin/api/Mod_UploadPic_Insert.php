@@ -1,4 +1,7 @@
 <?php
+
+include("./config/function.php");
+
 #-------------------------------------------------------------------
 # Direct File Access Protection
 #-------------------------------------------------------------------
@@ -17,6 +20,8 @@ $inputImage = trim(urldecode($SendRequest['inputImage']));
 #-------------------------------------------------------------------
 
 	try {
+		$key = 'Image';
+		$inputImage = System_UploadPicture($key,'Mod_Upload');
 		$DataField=array(); $arSQLData=array();
 		$sqla =" INSERT INTO ".TABLE_MOD_UPLOADPIC."( ";  $sqlb =" ) VALUES(";  $sqlc =" ) ";
 		$sqla.=" ".TABLE_MOD_UPLOADPIC."_userID ";          $sqlb.=" ? ";         $arSQLData[]=$inputUser;
@@ -28,7 +33,10 @@ $inputImage = trim(urldecode($SendRequest['inputImage']));
 		if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }
 		$myInsertID = $System_Connection->lastInsertId();
 		$DataField["InsertID"]=$myInsertID; 
-		$DataField["URL"]=SYSTEM_FULLPATH_UPLOAD."mod_upload/".$inputImage; 
+		$DataField["URL"]=SYSTEM_FULLPATH_UPLOAD."Mod_Upload/".$inputImage; 
+		
+
+		
 	} catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
 
 
