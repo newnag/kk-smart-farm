@@ -12,7 +12,7 @@ include_once("config.php");
 # Security Protect
 #-------------------------------------------------------------------
 $doaction=$_REQUEST["doaction"];
-$arCheck=array("list","delete");
+$arCheck=array("list","add","insert","edit","update","confirm","delete","view");
 if(!in_array($doaction,$arCheck)) { $doaction="list"; }
 
 ?>
@@ -21,13 +21,12 @@ if(!in_array($doaction,$arCheck)) { $doaction="list"; }
 <head>
 <?php include_once("../inc/inc_head.php"); ?>
 </head>
-<?php
 
+<?php
 #-------------------------------------------------------------------
 # Body Data
 #-------------------------------------------------------------------
 ?>
-
 <body class="<?php echo $System_BodyClass; ?>">
 	<?php
 	#-------------------------------------------------------------------

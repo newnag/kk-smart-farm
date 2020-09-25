@@ -1,3 +1,32 @@
+//----------------------------------------
+function doCheckUser() {
+//----------------------------------------
+	var myUser=$('#inputUser').val();
+	if(myUser=="") { } else {
+		$.ajax('add-ajax.php?inputUser='+myUser, {
+			dataType: 'text',
+			success: function(data){
+				if(data=='NO') {
+					$('#idUserOK').hide();
+					$('#idUserNO').show();
+				} else if(data=='OK') {
+					$('#idUserOK').show();
+					$('#idUserNO').hide();
+				} else {
+					$('#idUserOK').hide();
+					$('#idUserNO').hide();
+				}
+			}
+		});	
+	}
+	return false;
+}
+//----------------------------------------
+function doBack() {
+//----------------------------------------
+	$('#myBackForm').submit();
+}
+
 // ------------------------------------------------------------------------------------------
 var FormValidation = function() {
 // ------------------------------------------------------------------------------------------
@@ -56,13 +85,6 @@ var FormValidation = function() {
                 }
             },
             rules: {
-                inputCodeName: {
-                    minlength: 4
-                },
-                inputName: {
-                    minlength: 4
-                },
-
                 inputPass: {
                     minlength: 4
                 },
@@ -148,6 +170,7 @@ var FormValidation = function() {
         }
     }
 }();
+
 document.addEventListener('DOMContentLoaded', function() {
     FormValidation.init();
 });

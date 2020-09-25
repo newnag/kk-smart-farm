@@ -32,7 +32,8 @@ include_once("../config/loader.php");
 		<div class="content-wrapper text-center">
 			<br><br><br>
 			<h1>ยินดีต้อนรับสู่ระบบจัดการเว็บไซต์</h1>
-			<h2><?php echo SYSTEM_COOKIES_DOMAIN; ?></h2>
+			<!-- <h2><?php echo SYSTEM_COOKIES_DOMAIN; ?></h2> -->
+			<h2>KK Smart Farm</h2>
 			<?php
 			#-------------------------------------------------------------------
 			# Show Home Content

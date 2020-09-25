@@ -107,15 +107,15 @@ $System_MenuMain_Name[1000]="ข่าวสารและบทความ"; 
         $System_MenuSub_Name[1002] ="เกณฑ์วัดความสมบูรณ์"; $System_MenuSub_Link[1002]="../mod_bodycon/";
         $System_MenuSub_Name[1003] ="โภชนาการ"; $System_MenuSub_Link[1003]="../mod_nutrition/";
         $System_MenuSub_Name[1004] ="โรคติดต่อ"; $System_MenuSub_Link[1004]="../mod_disease/";
-$System_MenuMain_Name[2000]="จัดการระบบสืบพันธุ์"; $System_MenuMain_Icons[2000]="icon-typewriter";
+$System_MenuMain_Name[2000]="จัดการระบบสืบพันธุ์"; $System_MenuMain_Icons[2000]="icon-pencil7";
         $System_MenuSub_Name[2001] ="การรักษา"; $System_MenuSub_Link[2001]="../mod_treatment/";
         $System_MenuSub_Name[2002] ="ลักษณะเมือก"; $System_MenuSub_Link[2002]="../mod_rut/";
-$System_MenuMain_Name[3000]="จัดการหมวดหมู่และคำตอบ"; $System_MenuMain_Icons[3000]="mi-mail-outline";
+$System_MenuMain_Name[3000]="จัดการหมวดหมู่และคำตอบ"; $System_MenuMain_Icons[3000]="icon-pencil7";
         $System_MenuSub_Name[3001] ="หมวดหมู่"; $System_MenuSub_Link[3001]="../mod_category/";
         $System_MenuSub_Name[3002] ="หมวดหมู่ย่อย"; $System_MenuSub_Link[3002]="../mod_subcate/";
         $System_MenuSub_Name[3003] ="คำตอบ"; $System_MenuSub_Link[3003]="../mod_choice/";
         $System_MenuSub_Name[3004] ="รูปภาพหมวดหมู่ย่อย"; $System_MenuSub_Link[3004]="../mod_thumbnail/";
-$System_MenuMain_Name[4000]="จัดการประวัติ"; $System_MenuMain_Icons[4000]="icon-typewriter";
+$System_MenuMain_Name[4000]="จัดการประวัติ"; $System_MenuMain_Icons[4000]="icon-magazine";
         $System_MenuSub_Name[4001] ="ประวัติสุขภาพ"; $System_MenuSub_Link[4001]="../mod_history/";
         $System_MenuSub_Name[4002] ="ประวัติระบบสืบพันธุ์"; $System_MenuSub_Link[4002]="../mod_reprohistory/";
 $System_MenuMain_Name[5000]="จัดการข้อมูลเกี่ยวกับฟาร์ม"; $System_MenuMain_Icons[5000]="icon-pencil7";
@@ -123,10 +123,11 @@ $System_MenuMain_Name[5000]="จัดการข้อมูลเกี่ย
         $System_MenuSub_Name[5002] ="จัดการข้อมูลปศุสัตว์"; $System_MenuSub_Link[5002]="../mod_livestock/";
         $System_MenuSub_Name[5003] ="จัดการข้อมูลฟาร์ม"; $System_MenuSub_Link[5003]="../mod_farm/";
         $System_MenuSub_Name[5004] ="เพิ่มสายพันธุ์"; $System_MenuSub_Link[5004]="../mod_gene/";
-$System_MenuMain_Name[6000]="จัดการการแจ้งเตือน"; $System_MenuMain_Icons[6000]="icon-equalizer2";
+$System_MenuMain_Name[6000]="จัดการการแจ้งเตือน"; $System_MenuMain_Icons[6000]="icon-bell2";
         $System_MenuSub_Name[6001] ="การแจ้งเตือน"; $System_MenuSub_Link[6001]="../mod_noti/";
 $System_MenuMain_Name[7000]="จัดการเว็บไซต์"; $System_MenuMain_Icons[7000]="icon-equalizer2";
         $System_MenuSub_Name[7001] ="เกี่ยวกับเรา"; $System_MenuSub_Link[7001]="../mod_page/";
+        $System_MenuSub_Name[7002] ="ติดต่อสัตวแพทย์"; $System_MenuSub_Link[7002]="../mod_contact/";
 
 #-------------------------------------------------------------------
 # Project

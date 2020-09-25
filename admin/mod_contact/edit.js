@@ -1,3 +1,20 @@
+//----------------------------------
+function doShowPassConfirm(myObj) {
+//----------------------------------
+	if(myObj.value=='') {
+		$('#idPassConfirm').hide();
+		$('#inputPassConfirm').val('');
+	} else {
+		$('#idPassConfirm').show();
+	}
+}
+//----------------------------------------
+function doBack() {
+//----------------------------------------
+	$('#myBackForm').submit();
+}
+//----------------------------------------
+
 // ------------------------------------------------------------------------------------------
 var FormValidation = function() {
 // ------------------------------------------------------------------------------------------
@@ -56,13 +73,15 @@ var FormValidation = function() {
                 }
             },
             rules: {
-                inputCodeName: {
+                inputPass: {
                     minlength: 4
                 },
-                inputName: {
-                    minlength: 4
+                inputPassConfirm: {
+                    equalTo: '#inputPass'
                 },
-
+                inputEmail: {
+                    email: true
+                },
                 maximum_characters: {
                     maxlength: 10
                 },

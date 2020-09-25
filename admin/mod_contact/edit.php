@@ -10,6 +10,9 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 $Config_ShowButton=array("back");
 include_once("../inc/inc_page_header.php");
 
+include("add-cate.php");
+include("add-sub.php");
+
 #-------------------------------------------------------------------
 # Load Data from API
 #-------------------------------------------------------------------
@@ -25,6 +28,8 @@ $Row=$Result["Result"];
 		<input type="hidden" id="doaction" name="doaction" value="list" />
 		<!-- Remember Current List State ---------------------------- -->
 		<input type="hidden" id="inputShowFilter"     name="inputShowFilter"     value="<?php echo $_REQUEST["inputShowFilter"]; ?>" />
+		<input type="hidden" id="inputShowStaffLevel" name="inputShowStaffLevel" value="<?php echo $_REQUEST["inputShowStaffLevel"]; ?>" />
+		<input type="hidden" id="inputShowStaffGroup" name="inputShowStaffGroup" value="<?php echo $_REQUEST["inputShowStaffGroup"]; ?>" />
 		<input type="hidden" id="inputShowStatus"     name="inputShowStatus"     value="<?php echo $_REQUEST["inputShowStatus"]; ?>" />
 		<input type="hidden" id="inputShowOrderBy"    name="inputShowOrderBy"    value="<?php echo $_REQUEST["inputShowOrderBy"]; ?>" />
 		<input type="hidden" id="inputShowASCDESC"    name="inputShowASCDESC"    value="<?php echo $_REQUEST["inputShowASCDESC"]; ?>" />
@@ -35,56 +40,46 @@ $Row=$Result["Result"];
 		<input type="hidden" id="inputID"  name="inputID"  value="<?php echo $_REQUEST["inputID"]; ?>" />
 		<!-- Remember Current List State ---------------------------- -->
 		<input type="hidden" id="inputShowFilter"     name="inputShowFilter"     value="<?php echo $_REQUEST["inputShowFilter"]; ?>" />
+		<input type="hidden" id="inputShowStaffLevel" name="inputShowStaffLevel" value="<?php echo $_REQUEST["inputShowStaffLevel"]; ?>" />
+		<input type="hidden" id="inputShowStaffGroup" name="inputShowStaffGroup" value="<?php echo $_REQUEST["inputShowStaffGroup"]; ?>" />
 		<input type="hidden" id="inputShowStatus"     name="inputShowStatus"     value="<?php echo $_REQUEST["inputShowStatus"]; ?>" />
 		<input type="hidden" id="inputShowOrderBy"    name="inputShowOrderBy"    value="<?php echo $_REQUEST["inputShowOrderBy"]; ?>" />
 		<input type="hidden" id="inputShowASCDESC"    name="inputShowASCDESC"    value="<?php echo $_REQUEST["inputShowASCDESC"]; ?>" />
 		<!-- ---------------------------------------------------------- -->
-		<h1>แก้ไข <?php echo MODULE_NAME; ?></h1>
+		<h1>แก้ไข<?php echo MODULE_NAME; ?></h1>
 		<div class="content" style=" max-width: 550px; margin:auto; ">
 			<!-- ---------------------------------------------------------- -->
 			<?php $box=1; ?>
 			<div class="card">
 				<div class="card-header <?php echo $System_ThemeClass; ?> header-elements-inline cursor" onclick=" System_ToggleBox(<?php echo $box; ?>); ">
-					<h4 class="card-title">ข้อมูล <?php echo MODULE_NAME; ?></h4>
+					<h4 class="card-title">ข้อมูลที่จำเป็น</h4>
 					<div class="header-elements"><div class="list-icons"><a class="list-icons-item" id="idBoxIcon<?php echo $box; ?>" data-action="collapse"></a></div></div>
 				</div>
 				<div class="card-body" id="idBoxBody<?php echo $box; ?>">
 					<!-- ------------------------------------------------------- -->
-					<div class="form-group" style=" margin-top: 20px; ">
-						<label class="mb-0 text-grey-800 font-weight-bold">รหัสกลุ่ม : </label>
-						<input id="inputCodeName" name="inputCodeName" type="text" class="form-control" required value="<?php echo $Row["CodeName"]; ?>">
+					<div class="form-group">
+						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อ : </label>
+						<input id="inputName" name="inputName" type="text" class="form-control" value="<?php echo $Row["name"]; ?>">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อกลุ่ม : </label>
-						<input id="inputName" name="inputName" type="text" class="form-control" required value="<?php echo $Row["Name"]; ?>">
+						<label class="mb-0 text-grey-800 font-weight-bold">เบอร์โทร : </label>
+						<input id="inputTel" name="inputTel" type="text" class="form-control" value="<?php echo $Row["tel"]; ?>">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="d-block text-grey-800 font-weight-bold mb-1">สถานะ :</label> 
-						<div class="form-check form-check-inline mr-4"></div>
-						<div class="form-check form-check-inline mr-4">
-							<label class="form-check-label text-success" style=" line-height: 25px; ">
-								<div class="uniform-choice border-success text-success">
-									<span class="checked" style=" border-color: transparent!important; ">
-									<input type="radio" class="form-input-styled" name="inputStatus" checked data-fouc="" <?php if($Row["Status"]=="Enable") { echo " checked "; } ?> value="Enable" >
-									</span>
-								</div>
-								เปิดใช้งาน
-							</label>
-						</div>
-						<div class="form-check form-check-inline mr-4">
-							<label class="form-check-label text-warning" style=" line-height: 25px; ">
-								<div class="uniform-choice border-warning text-warning">
-									<span class="" style=" border-color: transparent!important; ">
-									<input type="radio" class="form-input-styled" name="inputStatus" data-fouc=""  <?php if($Row["Status"]=="Disable") { echo " checked "; } ?> value="Disable" >
-									</span>
-								</div>
-								ปิดใช้งาน
-							</label>
-						</div>
+						<?php
+						####################################################################
+						$Config_Key="Picture"; // ใช้ input + ชื่อฟิลด์ เป็นมาตรฐาน
+						$Config_Label="ภาพแทนตัว";
+						$Config_OldFile=$Row["Picture"];
+						$Config_Width=500;
+						$Config_Height=500;
+						####################################################################
+						include("../tool_cropper/inc_input_fileupload_basic.php");
+						####################################################################
+						?>
 					</div>
-					<!-- ------------------------------------------------------- -->
 				</div>
 			</div>
 			<!-- ---------------------------------------------------------- -->
@@ -98,10 +93,3 @@ $Row=$Result["Result"];
 	</form>
 </div>
 <script src="edit.js"></script>
-<script>
-//----------------------------------------
-function doBack() {
-//----------------------------------------
-	$('#myBackForm').submit();
-}
-</script>

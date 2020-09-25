@@ -4,7 +4,6 @@
 #-------------------------------------------------------------------
 if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 
-$arProjectAll=$Result["Project"];
 ?>
 <div id="mySearchFilter" class="card">
     <div class="card-body" style=" padding-bottom:0px; ">
@@ -29,14 +28,54 @@ $arProjectAll=$Result["Project"];
                 <div class="btn-group justify-content-center mb-0 mr-4" style=" vertical-align: text-top; ">
 					<span class="font-weight-bold text-muted mb-3"> <i class="icon-filter3 mr-1"></i> ตัวกรองข้อมูล </span>
 				</div>
+                <!-- Level ------------------------------------------------------------ -->
+                <div class="btn-group justify-content-center mb-0 mr-4" style=" vertical-align: text-top; ">
+					<div class="form-group" style=" width:120px; ">
+						<select id="inputShowStaffLevel" name="inputShowStaffLevel" class="form-control select FilterSearch" data-placeholder="ระดับสมาชิก" data-fouc>
+							<option></option>
+							<option value="All" <?php if($_REQUEST["inputShowStaffLevel"]=="") { echo ' selected '; } ?> class="text-primary">แสดงทั้งหมด</option>
+							<option value="Administrator" <?php if($_REQUEST["inputShowStaffLevel"]=="Administrator") { echo ' selected '; } ?>>Administrator</option>
+							<option value="Staff" <?php if($_REQUEST["inputShowStaffLevel"]=="Staff") { echo ' selected '; } ?>>Staff</option>
+						</select>
+					</div>
+                </div>
+                <!-- Staff Group ------------------------------------------------------------ -->
+                <div class="btn-group justify-content-center mb-0 mr-4" style=" vertical-align: text-top; ">
+					<div class="form-group" style=" width:160px; ">
+						<select id="inputShowStaffGroup" name="inputShowStaffGroup" class="form-control select FilterSearch" data-placeholder="กลุ่มของสมาชิก" data-fouc>
+							<option></option>						
+							<option value="All" <?php if($_REQUEST["inputShowStaffGroup"]=="") { echo ' selected '; } ?> class="text-primary">แสดงทั้งหมด</option>
+							<?php
+							foreach ($arStaffGroup as $key => $value) {
+								if($value<>"" && $key>0) {
+									?><option value="<?php echo $key; ?>" <?php if($_REQUEST["inputShowStaffGroup"]==$key) { echo ' selected '; } ?>><?php echo $value; ?></option><?php
+								}
+							}
+							?>
+						</select>
+					</div>
+                </div>
                 <!-- Right Filter ------------------------------------------------------------ -->
                 <ul class="list-inline mb-0 ml-md-auto">
-					<!-- Order By ------------------------------------------------------------ -->
+					<!-- Status ------------------------------------------------------------ -->
                     <li class="list-inline-item">
 						<div class="form-group" style=" width:140px; ">
+							<select id="inputShowStatus" name="inputShowStatus" class="form-control select FilterSearch" data-fouc>
+								<optgroup label="สถานะ">
+									<option value="Enable" <?php if($_REQUEST["inputShowStatus"]=="Enable") { echo ' selected '; } ?>>เปิดใช้งาน</option>
+									<option value="Disable" <?php if($_REQUEST["inputShowStatus"]=="Disable") { echo ' selected '; } ?>>ปิดใช้งาน</option>
+								</optgroup>
+							</select>
+						</div>
+                    </li>
+					<!-- Order By ------------------------------------------------------------ -->
+                    <li class="list-inline-item">
+						<div class="form-group" style=" width:170px; ">
 							<select id="inputShowOrderBy" name="inputShowOrderBy" class="form-control select FilterSearch" data-fouc>
 								<optgroup label="เรียงตาม">
 									<option value="ID" <?php if($_REQUEST["inputShowOrderBy"]=="ID") { echo ' selected '; } ?>> วันที่สร้าง </option>
+									<option value="LastLoginDate" <?php if($_REQUEST["inputShowOrderBy"]=="LastLoginDate") { echo ' selected '; } ?>> เข้าใช้งานล่าสุด </option>
+									<option value="User" <?php if($_REQUEST["inputShowOrderBy"]=="User") { echo ' selected '; } ?>> Username </option>
 								</optgroup>
 							</select>
 						</div>

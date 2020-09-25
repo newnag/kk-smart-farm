@@ -25,6 +25,8 @@ include_once("../inc/inc_page_header.php");
 		<input type="hidden" id="doaction" name="doaction" value="list" />
 		<!-- Remember Current List State ---------------------------- -->
 		<input type="hidden" id="inputShowFilter"     name="inputShowFilter"     value="<?php echo $_REQUEST["inputShowFilter"]; ?>" />
+		<input type="hidden" id="inputShowStaffLevel" name="inputShowStaffLevel" value="<?php echo $_REQUEST["inputShowStaffLevel"]; ?>" />
+		<input type="hidden" id="inputShowStaffGroup" name="inputShowStaffGroup" value="<?php echo $_REQUEST["inputShowStaffGroup"]; ?>" />
 		<input type="hidden" id="inputShowStatus"     name="inputShowStatus"     value="<?php echo $_REQUEST["inputShowStatus"]; ?>" />
 		<input type="hidden" id="inputShowOrderBy"    name="inputShowOrderBy"    value="<?php echo $_REQUEST["inputShowOrderBy"]; ?>" />
 		<input type="hidden" id="inputShowASCDESC"    name="inputShowASCDESC"    value="<?php echo $_REQUEST["inputShowASCDESC"]; ?>" />
@@ -32,20 +34,22 @@ include_once("../inc/inc_page_header.php");
 	</form>
 	<form id="myForm" name="myForm" method="post" action="?" class="form-validate-jquery" enctype="multipart/form-data">
 		<input type="hidden" id="doaction" name="doaction" value="delete" />
-		<input type="hidden" id="inputID"  name="inputID"  value="<?php echo $Row["ID"]; ?>" />
-		<input type="hidden" id="inputName" name="inputName" value="<?php echo $Row["Name"]; ?>" />
+		<input type="hidden" id="inputID"  name="inputID"  value="<?php echo $Row["id"]; ?>" />
+		<input type="hidden" id="inputUser" name="inputUser" value="<?php echo $Row["user"]; ?>" />
 		<!-- Remember Current List State ---------------------------- -->
 		<input type="hidden" id="inputShowFilter"     name="inputShowFilter"     value="<?php echo $_REQUEST["inputShowFilter"]; ?>" />
+		<input type="hidden" id="inputShowStaffLevel" name="inputShowStaffLevel" value="<?php echo $_REQUEST["inputShowStaffLevel"]; ?>" />
+		<input type="hidden" id="inputShowStaffGroup" name="inputShowStaffGroup" value="<?php echo $_REQUEST["inputShowStaffGroup"]; ?>" />
 		<input type="hidden" id="inputShowStatus"     name="inputShowStatus"     value="<?php echo $_REQUEST["inputShowStatus"]; ?>" />
 		<input type="hidden" id="inputShowOrderBy"    name="inputShowOrderBy"    value="<?php echo $_REQUEST["inputShowOrderBy"]; ?>" />
 		<input type="hidden" id="inputShowASCDESC"    name="inputShowASCDESC"    value="<?php echo $_REQUEST["inputShowASCDESC"]; ?>" />
 		<!-- ---------------------------------------------------------- -->
-		<h1>คุณต้องการลบ <span class="text-warning"><?php echo $Row["Name"]; ?></span> แน่ใจหรือไม่? </h1>
-		<div class="content" style=" max-width: 500px; margin:auto; ">
+		<h1>คุณต้องการลบ <span class="text-warning"><?php echo $Row["User"]; ?></span> แน่ใจหรือไม่? </h1>
+		<div class="content" style=" margin:auto; ">
 			<?php
 			#------------------------------
 			$Config_ViewOnly=true;
-			include("list-object.php");
+			include("list-delete.php");
 			#------------------------------
 			?>
 		</div>

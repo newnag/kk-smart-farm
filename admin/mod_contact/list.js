@@ -71,9 +71,3 @@ function doDelete(myid) {
 	$('#mySearchForm').submit();
 }
 //----------------------------------------
-function doSort() {
-//----------------------------------------
-	$('#doaction').val('sort');
-	$('#mySearchForm').submit();
-}
-//----------------------------------------

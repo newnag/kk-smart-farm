@@ -5,6 +5,16 @@
 if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 
 #-------------------------------------------------------------------
+# Create SendRequest Data and Create PageKey
+#-------------------------------------------------------------------
+
+#-------------------------------------------------------------------
+# Load Data from API
+#-------------------------------------------------------------------
+
+// print_r($ResultA);
+// print_r($ResultB);
+#-------------------------------------------------------------------
 # Show Page Header Panel
 #-------------------------------------------------------------------
 $Config_ShowButton=array("back");
@@ -17,6 +27,8 @@ include_once("../inc/inc_page_header.php");
 		<input type="hidden" id="doaction" name="doaction" value="list" />
 		<!-- Remember Current List State ---------------------------- -->
 		<input type="hidden" id="inputShowFilter"     name="inputShowFilter"     value="<?php echo $_REQUEST["inputShowFilter"]; ?>" />
+		<input type="hidden" id="inputShowStaffLevel" name="inputShowStaffLevel" value="<?php echo $_REQUEST["inputShowStaffLevel"]; ?>" />
+		<input type="hidden" id="inputShowStaffGroup" name="inputShowStaffGroup" value="<?php echo $_REQUEST["inputShowStaffGroup"]; ?>" />
 		<input type="hidden" id="inputShowStatus"     name="inputShowStatus"     value="<?php echo $_REQUEST["inputShowStatus"]; ?>" />
 		<input type="hidden" id="inputShowOrderBy"    name="inputShowOrderBy"    value="<?php echo $_REQUEST["inputShowOrderBy"]; ?>" />
 		<input type="hidden" id="inputShowASCDESC"    name="inputShowASCDESC"    value="<?php echo $_REQUEST["inputShowASCDESC"]; ?>" />
@@ -26,6 +38,8 @@ include_once("../inc/inc_page_header.php");
 		<input type="hidden" id="doaction" name="doaction" value="insert" />
 		<!-- Remember Current List State ---------------------------- -->
 		<input type="hidden" id="inputShowFilter"     name="inputShowFilter"     value="<?php echo $_REQUEST["inputShowFilter"]; ?>" />
+		<input type="hidden" id="inputShowStaffLevel" name="inputShowStaffLevel" value="<?php echo $_REQUEST["inputShowStaffLevel"]; ?>" />
+		<input type="hidden" id="inputShowStaffGroup" name="inputShowStaffGroup" value="<?php echo $_REQUEST["inputShowStaffGroup"]; ?>" />
 		<input type="hidden" id="inputShowStatus"     name="inputShowStatus"     value="<?php echo $_REQUEST["inputShowStatus"]; ?>" />
 		<input type="hidden" id="inputShowOrderBy"    name="inputShowOrderBy"    value="<?php echo $_REQUEST["inputShowOrderBy"]; ?>" />
 		<input type="hidden" id="inputShowASCDESC"    name="inputShowASCDESC"    value="<?php echo $_REQUEST["inputShowASCDESC"]; ?>" />
@@ -36,23 +50,37 @@ include_once("../inc/inc_page_header.php");
 			<?php $box=1; ?>
 			<div class="card">
 				<div class="card-header <?php echo $System_ThemeClass; ?> header-elements-inline cursor" onclick=" System_ToggleBox(<?php echo $box; ?>); ">
-					<h4 class="card-title">ข้อมูล <?php echo MODULE_NAME; ?></h4>
+					<h4 class="card-title">ข้อมูลที่จำเป็น</h4>
 					<div class="header-elements"><div class="list-icons"><a class="list-icons-item" id="idBoxIcon<?php echo $box; ?>" data-action="collapse"></a></div></div>
 				</div>
 				<div class="card-body" id="idBoxBody<?php echo $box; ?>">
 					<!-- ------------------------------------------------------- -->
-					<div class="form-group" style=" margin-top: 20px; ">
-						<label class="mb-0 text-grey-800 font-weight-bold">รหัสกลุ่ม : </label>
-						<input id="inputCodeName" name="inputCodeName" type="text" class="form-control" required">
+					<div class="form-group">
+						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อ : </label>
+						<input id="inputName" name="inputName" type="text" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อกลุ่ม : </label>
-						<input id="inputName" name="inputName" type="text" class="form-control" required">
+						<label class="mb-0 text-grey-800 font-weight-bold">เบอร์โทร : </label>
+						<input id="inputTel" name="inputTel" type="text" class="form-control">
 					</div>
 					<!-- ------------------------------------------------------- -->
+					<div class="form-group">
+						<?php
+						####################################################################
+						$Config_Key="Picture"; // ใช้ input + ชื่อฟิลด์ เป็นมาตรฐาน
+						$Config_Label="ภาพแทนตัว";
+						$Config_OldFile=array();
+						$Config_Width=500;
+						$Config_Height=500;
+						####################################################################
+						include("../tool_cropper/inc_input_fileupload_basic.php");
+						####################################################################
+						?>
+					</div>
 				</div>
 			</div>
+
 			<!-- ---------------------------------------------------------- -->
 		</div>
 		<div class="card card-body text-center d-flex justify-content-between align-items-center <?php echo CONFIG_DEFAULT_DESIGN_CLASS; ?>">
@@ -64,11 +92,3 @@ include_once("../inc/inc_page_header.php");
 	</form>
 </div>
 <script src="add.js"></script>
-<script>
-//----------------------------------------
-function doBack() {
-//----------------------------------------
-	$('#myBackForm').submit();
-}
-//----------------------------------------
-</script>
