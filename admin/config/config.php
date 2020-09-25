@@ -128,6 +128,8 @@ $System_MenuMain_Name[6000]="จัดการการแจ้งเตือ
 $System_MenuMain_Name[7000]="จัดการเว็บไซต์"; $System_MenuMain_Icons[7000]="icon-equalizer2";
         $System_MenuSub_Name[7001] ="เกี่ยวกับเรา"; $System_MenuSub_Link[7001]="../mod_page/";
         $System_MenuSub_Name[7002] ="ติดต่อสัตวแพทย์"; $System_MenuSub_Link[7002]="../mod_contact/";
+$System_MenuMain_Name[8000]="สำรองข้อมูล"; $System_MenuMain_Icons[8000]="icon-equalizer2";
+        $System_MenuSub_Name[8001] ="สำรองฐานข้อมูล"; $System_MenuSub_Link[8001]="../mod_backup/";
 
 #-------------------------------------------------------------------
 # Project

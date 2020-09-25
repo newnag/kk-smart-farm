@@ -33,11 +33,11 @@ $inputPass=hash('sha256',SYSTEM_AUTHEN_KEY.$inputPass.SYSTEM_AUTHEN_KEY);
 #-------------------------------------------------------------------
 try {
 	$arSQLData=array();
-	$sql =" SELECT ".TABLE_MOD_USERFARM."_email FROM ".TABLE_MOD_USERFARM." WHERE ".TABLE_MOD_USERFARM."_email LIKE ? LIMIT 0,1 "; $arSQLData[]=$inputEmail;
+	$sql =" SELECT ".TABLE_MOD_USERFARM."_id FROM ".TABLE_MOD_USERFARM." WHERE ".TABLE_MOD_USERFARM."_email LIKE ? LIMIT 0,1 "; $arSQLData[]=$inputEmail;
 	$Query=$System_Connection->prepare($sql);
 	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }
 	$Rows=$Query->fetchAll();
-	$myID=$Rows[0][TABLE_MOD_USERFARM."_ID"];
+	$myID=$Rows[0][TABLE_MOD_USERFARM."_id"];
 } catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
 
 #-------------------------------------------------------------------
