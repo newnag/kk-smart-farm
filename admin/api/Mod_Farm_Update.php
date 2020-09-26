@@ -21,32 +21,66 @@ $inputPinlat = trim(urldecode($SendRequest['inputPinlat']));
 $inputPinlon = trim(urldecode($SendRequest['inputPinlon']));
 $SystemSession_Staff_ID = trim(urldecode($SendRequest['SystemSession_Staff_ID']));
 
+$inputArr	=	array($inputName,$inputNameOwner,$inputQty,$inputPicture,
+							$inputTel,$inputAddress,$inputSubdistrict,$inputDistrict,
+							$inputProvince,$inputPost,$inputPinlat,$inputPinlon);
+
 $ownerArr = explode("/",$inputNameOwner);
+
+
 
 //PROCESS:----------------------------------------
 ###################################################
-try {
-	$arSQLData=array();
-	$sql =" UPDATE ".TABLE_MOD_FARM." SET "; 
+
+$arSQLDataA=array();
+$sql =" SELECT * FROM ".TABLE_MOD_FARM." WHERE ".TABLE_MOD_FARM."_ID=? "; $arSQLDataA[]=$myID;
+$Query=$System_Connection->prepare($sql);
+if(sizeof($arSQLDataA)>0) { $Query->execute($arSQLDataA);  } else { $Query->execute(); }	
+$Rows=$Query->fetchAll();
+$Row=$Rows[0];
+
+if($Row[TABLE_MOD_FARM."_id"] != $myID){
+	$ErrorMessage = "ไม่มี Farm นี้";
+}
+
+//PROCESS:----------------------------------------
+###################################################
+$sscount = 0;
+for($i=0;$i<sizeof($inputArr);$i++){
+	$spcount = $inputArr[$i];
+	if($spcount[$i] == ""){
+		$sscount++;
+	}
+}
+
+if($sscount < sizeof($inputArr)){
+	try {
+		$arSQLData=array();
+		$sql =" UPDATE ".TABLE_MOD_FARM." SET "; 
 		$sql.=" ".TABLE_MOD_FARM."_name=? ";           $arSQLData[]=$inputName;
 		$sql.=",".TABLE_MOD_FARM."_ownerID=? ";           $arSQLData[]=$ownerArr[0];
-    $sql.=",".TABLE_MOD_FARM."_owner=? ";           $arSQLData[]=$ownerArr[1];
-    $sql.=",".TABLE_MOD_FARM."_tel=? ";           $arSQLData[]=$inputTel;
-    $sql.=",".TABLE_MOD_FARM."_qtyLivestock=? ";           $arSQLData[]=$inputQty;
-	$sql.=",".TABLE_MOD_FARM."_thumbnail=? ";     $arSQLData[]=$inputPicture;
-    $sql.=",".TABLE_MOD_FARM."_pinlat=? ";           $arSQLData[]=$inputPinlat;
-    $sql.=",".TABLE_MOD_FARM."_pinlon=? ";           $arSQLData[]=$inputPinlon;
-    $sql.=",".TABLE_MOD_FARM."_address=? ";           $arSQLData[]=$inputAddress;
-    $sql.=",".TABLE_MOD_FARM."_subdistrict=? ";           $arSQLData[]=$inputSubdistrict;
-    $sql.=",".TABLE_MOD_FARM."_district=? ";           $arSQLData[]=$inputDistrict;
-    $sql.=",".TABLE_MOD_FARM."_province=? ";           $arSQLData[]=$inputProvince;
-    $sql.=",".TABLE_MOD_FARM."_postcode=? ";           $arSQLData[]=$inputPost;
-	$sql.=",".TABLE_MOD_FARM."_LastUpdate=? ";      $arSQLData[]=SYSTEM_DATETIMENOW;
-	$sql.=",".TABLE_MOD_FARM."_LastUpdateByID=? ";  $arSQLData[]=$SystemSession_Staff_ID;
-	$sql.=" WHERE ".TABLE_MOD_FARM."_id=? ";        $arSQLData[]=$myID;
-	$Query=$System_Connection->prepare($sql);
-	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
-} catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
+		$sql.=",".TABLE_MOD_FARM."_owner=? ";           $arSQLData[]=$ownerArr[1];
+		$sql.=",".TABLE_MOD_FARM."_tel=? ";           $arSQLData[]=$inputTel;
+		$sql.=",".TABLE_MOD_FARM."_qtyLivestock=? ";           $arSQLData[]=$inputQty;
+		$sql.=",".TABLE_MOD_FARM."_thumbnail=? ";     $arSQLData[]=$inputPicture;
+		$sql.=",".TABLE_MOD_FARM."_pinlat=? ";           $arSQLData[]=$inputPinlat;
+		$sql.=",".TABLE_MOD_FARM."_pinlon=? ";           $arSQLData[]=$inputPinlon;
+		$sql.=",".TABLE_MOD_FARM."_address=? ";           $arSQLData[]=$inputAddress;
+		$sql.=",".TABLE_MOD_FARM."_subdistrict=? ";           $arSQLData[]=$inputSubdistrict;
+		$sql.=",".TABLE_MOD_FARM."_district=? ";           $arSQLData[]=$inputDistrict;
+		$sql.=",".TABLE_MOD_FARM."_province=? ";           $arSQLData[]=$inputProvince;
+		$sql.=",".TABLE_MOD_FARM."_postcode=? ";           $arSQLData[]=$inputPost;
+		$sql.=",".TABLE_MOD_FARM."_LastUpdate=? ";      $arSQLData[]=SYSTEM_DATETIMENOW;
+		$sql.=",".TABLE_MOD_FARM."_LastUpdateByID=? ";  $arSQLData[]=$SystemSession_Staff_ID;
+		$sql.=" WHERE ".TABLE_MOD_FARM."_id=? ";        $arSQLData[]=$myID;
+		$Query=$System_Connection->prepare($sql);
+		if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
+	} catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
+}
+else{
+	$ErrorMessage = "กรุณากรอกข้อมูลอย่างน้อย 1 ช่อง";
+}
+
 ###################################################
 
 //RESULT:---------------------------------------

@@ -14,7 +14,6 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 include("add-cate.php");
 $dataArr = $ResultA["Result"];
 
-print_r($dataArr);
 #-------------------------------------------------------------------
 # Show Page Header Panel
 #-------------------------------------------------------------------
@@ -44,6 +43,7 @@ include_once("../inc/inc_page_header.php");
 		<input type="hidden" id="inputShowStatus"     name="inputShowStatus"     value="<?php echo $_REQUEST["inputShowStatus"]; ?>" />
 		<input type="hidden" id="inputShowOrderBy"    name="inputShowOrderBy"    value="<?php echo $_REQUEST["inputShowOrderBy"]; ?>" />
 		<input type="hidden" id="inputShowASCDESC"    name="inputShowASCDESC"    value="<?php echo $_REQUEST["inputShowASCDESC"]; ?>" />
+		<input type="hidden" id="inputuserID"    name="inputuserID"    value="<?php echo $_COOKIE[userId] ?>" />
 		<!-- ---------------------------------------------------------- -->
 		<h1>เพิ่ม<?php echo MODULE_NAME; ?></h1>
 		<div class="content" style=" max-width: 550px; margin:auto; ">
@@ -55,18 +55,6 @@ include_once("../inc/inc_page_header.php");
 					<div class="header-elements"><div class="list-icons"><a class="list-icons-item" id="idBoxIcon<?php echo $box; ?>" data-action="collapse"></a></div></div>
 				</div>
 				<div class="card-body" id="idBoxBody<?php echo $box; ?>">
-					<div class="form-group">
-						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อเกษตรกร : </label>
-						<select class="form-control select select2-hidden-accessible" id="inputName" name="inputName" data-fouc="" tabindex="-1" aria-hidden="true">
-							<option value="">เลือกชื่อ</option>
-							<?php 
-								for($i=0;$i<sizeof($dataArr);$i++){
-									$Row = $dataArr[$i];
-									echo '<option value="'.$Row["id"].'">'.$Row["fullname"].'</option>';
-								}
-							?>
-						</select>
-					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">ข้อความที่ต้องการส่ง : </label>

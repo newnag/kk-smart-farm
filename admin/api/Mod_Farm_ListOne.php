@@ -22,26 +22,33 @@ if($ownerID == ''){
     if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
     $Rows=$Query->fetchAll();
     $Row=$Rows[0];
-    $dataQ = array();
-    $dataQ["id"] = $Row[TABLE_MOD_FARM."_id"];
-    $dataQ["name"]=$Row[TABLE_MOD_FARM."_name"] ;
-    $dataQ["ownerID"]=$Row[TABLE_MOD_FARM."_ownerID"] ;
-    $dataQ["owner"]=$Row[TABLE_MOD_FARM."_owner"] ;
-    $dataQ["tel"]=$Row[TABLE_MOD_FARM."_tel"] ;
-    $dataQ["pinlat"]=$Row[TABLE_MOD_FARM."_pinlat"] ;
-    $dataQ["pinlon"]=$Row[TABLE_MOD_FARM."_pinlon"] ;
-    $dataQ["qty"]=$Row[TABLE_MOD_FARM."_qtyLivestock"] ;
-    $dataQ["address"]=$Row[TABLE_MOD_FARM."_address"] ;
-    $dataQ["province"]=$Row[TABLE_MOD_FARM."_province"] ;
-    $dataQ["district"]=$Row[TABLE_MOD_FARM."_district"] ;
-    $dataQ["subdistrict"]=$Row[TABLE_MOD_FARM."_subdistrict"] ;
-    $dataQ["postcode"]=$Row[TABLE_MOD_FARM."_postcode"]  ;
-    if($Row[TABLE_MOD_FARM."_thumbnail"]<>"") {
-      $dataQ["thumbnail"]=SYSTEM_FULLPATH_UPLOAD."mod_farm/".$Row[TABLE_MOD_FARM."_thumbnail"];
-    } else {
-      $dataQ["thumbnail"]=CONFIG_DEFAULT_THUMB_USER;
+
+    if($Row[TABLE_MOD_FARM."_ownerID"] == $ownerID){
+      $dataQ = array();
+      $dataQ["id"] = $Row[TABLE_MOD_FARM."_id"];
+      $dataQ["name"]=$Row[TABLE_MOD_FARM."_name"] ;
+      $dataQ["ownerID"]=$Row[TABLE_MOD_FARM."_ownerID"] ;
+      $dataQ["owner"]=$Row[TABLE_MOD_FARM."_owner"] ;
+      $dataQ["tel"]=$Row[TABLE_MOD_FARM."_tel"] ;
+      $dataQ["pinlat"]=$Row[TABLE_MOD_FARM."_pinlat"] ;
+      $dataQ["pinlon"]=$Row[TABLE_MOD_FARM."_pinlon"] ;
+      $dataQ["qty"]=$Row[TABLE_MOD_FARM."_qtyLivestock"] ;
+      $dataQ["address"]=$Row[TABLE_MOD_FARM."_address"] ;
+      $dataQ["province"]=$Row[TABLE_MOD_FARM."_province"] ;
+      $dataQ["district"]=$Row[TABLE_MOD_FARM."_district"] ;
+      $dataQ["subdistrict"]=$Row[TABLE_MOD_FARM."_subdistrict"] ;
+      $dataQ["postcode"]=$Row[TABLE_MOD_FARM."_postcode"]  ;
+      if($Row[TABLE_MOD_FARM."_thumbnail"]<>"") {
+        $dataQ["thumbnail"]=SYSTEM_FULLPATH_UPLOAD."mod_farm/".$Row[TABLE_MOD_FARM."_thumbnail"];
+      } else {
+        $dataQ["thumbnail"]=CONFIG_DEFAULT_THUMB_USER;
+      }
+      $counter++;
     }
-    $counter++;
+    else{
+      $ErrorMessage = 'ไม่พบ Farm';
+    }
+    
     
   } catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
 }

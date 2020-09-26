@@ -23,14 +23,16 @@ $SystemSession_Staff_ID = trim(urldecode($SendRequest['SystemSession_Staff_ID'])
 #-------------------------------------------------------------------
 # PROCESS
 #-------------------------------------------------------------------
-// try {
-// 	$arSQLData=array();
-// 	$sql =" SELECT ".TABLE_MOD_LIVESTOCK."_id FROM ".TABLE_MOD_LIVESTOCK." WHERE ".TABLE_MOD_LIVESTOCK."_User LIKE ? LIMIT 0,1 "; $arSQLData[]=$inputName;
-// 	$Query=$System_Connection->prepare($sql);
-// 	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }
-// 	$Rows=$Query->fetchAll();
-// 	$myID=$Rows[0][TABLE_MOD_LIVESTOCK."_ID"];
-// } catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
+$arSQLDataA=array();
+$sql =" SELECT * FROM ".TABLE_MOD_FARM." WHERE ".TABLE_MOD_FARM."_ID=? "; $arSQLDataA[]=$inputNameFarm;
+$Query=$System_Connection->prepare($sql);
+if(sizeof($arSQLDataA)>0) { $Query->execute($arSQLDataA);  } else { $Query->execute(); }	
+$Rows=$Query->fetchAll();
+$Row=$Rows[0];
+
+if($Row[TABLE_MOD_FARM."_id"] != $inputNameFarm){
+	$ErrorMessage = "ไม่มี Farm นี้";
+}
 
 #-------------------------------------------------------------------
 # PROCESS

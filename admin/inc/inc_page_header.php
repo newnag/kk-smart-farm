@@ -14,7 +14,7 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 		</div>
 		<div class="header-elements d-none">
 			<?php
-			if(in_array("add",$Config_ShowButton)) {
+			if(in_array("add",$Config_ShowButton) && MODULE_TABLE != "Mod_Chat") {
 				?> &nbsp; <a href="#" class="btn btn-success btn-labeled btn-labeled-right bg-success-400" style=" width: 120px; " onclick=" doAdd(); ">เพิ่ม <b><i class="icon-plus22"></i></b></a> <?php
 			}
 			if(in_array("sorting",$Config_ShowButton)) {
@@ -23,7 +23,9 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 			if(in_array("back",$Config_ShowButton)) {
 				?> &nbsp; <a href="#" class="btn btn-grey btn-labeled btn-labeled-right bg-grey-400" style=" width: 120px; " onclick=" doBack(); ">ย้อนกลับ <b><i class="icon-undo2"></i></b></a> <?php
 			}
-			
+			if(MODULE_TABLE == "Mod_Chat"){
+				?> &nbsp; <a href="#" class="btn btn-success btn-labeled btn-labeled-right bg-success-400" style=" width: 120px; " onclick=" doAdd(); ">ตอบกลับ <b><i class="icon-plus22"></i></b></a> <?php
+			}
 			?>
 		</div>
 	</div>

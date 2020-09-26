@@ -14,13 +14,14 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 <input type="hidden" id="inputShowStatus"     name="inputShowStatus"     value="<?php echo $_REQUEST["inputShowStatus"]; ?>" />
 <input type="hidden" id="inputShowOrderBy"    name="inputShowOrderBy"    value="<?php echo $_REQUEST["inputShowOrderBy"]; ?>" />
 <input type="hidden" id="inputShowASCDESC"    name="inputShowASCDESC"    value="<?php echo $_REQUEST["inputShowASCDESC"]; ?>" />
+<input type="hidden" id="inputID"    name="inputID"    value="<?php echo $_COOKIE[userId]; ?>" />
 <!-- ---------------------------------------------------------- -->
 </form>
 <?php
 #-------------------------------------------------------------------
 # Save Data to API
 #-------------------------------------------------------------------
-$SendRequest['act']=MODULE_TABLE."_Insert";
+$SendRequest['act']=MODULE_TABLE."_AdminSend";
 foreach ($_POST as $key => $value) { $SendRequest[$key]=$value; }
 $SendRequest["inputPass"]=hash('sha256',SYSTEM_AUTHEN_KEY.$SendRequest["inputPass"].SYSTEM_AUTHEN_KEY);
 $key="Picture"; $SendRequest['input'.$key]=System_SaveUploadFile($key,strtolower(MODULE_TABLE));

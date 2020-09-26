@@ -9,7 +9,7 @@ $ErrorMessage="";
 # Input
 #-------------------------------------------------------------------
 	$inputUser=$SendRequest["inputEmail"];
-	$inputPassword=$SendRequest["inputPassword"];
+	$inputPassword=hash('sha256',SYSTEM_AUTHEN_KEY.$SendRequest["inputPassword"].SYSTEM_AUTHEN_KEY);
 
 #-------------------------------------------------------------------
 # PROCESS - Type to Signin
@@ -27,13 +27,14 @@ try {
 		$Result["Message"] 			= 	"ไม่พบ Username นี้";
 		//-------------------------------------------------
 	} else {
-		if($Row[TABLE_MOD_USERFARM."_Pass"]==$inputPassword || $Row[TABLE_MOD_USERFARM."_Pass"]=="") {
+		if($Row[TABLE_MOD_USERFARM."_password"]==$inputPassword) {
 			$myID=$Row[TABLE_MOD_USERFARM."_ID"];
 			$DataField=array();
 			$DataField["ID"]			=	$Row[TABLE_MOD_USERFARM."_id"];
 			//$DataField["User"]			=	$Row[TABLE_MOD_USERFARM."_user"];
 			$DataField["Email"]			=	$Row[TABLE_MOD_USERFARM."_email"];
 			// $DataField["Phone"]			=	$Row[TABLE_MOD_USERFARM."_Phone"];
+			
 			//-------------------------------------------------
 			$LastToken=System_GenToken($myID);
 			$DataField["Token"]			=	$LastToken;

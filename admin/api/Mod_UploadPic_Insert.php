@@ -15,6 +15,13 @@ $ErrorMessage="";
 $inputUser = trim(urldecode($SendRequest['inputUser']));
 $inputImage = trim(urldecode($SendRequest['inputImage']));
 
+if($inputImage == ""){
+	$ErrorMessage = "กรุณาเพิ่มรูป";
+}
+if($inputUser == ""){
+	$ErrorMessage = "โปรดระบุ ID User";
+}
+
 #-------------------------------------------------------------------
 # PROCESS
 #-------------------------------------------------------------------
@@ -33,7 +40,7 @@ $inputImage = trim(urldecode($SendRequest['inputImage']));
 		if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }
 		$myInsertID = $System_Connection->lastInsertId();
 		$DataField["InsertID"]=$myInsertID; 
-		$DataField["URL"]=SYSTEM_FULLPATH_UPLOAD."Mod_Upload/".$inputImage; 
+		$DataField["URL"]=$inputImage; 
 		
 
 		

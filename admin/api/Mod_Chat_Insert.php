@@ -8,11 +8,14 @@ $ErrorMessage="";
 #-------------------------------------------------------------------
 # INPUT
 #-------------------------------------------------------------------
-$inputRoomID = trim(urldecode($SendRequest['inputRoomID']));
 $inputUserID = trim(urldecode($SendRequest['inputuserID']));
 $inputAdminID = trim(urldecode($SendRequest['inputAdminID']));
 $inputText = trim(urldecode($SendRequest['inputText']));
 $SystemSession_Staff_ID = trim(urldecode($SendRequest['SystemSession_Staff_ID']));
+
+if($inputText == ""){
+    $ErrorMessage = "กรุณาใส่ข้อความ";
+}
 
 #-------------------------------------------------------------------
 # PROCESS
@@ -20,10 +23,10 @@ $SystemSession_Staff_ID = trim(urldecode($SendRequest['SystemSession_Staff_ID'])
 try {
     $DataField=array(); $arSQLData=array();
     $sqla =" INSERT INTO ".TABLE_MOD_CHAT."( ";  $sqlb =" ) VALUES(";  $sqlc =" ) ";
-    $sqla.=" ".TABLE_MOD_CHAT."_roomID ";          $sqlb.=" ? ";         $arSQLData[]=$inputRoomID;
-    $sqla.=",".TABLE_MOD_CHAT."_userID ";          $sqlb.=",? ";         $arSQLData[]=$inputUserID;
+    $sqla.=" ".TABLE_MOD_CHAT."_userID ";          $sqlb.=" ? ";         $arSQLData[]=$inputUserID;
     $sqla.=",".TABLE_MOD_CHAT."_adminID ";          $sqlb.=",? ";         $arSQLData[]=$inputAdminID;
     $sqla.=",".TABLE_MOD_CHAT."_text ";          $sqlb.=",? ";         $arSQLData[]=$inputText;
+    $sqla.=",".TABLE_MOD_CHAT."_status ";          $sqlb.=",? ";         $arSQLData[]="ผู้ส่ง:เกษตรกร";
     $sqla.=",".TABLE_MOD_CHAT."_date ";    $sqlb.=",? ";         $arSQLData[]=SYSTEM_DATETIMENOW;
     $sql=$sqla.$sqlb.$sqlc;
     $Query=$System_Connection->prepare($sql);

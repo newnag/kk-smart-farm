@@ -14,7 +14,7 @@ if($SendRequest["inputShowPageSize"]>0) { } else { $SendRequest["inputShowPageSi
 $recstart=($SendRequest["inputShowPage"]-1)*$SendRequest["inputShowPageSize"];
 $arDataList=array(); $DataRow=array(); $DataHeader=array();
 
-$inputRoom = $SendRequest["inputRoom"];
+$inputUserID = $SendRequest["inputUserID"];
 
 #-------------------------------------------------------------------
 # SQL Injection Protect 
@@ -30,19 +30,19 @@ if(!in_array($SendRequest["inputShowASCDESC"],$arCheck)) { $SendRequest["inputSh
 # PROCESS
 #-------------------------------------------------------------------
 try {
-  $sql =" SELECT * FROM ".TABLE_MOD_CHAT." JOIN ".TABLE_MOD_USERFARM." ON ".TABLE_MOD_USERFARM."_id = ".TABLE_MOD_CHAT."_userID JOIN ".TABLE_SYSTEM_STAFF." ON ".TABLE_SYSTEM_STAFF."_ID = ".TABLE_MOD_CHAT."_adminID WHERE ".TABLE_MOD_CHAT."_roomID = ".$inputRoom;
+  $sql =" SELECT * FROM ".TABLE_MOD_CHAT." JOIN ".TABLE_MOD_USERFARM." ON ".TABLE_MOD_USERFARM."_id = ".TABLE_MOD_CHAT."_userID JOIN ".TABLE_SYSTEM_STAFF." ON ".TABLE_SYSTEM_STAFF."_ID = ".TABLE_MOD_CHAT."_adminID WHERE ".TABLE_MOD_CHAT."_roomID = ".$inputUserID;
 	$Query=$System_Connection->prepare($sql);
 	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
 	while($Row=$Query->fetch(PDO::FETCH_ASSOC)) {
     $dataQ = array();
     $dataQ["id"] = $Row[TABLE_MOD_CHAT."_id"];
-    $dataQ["roomID"] = $Row[TABLE_MOD_CHAT."_roomID"];
     $dataQ["userID"]=$Row[TABLE_MOD_CHAT."_userID"] ;
     $dataQ["username"]=$Row[TABLE_MOD_USERFARM."_fullname"] ;
     $dataQ["adminID"] = $Row[TABLE_MOD_CHAT."_adminID"];
     $dataQ["adminName"] = $Row[TABLE_SYSTEM_STAFF."_User"];
     $dataQ["text"]=$Row[TABLE_MOD_CHAT."_text"] ;
     $dataQ["date"]=$Row[TABLE_MOD_CHAT."_date"] ;
+    $dataQ["status"]=$Row[TABLE_MOD_CHAT."_status"] ;
 
     $arrdataQ[] = $dataQ;
   }

@@ -29,7 +29,7 @@ $ownerArr = explode("/",$inputNameOwner);
 #-------------------------------------------------------------------
 try {
 	$arSQLData=array();
-	$sql =" SELECT ".TABLE_MOD_FARM."_id FROM ".TABLE_MOD_FARM." WHERE ".TABLE_MOD_FARM."_name LIKE ? LIMIT 0,1 "; $arSQLData[]=$inputUser;
+	$sql =" SELECT ".TABLE_MOD_FARM."_id FROM ".TABLE_MOD_FARM." WHERE ".TABLE_MOD_FARM."_name LIKE ? LIMIT 0,1 "; $arSQLData[]=$inputName;
 	$Query=$System_Connection->prepare($sql);
 	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }
 	$Rows=$Query->fetchAll();
@@ -40,7 +40,7 @@ try {
 # PROCESS
 #-------------------------------------------------------------------
 if($myID>0) { // error existed!
-	$ErrorMessage="ไม่สามารถสร้างใหม่ได้ มีผู้ใช้งาน ".$inputUser." อยู่ในระบบแล้ว";
+	$ErrorMessage="ไม่สามารถสร้างใหม่ได้ มีฟาร์ม ".$inputName." อยู่ในระบบแล้ว";
 } else { // insert
 	try {
 		$DataField=array(); $arSQLData=array();
