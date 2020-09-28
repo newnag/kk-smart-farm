@@ -161,3 +161,32 @@ var FormValidation = function() {
 document.addEventListener('DOMContentLoaded', function() {
     FormValidation.init();
 });
+
+function doAdminSend(e){
+    if(e.keyCode === 13){
+        $("#myForm").submit()
+    }
+}
+
+const focused = document.querySelector('.chatbox .line:last-child')
+console.log(focused)
+focused.scrollIntoView({ behavior: 'smooth' })
+
+// function upPicNow(event){
+//     let pic = event.target.files
+//     //console.log(pic[0].name)
+//     const reader = new FileReader();
+//     reader.onload = (event)=>{
+//         //document.querySelector('#inputPicture').value = `${picurl}`
+//         console.log(event.target)
+//     }
+//     reader.readAsText(pic[0]);
+
+//     //console.log(document.querySelector('#inputPicture').value)
+    
+//     //$("#myForm").submit()
+// }
+
+// function uppic(){
+//     $('#inputPicture').click()
+// }

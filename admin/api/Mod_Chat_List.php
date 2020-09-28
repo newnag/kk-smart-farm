@@ -29,24 +29,42 @@ if(!in_array($SendRequest["inputShowASCDESC"],$arCheck)) { $SendRequest["inputSh
 #-------------------------------------------------------------------
 # PROCESS
 #-------------------------------------------------------------------
-try {
-  $sql =" SELECT * FROM ".TABLE_MOD_CHAT." JOIN ".TABLE_MOD_USERFARM." ON ".TABLE_MOD_USERFARM."_id = ".TABLE_MOD_CHAT."_userID JOIN ".TABLE_SYSTEM_STAFF." ON ".TABLE_SYSTEM_STAFF."_ID = ".TABLE_MOD_CHAT."_adminID WHERE ".TABLE_MOD_CHAT."_roomID = ".$inputUserID;
-	$Query=$System_Connection->prepare($sql);
-	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
-	while($Row=$Query->fetch(PDO::FETCH_ASSOC)) {
-    $dataQ = array();
-    $dataQ["id"] = $Row[TABLE_MOD_CHAT."_id"];
-    $dataQ["userID"]=$Row[TABLE_MOD_CHAT."_userID"] ;
-    $dataQ["username"]=$Row[TABLE_MOD_USERFARM."_fullname"] ;
-    $dataQ["adminID"] = $Row[TABLE_MOD_CHAT."_adminID"];
-    $dataQ["adminName"] = $Row[TABLE_SYSTEM_STAFF."_User"];
-    $dataQ["text"]=$Row[TABLE_MOD_CHAT."_text"] ;
-    $dataQ["date"]=$Row[TABLE_MOD_CHAT."_date"] ;
-    $dataQ["status"]=$Row[TABLE_MOD_CHAT."_status"] ;
-
-    $arrdataQ[] = $dataQ;
-  }
-} catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
+if($inputUserID != ""){
+  try {
+    $sql =" SELECT * FROM ".TABLE_MOD_CHATHEAD." JOIN ".TABLE_MOD_USERFARM." ON ".TABLE_MOD_USERFARM."_id = ".TABLE_MOD_CHATHEAD."_userID WHERE ".TABLE_MOD_CHATHEAD."_userID = ".$inputUserID;
+    $Query=$System_Connection->prepare($sql);
+    if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
+    while($Row=$Query->fetch(PDO::FETCH_ASSOC)) {
+      $dataQ = array();
+      $dataQ["id"] = $Row[TABLE_MOD_CHATHEAD."_id"];
+      $dataQ["userID"]=$Row[TABLE_MOD_CHATHEAD."_userID"] ;
+      $dataQ["username"]=$Row[TABLE_MOD_USERFARM."_fullname"] ;
+      $dataQ["subject"] = $Row[TABLE_MOD_CHATHEAD."_subject"];
+      $dataQ["date"]=$Row[TABLE_MOD_CHATHEAD."_CreateDate"] ;
+      $dataQ["unread"]=$Row[TABLE_MOD_CHATHEAD."_unread"] ;
+  
+      $arrdataQ[] = $dataQ;
+    }
+  } catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
+}
+else{
+  try {
+    $sql =" SELECT * FROM ".TABLE_MOD_CHATHEAD." JOIN ".TABLE_MOD_USERFARM." ON ".TABLE_MOD_USERFARM."_id = ".TABLE_MOD_CHATHEAD."_userID WHERE ".TABLE_MOD_CHATHEAD."_Status<>'Deleted' ORDER BY ".TABLE_MOD_CHATHEAD."_userID ASC" ;
+    $Query=$System_Connection->prepare($sql);
+    if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
+    while($Row=$Query->fetch(PDO::FETCH_ASSOC)) {
+      $dataQ = array();
+      $dataQ["id"] = $Row[TABLE_MOD_CHATHEAD."_id"];
+      $dataQ["userID"]=$Row[TABLE_MOD_CHATHEAD."_userID"] ;
+      $dataQ["username"]=$Row[TABLE_MOD_USERFARM."_fullname"] ;
+      $dataQ["subject"] = $Row[TABLE_MOD_CHATHEAD."_subject"];
+      $dataQ["date"]=$Row[TABLE_MOD_CHATHEAD."_CreateDate"] ;
+      $dataQ["unread"]=$Row[TABLE_MOD_CHATHEAD."_unread"] ;
+  
+      $arrdataQ[] = $dataQ;
+    }
+  } catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
+}
 
 
 $DataHeader["Total"] = count($arrdataQ) ;

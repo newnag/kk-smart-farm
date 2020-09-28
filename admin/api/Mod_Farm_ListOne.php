@@ -39,7 +39,7 @@ if($ownerID == ''){
       $dataQ["subdistrict"]=$Row[TABLE_MOD_FARM."_subdistrict"] ;
       $dataQ["postcode"]=$Row[TABLE_MOD_FARM."_postcode"]  ;
       if($Row[TABLE_MOD_FARM."_thumbnail"]<>"") {
-        $dataQ["thumbnail"]=SYSTEM_FULLPATH_UPLOAD."mod_farm/".$Row[TABLE_MOD_FARM."_thumbnail"];
+        $dataQ["thumbnail"]=SYSTEM_FULLPATH_UPLOAD."Mod_Upload/".$Row[TABLE_MOD_FARM."_thumbnail"];
       } else {
         $dataQ["thumbnail"]=CONFIG_DEFAULT_THUMB_USER;
       }
@@ -75,7 +75,7 @@ else{
     $dataQ["subdistrict"]=$Row[TABLE_MOD_FARM."_subdistrict"] ;
     $dataQ["postcode"]=$Row[TABLE_MOD_FARM."_postcode"]  ;
     if($Row[TABLE_MOD_FARM."_thumbnail"]<>"") {
-      $dataQ["thumbnail"]=SYSTEM_FULLPATH_UPLOAD."mod_farm/".$Row[TABLE_MOD_FARM."_thumbnail"];
+      $dataQ["thumbnail"]=SYSTEM_FULLPATH_UPLOAD."Mod_Upload/".$Row[TABLE_MOD_FARM."_thumbnail"];
     } else {
       $dataQ["thumbnail"]=CONFIG_DEFAULT_THUMB_USER;
     }

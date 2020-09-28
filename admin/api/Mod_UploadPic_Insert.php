@@ -15,9 +15,9 @@ $ErrorMessage="";
 $inputUser = trim(urldecode($SendRequest['inputUser']));
 $inputImage = trim(urldecode($SendRequest['inputImage']));
 
-if($inputImage == ""){
-	$ErrorMessage = "กรุณาเพิ่มรูป";
-}
+// if($inputImage == ""){
+// 	$ErrorMessage = "กรุณาเพิ่มรูป";
+// }
 if($inputUser == ""){
 	$ErrorMessage = "โปรดระบุ ID User";
 }

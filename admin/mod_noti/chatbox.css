@@ -1,0 +1,41 @@
+.chatbox{
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  padding: 3% 0;
+  height: 650px;
+  overflow-y: auto;
+}
+
+.chatbox .line{
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+.chatbox .line.left-side{
+  justify-content: flex-start;
+}
+.chatbox .line.right-side{
+  justify-content: flex-end;
+}
+
+.chatbox .line .boxtext{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: lightgray;
+  border-radius: 20px;
+  margin-left: 10px;
+}
+.chatbox .line.right-side .boxtext{
+  background: #64ee64;
+}
+
+.chatbox .line .boxtext p{
+  margin: 0;
+}
+
+.chatbox .line .time{
+  font-size: 10px;
+  margin-top: 20px;
+  color: #8b8b8b;
+}

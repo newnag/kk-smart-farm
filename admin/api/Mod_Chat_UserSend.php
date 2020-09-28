@@ -8,7 +8,7 @@ $ErrorMessage="";
 #-------------------------------------------------------------------
 # INPUT
 #-------------------------------------------------------------------
-$inputID = trim(urldecode($SendRequest['inputID']));
+$inputUserID = trim(urldecode($SendRequest['inputID']));
 $inputText = trim(urldecode($SendRequest['inputText']));
 if($SendRequest['inputText'] == ""){
     $inputText = '<img src="'.SYSTEM_FULLPATH_UPLOAD."mod_chat/".$SendRequest['inputPicture'].'">';
@@ -21,18 +21,36 @@ $myID = trim(urldecode($SendRequest['myID']));
 try {
     $DataField=array(); $arSQLData=array();
     $sqla =" INSERT INTO ".TABLE_MOD_CHAT."( ";  $sqlb =" ) VALUES(";  $sqlc =" ) ";
-    $sqla.=" ".TABLE_MOD_CHAT."_userID ";          $sqlb.=" ? ";         $arSQLData[]=$myID;
-    $sqla.=",".TABLE_MOD_CHAT."_subjectID ";          $sqlb.=",? ";         $arSQLData[]=$inputID;
+    $sqla.=" ".TABLE_MOD_CHAT."_userID ";          $sqlb.=" ? ";         $arSQLData[]=$inputUserID;
+    $sqla.=",".TABLE_MOD_CHAT."_subjectID ";          $sqlb.=",? ";         $arSQLData[]=$myID;
     $sqla.=",".TABLE_MOD_CHAT."_text ";          $sqlb.=",? ";         $arSQLData[]=$inputText;
-    $sqla.=",".TABLE_MOD_CHAT."_status ";          $sqlb.=",? ";         $arSQLData[]="admin";
+    $sqla.=",".TABLE_MOD_CHAT."_status ";          $sqlb.=",? ";         $arSQLData[]="user";
     $sqla.=",".TABLE_MOD_CHAT."_date ";    $sqlb.=",? ";         $arSQLData[]=date("h:i");
     $sql=$sqla.$sqlb.$sqlc;
     $Query=$System_Connection->prepare($sql);
     if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }
     $myInsertID = $System_Connection->lastInsertId();
     $DataField["InsertID"]=$myInsertID; 
-    $DataField["userID"]=$myID; 
-    $DataField["subject"]=$inputID; 
+} catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
+
+
+$arSQLDataA=array();
+$sql =" SELECT * FROM ".TABLE_MOD_CHATHEAD." WHERE ".TABLE_MOD_CHATHEAD."_id=? "; $arSQLDataA[]=$myID;
+$Query=$System_Connection->prepare($sql);
+if(sizeof($arSQLDataA)>0) { $Query->execute($arSQLDataA);  } else { $Query->execute(); }	
+$Rows=$Query->fetchAll();
+$Row=$Rows[0];
+
+$unRead = $Row[TABLE_MOD_CHATHEAD."_unread"];
+
+
+try {
+  $arSQLDataB=array();
+  $sql =" UPDATE ".TABLE_MOD_CHATHEAD." SET "; 
+  $sql.=" ".TABLE_MOD_CHATHEAD."_unread=? ";     $arSQLDataB[]= $unRead+1 ;
+  $sql.=" WHERE ".TABLE_MOD_CHATHEAD."_id=? ";        $arSQLDataB[]=$myID;
+  $Query=$System_Connection->prepare($sql);
+  if(sizeof($arSQLDataB)>0) { $Query->execute($arSQLDataB);  } else { $Query->execute(); }	
 } catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
 
 

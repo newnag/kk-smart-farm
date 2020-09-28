@@ -6,27 +6,32 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
 
 ?>
 <form id="myForm" name="myForm" method="get" action="?">
-<input type="hidden" id="doaction" name="doaction" value="list" />
+<input type="hidden" id="doaction" name="doaction" value="edit" />
 <!-- Remember Current List State ---------------------------- -->
-<input type="hidden" id="inputShowFilter"     name="inputShowFilter"     value="<?php echo $_REQUEST["inputShowFilter"]; ?>" />
+<!-- <input type="hidden" id="inputShowFilter"     name="inputShowFilter"     value="<?php echo $_REQUEST["inputShowFilter"]; ?>" />
 <input type="hidden" id="inputShowStaffLevel" name="inputShowStaffLevel" value="<?php echo $_REQUEST["inputShowStaffLevel"]; ?>" />
 <input type="hidden" id="inputShowStaffGroup" name="inputShowStaffGroup" value="<?php echo $_REQUEST["inputShowStaffGroup"]; ?>" />
 <input type="hidden" id="inputShowStatus"     name="inputShowStatus"     value="<?php echo $_REQUEST["inputShowStatus"]; ?>" />
 <input type="hidden" id="inputShowOrderBy"    name="inputShowOrderBy"    value="<?php echo $_REQUEST["inputShowOrderBy"]; ?>" />
-<input type="hidden" id="inputShowASCDESC"    name="inputShowASCDESC"    value="<?php echo $_REQUEST["inputShowASCDESC"]; ?>" />
+<input type="hidden" id="inputShowASCDESC"    name="inputShowASCDESC"    value="<?php echo $_REQUEST["inputShowASCDESC"]; ?>" /> -->
+<input type="hidden" id="inputID"    name="inputID"    value="<?php echo $_REQUEST["inputID"]; ?>" />
+<input type="hidden" id="myID"  name="myID"  value="<?php echo $_REQUEST["myID"]; ?>" />
 <!-- ---------------------------------------------------------- -->
 </form>
 <?php
 #-------------------------------------------------------------------
 # Save Data to API
 #-------------------------------------------------------------------
-$SendRequest['act']=MODULE_TABLE."_Update";
+$SendRequest['act']=MODULE_TABLE."_AdminSend";
 foreach ($_POST as $key => $value) { $SendRequest[$key]=$value; }
 if($SendRequest["inputPass"]<>"") {
     $SendRequest["inputPass"]=hash('sha256',SYSTEM_AUTHEN_KEY.$SendRequest["inputPass"].SYSTEM_AUTHEN_KEY);
 }
 $key="Picture"; $SendRequest['input'.$key]=System_SaveUploadFile($key,strtolower(MODULE_TABLE));
+
+
 $Result=System_GetAPI(SYSTEM_DB_MODE_BACKEND,$SendRequest);
+
 
 #-------------------------------------------------------------------
 # Show Result

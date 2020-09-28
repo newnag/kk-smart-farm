@@ -57,9 +57,10 @@ function doLoadList() {
 	});
 }
 //----------------------------------------
-function doEdit(myid) {
+function doEdit(myid,subject) {
 //----------------------------------------
 	$('#inputID').val(myid);
+	$('#myID').val(subject);
 	$('#doaction').val('edit');
 	$('#mySearchForm').submit();
 }

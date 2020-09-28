@@ -16,12 +16,10 @@ if($_REQUEST["inputShowOrderBy"]=="") { $_REQUEST["inputShowOrderBy"]="ID"; }
 if($_REQUEST["inputShowASCDESC"]=="") { $_REQUEST["inputShowASCDESC"]="DESC"; }
 if($_REQUEST["inputShowFilter"]=="") { $_REQUEST["inputShowFilter"]=0; }
 
-if($_REQUEST["inputID"]=="") { $_REQUEST["inputID"]=$_COOKIE[userId]; }
-
 #-------------------------------------------------------------------
 # Create SendRequest Data and Create PageKey
 #-------------------------------------------------------------------
-$SendRequest=array("act"=>MODULE_TABLE."_ListOne");
+$SendRequest=array("act"=>MODULE_TABLE."_List");
 foreach ($_REQUEST as $key => $value) { $SendRequest[$key]=trim(urldecode($value)); }
 $Config_PageKey=http_build_query($SendRequest);
 
@@ -32,6 +30,8 @@ $Result=System_GetAPI(SYSTEM_DB_MODE_BACKEND,$SendRequest);
 $_REQUEST["inputShowMaxPage"]=$Result["Header"]["MaxPage"];    
 
 include("list-ajax.php");
+
+
 
 #-------------------------------------------------------------------
 # Show Page Header Panel
@@ -52,26 +52,6 @@ include_once("../inc/inc_page_header.php");
 	#-------------------------------------------------------------------
 	?>
 
-  <div class="row">
-    <div class="col-4 mx-auto">
-      <div class="card p-3">
-        <div class="form-group">
-          <label class="mb-0 text-grey-800 font-weight-bold">ชื่อเกษตรกร : </label>
-          <select class="form-control select select2-hidden-accessible" id="inputName" name="inputName" data-fouc="" tabindex="-1" aria-hidden="true">
-            <option value="">เลือกชื่อเกษตรกร</option>
-            <?php
-              for($i=0;$i<sizeof($arDataA);$i++){
-                $listname = $arDataA[$i];
-                echo '<option value="'.$listname["id"].'">'.$listname["fullname"].'</option>';
-              }
-            ?>
-          </select>
-        </div>
-      </div>
-    </div>
-  </div>
-	
-
 	<?php
 	if($Result["Header"]["Total"]>0) {
 		?>
@@ -87,9 +67,12 @@ include_once("../inc/inc_page_header.php");
 							<table class="table">
 								<thead>
 									<tr>
-										<th>ชื่อเกษตรกร</th>
-										<th>ข้อความ</th>
-										<th>สถานะ</th>
+										<th>#</th>
+										<th>เรื่อง</th>
+										<th>ชื่อเจ้าของฟาร์ม</th>
+										<th>วันที่/เวลา</th>
+										<th>ยังไม่ได้อ่าน</th>
+										<th>จัดการ</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -120,10 +103,3 @@ include_once("../inc/inc_page_header.php");
 	?>
 </div>
 <script src="list.js"></script>
-<script>
-	$('#inputName').change(function(){
-		$('#inputID').val($(this).val());
-		document.cookie = `userId = ${$(this).val()}; path=http://kk.getdev.top/smartfarm/admin/mod_noti;`;
-		$('#mySearchForm').submit();
-	})
-</script>

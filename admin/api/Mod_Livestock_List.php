@@ -73,7 +73,7 @@ if($SendRequest["inputFamrSelect"]==""){
       $dataQ["weight"]=$Row[TABLE_MOD_LIVESTOCK."_weight"] ;
       $dataQ["healthStatus"]=$Row[TABLE_MOD_LIVESTOCK."_healthStatus"] ;
       if($Row[TABLE_MOD_LIVESTOCK."_thumbnail"]<>"") {
-        $dataQ["thumbnail"]=SYSTEM_FULLPATH_UPLOAD."mod_livestock/".$Row[TABLE_MOD_LIVESTOCK."_thumbnail"];
+        $dataQ["thumbnail"]=SYSTEM_FULLPATH_UPLOAD."Mod_Upload/".$Row[TABLE_MOD_LIVESTOCK."_thumbnail"];
       } else {
         $dataQ["thumbnail"]=CONFIG_DEFAULT_THUMB_USER;
       }

@@ -15,8 +15,6 @@ $recstart=($SendRequest["inputShowPage"]-1)*$SendRequest["inputShowPageSize"];
 $arDataList=array(); $DataRow=array(); $DataHeader=array();
 
 $userID = $SendRequest["inputID"];
-
-
 #-------------------------------------------------------------------
 # SQL Injection Protect 
 #-------------------------------------------------------------------
@@ -31,6 +29,7 @@ if(!in_array($SendRequest["inputShowASCDESC"],$arCheck)) { $SendRequest["inputSh
 # PROCESS
 #-------------------------------------------------------------------
 
+if($userID != ""){
   try {
     $arSQLData=array();
     $sql =" SELECT * FROM ".TABLE_MOD_NOTI." JOIN ".TABLE_MOD_USERFARM." ON ".TABLE_MOD_USERFARM."_id = ".TABLE_MOD_NOTI."_userID   WHERE ".TABLE_MOD_NOTI."_Status<>'Deleted' AND ".TABLE_MOD_NOTI."_userID = ".$userID;
@@ -49,9 +48,27 @@ if(!in_array($SendRequest["inputShowASCDESC"],$arCheck)) { $SendRequest["inputSh
       $arrdataQ[] = $dataQ;
     }
   } catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
-
-
-
+}
+else{
+  try {
+    $arSQLData=array();
+    $sql =" SELECT * FROM ".TABLE_MOD_NOTI." JOIN ".TABLE_MOD_USERFARM." ON ".TABLE_MOD_USERFARM."_id = ".TABLE_MOD_NOTI."_userID ";
+    $Query=$System_Connection->prepare($sql);
+    if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
+    while($Row=$Query->fetch(PDO::FETCH_ASSOC)) {
+      $dataQ = array();
+      $dataQ["id"] = $Row[TABLE_MOD_NOTI."_id"];
+      $dataQ["userID"]=$Row[TABLE_MOD_NOTI."_userID"] ;
+      $dataQ["fullname"]=$Row[TABLE_MOD_USERFARM."_fullname"] ;
+      $dataQ["text"]=$Row[TABLE_MOD_NOTI."_text"] ;
+      $dataQ["date"]=$Row[TABLE_MOD_NOTI."_CreateDate"] ;
+      $dataQ["adminID"]=$Row[TABLE_MOD_NOTI."_CreateByID"] ;
+      $dataQ["status"]=$Row[TABLE_MOD_NOTI."_Status"] ;
+  
+      $arrdataQ[] = $dataQ;
+    }
+  } catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
+}
 
 $DataHeader["Total"] = count($arrdataQ) ;
 

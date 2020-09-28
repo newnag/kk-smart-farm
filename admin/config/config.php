@@ -51,6 +51,7 @@ define('TABLE_MOD_DISEASE',SYSTEM_DB_PREFIX.'_mod_disease');
 define('TABLE_MOD_GENE',SYSTEM_DB_PREFIX.'_mod_gene');
 define('TABLE_MOD_NOTI',SYSTEM_DB_PREFIX.'_mod_noti');
 define('TABLE_MOD_CHAT',SYSTEM_DB_PREFIX.'_mod_chat');
+define('TABLE_MOD_CHATHEAD',SYSTEM_DB_PREFIX.'_mod_chatHead');
 define('TABLE_MOD_TREATMENT',SYSTEM_DB_PREFIX.'_mod_treatment');
 define('TABLE_MOD_RUTCHOICE',SYSTEM_DB_PREFIX.'_mod_rutChoice');
 define('TABLE_MOD_REPRODUCTHISTORY',SYSTEM_DB_PREFIX.'_mod_reproductiveHistory');
@@ -123,8 +124,8 @@ $System_MenuMain_Name[5000]="จัดการข้อมูลเกี่ย
         $System_MenuSub_Name[5002] ="จัดการข้อมูลปศุสัตว์"; $System_MenuSub_Link[5002]="../mod_livestock/";
         $System_MenuSub_Name[5003] ="จัดการข้อมูลฟาร์ม"; $System_MenuSub_Link[5003]="../mod_farm/";
         $System_MenuSub_Name[5004] ="เพิ่มสายพันธุ์"; $System_MenuSub_Link[5004]="../mod_gene/";
-$System_MenuMain_Name[6000]="ช่องแชท"; $System_MenuMain_Icons[6000]="icon-bubble";
-        $System_MenuSub_Name[6001] ="ช่องแชท"; $System_MenuSub_Link[6001]="../mod_noti/";
+$System_MenuMain_Name[6000]="ขอคำปรึกษา"; $System_MenuMain_Icons[6000]="icon-bubble";
+        $System_MenuSub_Name[6001] ="ขอคำปรึกษา"; $System_MenuSub_Link[6001]="../mod_noti/";
 $System_MenuMain_Name[7000]="จัดการเว็บไซต์"; $System_MenuMain_Icons[7000]="icon-equalizer2";
         $System_MenuSub_Name[7001] ="เกี่ยวกับเรา"; $System_MenuSub_Link[7001]="../mod_page/";
         $System_MenuSub_Name[7002] ="ติดต่อสัตวแพทย์"; $System_MenuSub_Link[7002]="../mod_contact/";

@@ -47,7 +47,7 @@ try {
     $dataQ["subdistrict"]=$Row[TABLE_MOD_USERFARM."_subdistrict"] ;
     $dataQ["postcode"]=$Row[TABLE_MOD_USERFARM."_postcode"]  ;
     if($Row[TABLE_MOD_USERFARM."_thumbnail"]<>"") {
-      $dataQ["thumbnail"]=SYSTEM_FULLPATH_UPLOAD."mod_userfarm/".$Row[TABLE_MOD_USERFARM."_thumbnail"];
+      $dataQ["thumbnail"]=SYSTEM_FULLPATH_UPLOAD."Mod_Upload/".$Row[TABLE_MOD_USERFARM."_thumbnail"];
     } else {
       $dataQ["thumbnail"]=CONFIG_DEFAULT_THUMB_USER;
     }

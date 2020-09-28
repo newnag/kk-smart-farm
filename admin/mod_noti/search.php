@@ -10,12 +10,12 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
         <form id="mySearchForm" name="mySearchForm" method="get" action="?">
 			<input type="hidden" id="doaction" name="doaction" value="list" />
 			<input type="hidden" id="inputID" name="inputID" value="0" />
+			<input type="hidden" id="myID" name="myID" value="0" />
 			<!-- ---------------------------------------------------------- -->
 			<input type="hidden" id="inputShowPage" name="inputShowPage" value="<?php echo $_REQUEST["inputShowPage"]; ?>" />
 			<input type="hidden" id="inputShowPageSize" name="inputShowPageSize" value="<?php echo $_REQUEST["inputShowPageSize"]; ?>" />
 			<input type="hidden" id="inputShowMaxPage" name="inputShowMaxPage" value="<?php echo $_REQUEST["inputShowMaxPage"]; ?>" />
 			<input type="hidden" id="inputShowFilter" name="inputShowFilter" value="<?php echo $_REQUEST["inputShowFilter"]; ?>" />
-			<input type="hidden" id="inputID" name="inputID" value="<?php $_COOKIE[userId]; ?>" />
 			<!-- ---------------------------------------------------------- -->
             <div class="input-group mb-2">
                 <div class="form-group-feedback form-group-feedback-left">

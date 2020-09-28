@@ -30,7 +30,7 @@ if(!in_array($SendRequest["inputShowASCDESC"],$arCheck)) { $SendRequest["inputSh
 # PROCESS
 #-------------------------------------------------------------------
 try {
-  $sql =" SELECT * FROM ".TABLE_MOD_CHAT." JOIN ".TABLE_MOD_USERFARM." ON ".TABLE_MOD_USERFARM."_id = ".TABLE_MOD_CHAT."_userID JOIN ".TABLE_SYSTEM_STAFF." ON ".TABLE_SYSTEM_STAFF."_ID = ".TABLE_MOD_CHAT."_adminID WHERE ".TABLE_MOD_CHAT."_userID = ".$userID." ORDER BY ".TABLE_MOD_CHAT."_id DESC";
+  $sql =" SELECT * FROM ".TABLE_MOD_CHAT." JOIN ".TABLE_MOD_USERFARM." ON ".TABLE_MOD_USERFARM."_id = ".TABLE_MOD_CHAT."_userID  WHERE ".TABLE_MOD_CHAT."_subjectID =".$userID." ORDER BY ".TABLE_MOD_CHAT."_id ASC";
 	$Query=$System_Connection->prepare($sql);
 	if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
 	while($Row=$Query->fetch(PDO::FETCH_ASSOC)) {
@@ -38,8 +38,12 @@ try {
     $dataQ["id"] = $Row[TABLE_MOD_CHAT."_id"];
     $dataQ["userID"]=$Row[TABLE_MOD_CHAT."_userID"] ;
     $dataQ["username"]=$Row[TABLE_MOD_USERFARM."_fullname"] ;
-    $dataQ["adminID"] = $Row[TABLE_MOD_CHAT."_adminID"];
-    $dataQ["adminName"] = $Row[TABLE_SYSTEM_STAFF."_User"];
+    if($Row[TABLE_MOD_USERFARM."_thumbnail"]<>""){
+      $dataQ["picture"]=SYSTEM_FULLPATH_UPLOAD."mod_userfarm/".$Row[TABLE_MOD_USERFARM."_thumbnail"] ;
+    }
+    else{
+      $dataQ["picture"]=CONFIG_DEFAULT_THUMB_USER;
+    }
     $dataQ["text"]=$Row[TABLE_MOD_CHAT."_text"] ;
     $dataQ["date"]=$Row[TABLE_MOD_CHAT."_date"] ;
     $dataQ["status"]=$Row[TABLE_MOD_CHAT."_status"] ;
@@ -50,6 +54,19 @@ try {
 
 
 $DataHeader["Total"] = count($arrdataQ) ;
+
+#-------------------------------------------------------------------
+# PROCESS
+#-------------------------------------------------------------------
+
+try {
+  $arSQLDataA=array();
+  $sql =" UPDATE ".TABLE_MOD_CHATHEAD." SET "; 
+  $sql.=" ".TABLE_MOD_CHATHEAD."_unread=? ";     $arSQLDataA[]= 0 ;
+  $sql.=" WHERE ".TABLE_MOD_CHATHEAD."_id=? ";        $arSQLDataA[]=$userID;
+  $Query=$System_Connection->prepare($sql);
+  if(sizeof($arSQLDataA)>0) { $Query->execute($arSQLDataA);  } else { $Query->execute(); }	
+} catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
 
 #-------------------------------------------------------------------
 # RESULT
