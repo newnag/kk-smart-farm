@@ -152,39 +152,55 @@ document.addEventListener('DOMContentLoaded', function() {
     FormValidation.init();
 });
 
-var CKEditor = function() {
-    var _componentCKEditor = function() {
-        if (typeof CKEDITOR == 'undefined') {
-            console.warn('Warning - ckeditor.js is not loaded.');
-            return;
-        }
-        CKEDITOR.replace('inputHTML', {
-            height: 400
-        });
-    };
-    // Select2
-    var _componentSelect2 = function() {
-        if (!$().select2) {
-            console.warn('Warning - select2.min.js is not loaded.');
-            return;
-        };
-        $('.form-control-select2').select2({
-            minimumResultsForSearch: Infinity
-        });
-    };
-    return {
-        init: function() {
-            _componentCKEditor();
-            _componentSelect2();
-        }
-    }
-}();
+// var CKEditor = function() {
+//     var _componentCKEditor = function() {
+//         if (typeof CKEDITOR == 'undefined') {
+//             console.warn('Warning - ckeditor.js is not loaded.');
+//             return;
+//         }
+//         let arrayCK = Array('inputHTML1','inputHTML2','inputHTML3','inputHTML4')
+//         CKEDITOR.replace( arrayCK , {
+//             extraPlugins: 'filebrowser',
+//             filebrowserUploadMethod: 'form',
+//             filebrowserUploadUrl: 'uploadImg.php'
+//         });
+//     };
+//     // Select2
+//     var _componentSelect2 = function() {
+//         if (!$().select2) {
+//             console.warn('Warning - select2.min.js is not loaded.');
+//             return;
+//         };
+//         $('.form-control-select2').select2({
+//             minimumResultsForSearch: Infinity
+//         });
+//     };
+//     return {
+//         init: function() {
+//             _componentCKEditor();
+//             _componentSelect2();
+//         }
+//     }
+// }();
 
-document.addEventListener('DOMContentLoaded', function() {
-    CKEditor.init();
-});
+// let arrayCK = Array('inputHTML1','inputHTML2','inputHTML3','inputHTML4')
+// CKEDITOR.replace( arrayCK , {
+//     extraPlugins: 'filebrowser',
+//     filebrowserUploadMethod: 'form',
+//     filebrowserUploadUrl: 'uploadImg.php'
+// });
+
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     CKEditor.init();
+// });
 
 const element = document.querySelectorAll('.inputHTML')
 element.forEach(ele=>{
-    CKEDITOR.replace(ele)
+    CKEDITOR.replace( ele , {
+        extraPlugins: 'filebrowser',
+        filebrowserUploadMethod: 'form',
+        filebrowserUploadUrl: 'uploadImg.php'
+    });
 })

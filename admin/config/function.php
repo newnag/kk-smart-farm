@@ -382,4 +382,5 @@ function System_Clear_Cache($arClearCache) {
 	}
 }
 
+
 ?>

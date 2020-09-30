@@ -23,6 +23,7 @@ $SendRequest['act']=MODULE_TABLE."_Update";
 foreach ($_POST as $key => $value) { $SendRequest[$key]=$value; }
 $key="Picture"; $SendRequest['input'.$key]=System_UploadPicture($key,strtolower(MODULE_TABLE));
 System_CreateThumb($SendRequest['input'.$key],SYSTEM_RELATIVEPATH_UPLOAD.'/'.strtolower(MODULE_TABLE).'/',MODULE_FIX_WIDTH,MODULE_FIX_HEIGHT);
+
 $Result=System_GetAPI(SYSTEM_DB_MODE_BACKEND,$SendRequest);
 
 #-------------------------------------------------------------------

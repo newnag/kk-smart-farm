@@ -4,6 +4,8 @@ include_once("../config/config.php");
 include_once("../config/function.php");
 include_once("../config/connect.php");
 
+include_once("../inc/inc_head.php");
+
 #-------------------------------------------------------------------
 # Direct File Access Protection
 #-------------------------------------------------------------------
@@ -73,12 +75,45 @@ try {
 if($ErrorMessage=="") {
 	$Result["Status"] = "Success";
   $Result["Message"] = "แก้ไขข้อมูลสำเร็จ";
-  echo '<p style="text-align:center">รหัสผ่านชั่วคราวของคุณคือ '.$randomPass.'</p>';
-  echo '<br>';
-  echo '<div style="text-align:center">';
-  echo '<button onclick="redirect()">ย้อนกลับหน้าแรก</button>';
-  echo '</div>';
 
+  ?>
+
+   <div class="page-content">
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+
+			<!-- Content area -->
+			<div class="content d-flex justify-content-center align-items-center">
+
+				<!-- Password recovery form -->
+				<form class="login-form" action="<?php echo SYSTEM_FULLPATH_API; ?>Forget_Pass_Admin.php">
+					<div class="card mb-0">
+						<div class="card-body">
+							<div class="text-center mb-3">
+								<i class="icon-spinner11 icon-2x text-warning border-warning border-3 rounded-round p-3 mb-3 mt-1"></i>
+								<h5 class="mb-0">รหัสผ่านชั่วคราวของคุณคือ</h5>
+								<h2 class="d-block"><?php echo $randomPass; ?></h2>
+							</div>
+
+              <div class="text-center">
+							  <button type="button" class="btn btn-primary legitRippl" onclick="redirect()">ย้อนกลับหน้าแรก</button>
+              <div>
+							
+						</div>
+					</div>
+				</form>
+				<!-- /password recovery form -->
+
+			</div>
+			<!-- /content area -->
+
+		</div>
+		<!-- /main content -->
+
+	</div>
+
+<?php
 } else {
 	$Result["Status"] = "Error";
   $Result["Message"] = $ErrorMessage;

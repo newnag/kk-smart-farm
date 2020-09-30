@@ -109,6 +109,16 @@ $Row=$Result["Result"];
 						</div>
 					</div>
 					<!-- ------------------------------------------------------- -->
+					<div class="form-group">
+						<label>ประเภทบทความ</label>
+						<select class="form-control select select2-hidden-accessible" id="inputType" name="inputType" data-fouc="" tabindex="-1" aria-hidden="true">
+							<option value="<?php echo $Row["Type"]; ?>"><?php echo $Row["Type"]; ?></option>
+							<option value="News">ข่าวประชาสัมพันธ์</option>
+							<option value="BodyCondition">เกณฑ์วัดความสมบูรณ์</option>
+							<option value="Nutrition">โปรแกรมโภชนาการ</option>
+						</select>
+					</div>
+					<!-- ------------------------------------------------------- -->
 				</div>
 			</div>
 			<!-- ---------------------------------------------------------- -->

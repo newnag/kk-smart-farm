@@ -19,6 +19,7 @@ if(!in_array($doaction,$arCheck)) { $doaction="list"; }
 	<html lang="en">
 	<head>
 	<?php include_once("../inc/inc_head.php"); ?>
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 	</head>
 	<?php
 
@@ -63,5 +64,6 @@ if(!in_array($doaction,$arCheck)) { $doaction="list"; }
 include_once("../config/disconnect.php");
 include_once("../inc/inc_foot.php");
 ?>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </body>
 </html>

@@ -25,12 +25,7 @@ if(SYSTEM_PREVENT_DIRECT_ACCESS) exit("Direct access not permitted!");
             </div>
             <div class="collapse" id="user-nav">
                 <ul class="nav nav-sidebar theme-bgcolor-slate-300 text-white">
-                    <?php if(0) { ?> 
-                    <li class="nav-item"> <a href="#" class="nav-link"> <i class="icon-user-plus"></i> <span> ข้อมูลส่วนตัว </span> </a> </li>
-                    <li class="nav-item"> <a href="#" class="nav-link"> <i class="icon-coins"></i> <span>My balance</span> </a> </li>
-                    <li class="nav-item"> <a href="#" class="nav-link"> <i class="icon-comment-discussion"></i> <span>Messages</span> <span class="badge bg-teal-400 badge-pill align-self-center ml-auto">58</span> </a> </li>
-                    <li class="nav-item"> <a href="#" class="nav-link"> <i class="icon-cog5"></i> <span> เปลี่ยนรหัสผ่าน </span> </a> </li>
-                    <?php } ?>
+                    <li class="nav-item"> <a href="http://kk.getdev.top/smartfarm/admin/system_staff/?doaction=edit&inputID=<?php echo $_COOKIE['MS-SystemSession_Staff_ID'] ?>" class="nav-link"> <i class="icon-user-plus"></i> <span> ข้อมูลส่วนตัว </span> </a> </li>
                     <li class="nav-item"> <a href="#" class="nav-link" id="idLogoutLink2"> <i class="icon-switch2"></i> <span>ออกจากระบบ</span> </a> </li>
                 </ul>
             </div>

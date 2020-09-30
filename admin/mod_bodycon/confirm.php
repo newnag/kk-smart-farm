@@ -32,7 +32,7 @@ include_once("../inc/inc_page_header.php");
 	</form>
 	<form id="myForm" name="myForm" method="post" action="?" class="form-validate-jquery" enctype="multipart/form-data">
 		<input type="hidden" id="doaction" name="doaction" value="delete" />
-		<input type="hidden" id="inputID"  name="inputID"  value="<?php echo $Row["ID"]; ?>" />
+		<input type="hidden" id="inputID"  name="inputID"  value="<?php echo $_REQUEST["inputID"]; ?>" />
 		<input type="hidden" id="inputName" name="inputName" value="<?php echo $Row["Name"]; ?>" />
 		<!-- Remember Current List State ---------------------------- -->
 		<input type="hidden" id="inputShowFilter"     name="inputShowFilter"     value="<?php echo $_REQUEST["inputShowFilter"]; ?>" />
@@ -45,7 +45,7 @@ include_once("../inc/inc_page_header.php");
 			<?php
 			#------------------------------
 			$Config_ViewOnly=true;
-			include("list-object.php");
+			//include("list-object.php");
 			#------------------------------
 			?>
 		</div>

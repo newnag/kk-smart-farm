@@ -23,6 +23,9 @@ foreach ($_REQUEST as $key => $value) { $SendRequest[$key]=trim(urldecode($value
 $Result=System_GetAPI(SYSTEM_DB_MODE_BACKEND,$SendRequest);
 $Row=$Result["Result"];
 
+//print_r($Row);
+// exit();
+
 ?>
 <div class="content">
 	<!-- Form ------------------------------------------------------- -->
@@ -84,11 +87,15 @@ $Row=$Result["Result"];
 						</div>
 					</div>
 					<!-- ------------------------------------------------------- -->
-					<div class="form-group" style=" margin-top: 20px; ">
-						<label class="mb-0 text-grey-800 font-weight-bold">
-							รายละเอียด :
-						</label>
-						<textarea name="inputHTML" id="inputHTML" rows="4" cols="4" style=" width: 100%; height: 400px; "><?php echo $Row["HTML"]; ?></textarea>
+					<div class="content">
+
+						<div class="form-group" style=" margin-top: 20px; ">
+							<label class="mb-0 text-grey-800 font-weight-bold">
+								รายละเอียด :
+							</label>
+							<textarea name="inputHTML" id="inputHTML" rows="4" cols="4" style=" width: 100%; height: 400px; "><?php echo $Row["HTML"]; ?></textarea>
+						</div>
+
 					</div>
 					<!-- ------------------------------------------------------- -->
 					<div class="form-group">

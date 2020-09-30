@@ -160,7 +160,9 @@ var CKEditor = function() {
             return;
         }
         CKEDITOR.replace('inputHTML', {
-            height: 400
+            extraPlugins: 'filebrowser',
+            filebrowserUploadMethod: 'form',
+            filebrowserUploadUrl: 'uploadImg.php'
         });
     };
     // Select2
