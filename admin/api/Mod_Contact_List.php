@@ -36,10 +36,10 @@ try {
     $dataQ["id"] = $Row[TABLE_MOD_CONTACT."_id"];
     $dataQ["name"]=$Row[TABLE_MOD_CONTACT."_name"] ;
     $dataQ["tel"]=$Row[TABLE_MOD_CONTACT."_tel"] ;
-    if($Row[TABLE_MOD_CONTACT."_Picture"]<>"") {
-      $DataField["Picture"]=SYSTEM_FULLPATH_UPLOAD."mod_contact/".$Row[TABLE_MOD_CONTACT."_picture"];
+    if($Row[TABLE_MOD_CONTACT."_picture"]<>"") {
+      $dataQ["Picture"]=SYSTEM_FULLPATH_UPLOAD."mod_contact/".$Row[TABLE_MOD_CONTACT."_picture"];
     } else {
-      $DataField["Picture"]=CONFIG_DEFAULT_THUMB_PICTURE;
+      $dataQ["Picture"]=CONFIG_DEFAULT_THUMB_PICTURE;
     }
 
     $arrdataQ[] = $dataQ;
