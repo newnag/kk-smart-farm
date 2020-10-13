@@ -8,7 +8,7 @@ $ErrorMessage="";
 #-------------------------------------------------------------------
 # INPUT
 #-------------------------------------------------------------------
-$Email = trim(urldecode($SendRequest['inputEmail']))*1;
+$Email = trim(urldecode($SendRequest['inputEmail']));
 
 if($Email == ""){
   $ErrorMessage = "กรุณากรอก Email";
@@ -35,7 +35,7 @@ try {
   if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
   $Rows=$Query->fetchAll();
   $Row=$Rows[0];
-  if($Row[TABLE_MOD_USERFARM."_id"] == $Email){
+  if($Row[TABLE_MOD_USERFARM."_email"] == $Email){
     $dataQ = array();
     $dataQ["id"] = $Row[TABLE_MOD_USERFARM."_id"];
     $dataQ["email"]="ส่งรหัสผ่านชั่วคราวไปที่ ".$Row[TABLE_MOD_USERFARM."_email"]." เรียบร้อยแล้ว" ;
