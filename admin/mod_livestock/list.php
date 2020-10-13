@@ -41,6 +41,7 @@ include_once("../inc/inc_page_header.php");
 
 include("list-select.php");
 
+
 ?>
 <div class="content">
 	<?php
@@ -67,6 +68,7 @@ include("list-select.php");
 
 		<form action="?" id="FormSelectFarm" name="FormSelectFarm" method="get">
 			<input type="hidden" id="doaction" name="doaction" value="list" />
+			<input type="hidden" id="dataAll" name="dataAll" value="yes" />
 			<input type="hidden" id="inputFamrSelect" name="inputFamrSelect"  value="<?php echo $_REQUEST["inputFamrSelect"]; ?>" />
 
 			<div class="card-body">

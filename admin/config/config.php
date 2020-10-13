@@ -104,10 +104,12 @@ $System_MenuSub_Link=array();
 # Menu List
 #-------------------------------------------------------------------
 $System_MenuMain_Name[1000]="ข่าวสารและบทความ"; $System_MenuMain_Icons[1000]="icon-typewriter";
-        $System_MenuSub_Name[1001] ="ข่าวประชาสัมพันธ์"; $System_MenuSub_Link[1001]="../mod_article/";
-        $System_MenuSub_Name[1002] ="เกณฑ์วัดความสมบูรณ์"; $System_MenuSub_Link[1002]="../mod_bodycon/";
-        $System_MenuSub_Name[1003] ="โภชนาการ"; $System_MenuSub_Link[1003]="../mod_nutrition/";
-        $System_MenuSub_Name[1004] ="โรคติดต่อ"; $System_MenuSub_Link[1004]="../mod_disease/";
+        $System_MenuSub_Name[1001] ="ข่าวประชาสัมพันธ์"; $System_MenuSub_Link[1001]="../mod_article/";    
+$System_MenuMain_Name[9000]="โรคติดต่อ"; $System_MenuMain_Icons[9000]="icon-typewriter";
+        $System_MenuSub_Name[9001] ="โรคติดต่อ"; $System_MenuSub_Link[9001]="../mod_disease/";
+$System_MenuMain_Name[10000]="โภชนาการ"; $System_MenuMain_Icons[10000]="icon-typewriter";
+        $System_MenuSub_Name[10001] ="โภชนาการ"; $System_MenuSub_Link[10001]="../mod_nutrition/";
+        $System_MenuSub_Name[10002] ="เกณฑ์วัดความสมบูรณ์"; $System_MenuSub_Link[10002]="../mod_bodycon/";
 $System_MenuMain_Name[2000]="จัดการระบบสืบพันธุ์"; $System_MenuMain_Icons[2000]="icon-pencil7";
         $System_MenuSub_Name[2001] ="การรักษา"; $System_MenuSub_Link[2001]="../mod_treatment/";
         $System_MenuSub_Name[2002] ="ลักษณะเมือก"; $System_MenuSub_Link[2002]="../mod_rut/";

@@ -8,10 +8,10 @@ $ErrorMessage="";
 #-------------------------------------------------------------------
 # INPUT
 #-------------------------------------------------------------------
-$myID = trim(urldecode($SendRequest['inputID']))*1;
+$Email = trim(urldecode($SendRequest['inputEmail']))*1;
 
-if($myID == ""){
-  $ErrorMessage = "กรุณากรอก User";
+if($Email == ""){
+  $ErrorMessage = "กรุณากรอก Email";
 }
 
 #-------------------------------------------------------------------
@@ -30,12 +30,12 @@ function generateRandomString($length = 10) {
 
 try {
   $counter=0; $arSQLData=array();
-  $sql =" SELECT * FROM ".TABLE_MOD_USERFARM." WHERE ".TABLE_MOD_USERFARM."_ID=? "; $arSQLData[]=$myID;
+  $sql =" SELECT * FROM ".TABLE_MOD_USERFARM." WHERE ".TABLE_MOD_USERFARM."_email=? "; $arSQLData[]=$Email;
   $Query=$System_Connection->prepare($sql);
   if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
   $Rows=$Query->fetchAll();
   $Row=$Rows[0];
-  if($Row[TABLE_MOD_USERFARM."_id"] == $myID){
+  if($Row[TABLE_MOD_USERFARM."_id"] == $Email){
     $dataQ = array();
     $dataQ["id"] = $Row[TABLE_MOD_USERFARM."_id"];
     $dataQ["email"]="ส่งรหัสผ่านชั่วคราวไปที่ ".$Row[TABLE_MOD_USERFARM."_email"]." เรียบร้อยแล้ว" ;
@@ -47,6 +47,19 @@ try {
   }
   
 } catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); }
+
+#-------------------------------------------------------------------
+# PROCESS
+#-------------------------------------------------------------------
+
+try {
+  $arSQLData=array();
+  $sql =" UPDATE ".TABLE_MOD_USERFARM." SET "; 
+  $sql.=" ".TABLE_MOD_USERFARM."_password=? ";        $arSQLData[]=$dataQ["pass"];
+  $sql.=" WHERE ".TABLE_MOD_USERFARM."_email=? ";        $arSQLData[]=$Row[TABLE_MOD_USERFARM."_email"];
+  $Query=$System_Connection->prepare($sql);
+  if(sizeof($arSQLData)>0) { $Query->execute($arSQLData);  } else { $Query->execute(); }	
+} catch(PDOException $e) { 	$ErrorMessage=$e->getMessage(); echo 'ผิดพลาดดึงข้อมูลไม่ได้'; }
 
 
 #-------------------------------------------------------------------

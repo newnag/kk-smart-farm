@@ -18,3 +18,5 @@ $Config_PageKey=http_build_query($SendRequest);
 # Load Data from API
 #-------------------------------------------------------------------
 $ResultPre=System_GetAPI(SYSTEM_DB_MODE_BACKEND,$SendRequest);
+
+// print_r($ResultPre[Result]);

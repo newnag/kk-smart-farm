@@ -64,7 +64,7 @@ $Row=$Result["Result"];
 					<div class="form-group">
 						<label class="mb-0 text-grey-800 font-weight-bold">ชื่อหมวดหมู่หลัก : </label>
 						<select class="form-control select select2-hidden-accessible" id="inputCateName" name="inputCateName" data-fouc="" tabindex="-1" aria-hidden="true">
-							<option value="">เลือกหมวดหมู่หลัก</option>
+							<option value="<?php echo $Row["cateID"]; ?>/<?php echo $Row["cateName"]; ?>"><?php echo $Row["cateName"]; ?></option>
 							<?php
 								$arrData = $ResultPre["Result"];
 								for($i=0;$i<sizeof($arrData);$i++){

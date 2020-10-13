@@ -35,6 +35,8 @@ $_REQUEST["inputShowMaxPage"]=$Result["Header"]["MaxPage"];
 $Config_ShowButton=array("add","filter");
 include_once("../inc/inc_page_header.php");
 
+include("list-select.php");
+
 ?>
 <div class="content">
 	<?php
@@ -46,7 +48,41 @@ include_once("../inc/inc_page_header.php");
 	#-------------------------------------------------------------------
 	# Show Data List
 	#-------------------------------------------------------------------
+?>
 
+<div class="card">
+	<div class="card-header header-elements-inline">
+		<h5 class="card-title">เลือกชื่อเจ้าของฟาร์ม</h5>
+		<div class="header-elements">
+			<div class="list-icons">
+					<a class="list-icons-item" data-action="collapse"></a>
+				</div>
+			</div>
+	</div>
+
+	<form action="?" id="FormSelectFarm" name="FormSelectFarm" method="get">
+		<input type="hidden" id="doaction" name="doaction" value="list" />
+		<input type="hidden" id="inputFamrSelect" name="inputFamrSelect"  value="<?php echo $_REQUEST["inputFamrSelect"]; ?>" />
+
+		<div class="card-body">
+			<div class="form-group">
+				<label>ชื่อเจ้าของฟาร์ม :</label>
+				<select data-placeholder="เลือกเจ้าของฟาร์ม" id="SelectFarm" class="form-control form-control-lg select select2-hidden-accessible" data-container-css-class="select-lg" data-fouc="" tabindex="-1" aria-hidden="true">
+					<option value=""></option>
+					<?php 
+						$arr = $ResultA["Result"];
+						for($i=0;$i<sizeof($arr);$i++){
+							$dataArr = $arr[$i];
+							echo '<option value="'.$dataArr["id"].'">'.$dataArr["fullname"].'</option>';
+						}
+					?>
+				</select>
+			</div>
+		</div>
+	</form>
+</div>
+	
+<?php
 	if($Result["Header"]["Total"]>0) {
 		?>
 		<div id="idListData">
@@ -108,3 +144,9 @@ include_once("../inc/inc_page_header.php");
 	?>
 </div>
 <script src="list.js"></script>
+<script>
+	$('#SelectFarm').change(function(){
+		$('#inputFamrSelect').val($(this).val());
+		$('#FormSelectFarm').submit();
+	})
+</script>
