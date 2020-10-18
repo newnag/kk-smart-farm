@@ -11,6 +11,9 @@ $inputEmail = trim(urldecode($SendRequest['inputEmail']));
 $inputPhone = trim(urldecode($SendRequest['inputPhone']));
 $inputPass = trim(urldecode($SendRequest['inputPass']));
 $inputPicture = trim(urldecode($SendRequest['inputPicture']));
+$inputFullname = trim(urldecode($SendRequest['inputFullname']));
+$inputLastname = trim(urldecode($SendRequest['inputLastname']));
+$inputIdNo = trim(urldecode($SendRequest['inputIdNo']));
 $inputTel = trim(urldecode($SendRequest['inputTel']));
 $inputSexSum = trim(urldecode($SendRequest['inputSexSum']));
 $inputDOB = trim(urldecode($SendRequest['inputDOB']));
@@ -64,6 +67,15 @@ if($sscount < sizeof($inputArr)){
 		}
 		if($inputPicture<>"") {
 			$sql.=",".TABLE_MOD_USERFARM."_thumbnail=? ";     $arSQLData[]=$inputPicture;
+		}
+		if($inputFullname<>""){
+			$sql.=",".TABLE_MOD_USERFARM."_fullname=? ";           $arSQLData[]=$inputFullname;
+		}
+		if($inputLastname<>""){
+			$sql.=",".TABLE_MOD_USERFARM."_lastname=? ";           $arSQLData[]=$inputLastname;
+		}
+		if($inputIdNo<>""){
+			$sql.=",".TABLE_MOD_USERFARM."_id_No=? ";           $arSQLData[]=$inputIdNo;
 		}
 		$sql.=",".TABLE_MOD_USERFARM."_sex=? ";           $arSQLData[]=$inputSexSum;
 		$sql.=",".TABLE_MOD_USERFARM."_DOB=? ";           $arSQLData[]=$inputDOB;

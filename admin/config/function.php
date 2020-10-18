@@ -246,7 +246,7 @@ function System_SaveUploadFile($key,$folder) {
 	global $_REQUEST;
 	$myFileUploadName=$_REQUEST['input'.$key];
 	if(strpos(" ".$myFileUploadName,"http:")>0 || strpos(" ".$myFileUploadName,"https:")>0) { // old picture path
-		return "";
+		return "error";
 	} else {
 		$newimage='';
 		$arraypic = explode(".",$myFileUploadName);
